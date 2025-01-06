@@ -189,12 +189,14 @@ function SetCollector:ToggleExpansion(parameters)
 		expansions.v09 = not expansions.v09
 	elseif parameters == "10" then
 		expansions.v10 = not expansions.v10
+	elseif parameters == "11" then
+		expansions.v11 = not expansions.v11
 	end
 	SetCollector:Print(L["RELOAD"])
 end
 
 function SetCollector:PrintItem(itemID)
-    local sLink = select(2,GetItemInfo(itemID))
+    local sLink = select(2,C_Item.GetItemInfo(itemID))
     SetCollector:Print(sLink)
 end
 
@@ -299,9 +301,17 @@ end
 
 function ParseClassMask(bits)
     -- 0 == All classes can wear
-    if bits == 0 then
+    if bits == nil or bits == 0 then
         return "ANY_CLASS"
     end
+
+    local cleanBits = BitAND(bits, math.pow(2, GetNumClasses()) - 1)
+
+    -- 0 == All classes can wear
+    if cleanBits == 0 then
+        return "ANY_CLASS"
+    end
+
     local map = { 
         WARRIOR = 0x001,
         PALADIN = 0x002,
@@ -317,32 +327,37 @@ function ParseClassMask(bits)
         DEMONHUNTER = 0x800,
         DRAKTHYR = 0x1000
     }
+    
     -- Check for exact match between class
     for char, mask in pairs(map) do
-        if bits == mask then
+        if cleanBits == mask then
             return char .. ""
         end
     end
-    -- Check for "any" match between class
-    local any_map = { 
-        ANY_PLATE = 0x001 + 0x002 + 0x020,
-        ANY_LEATHER = 0x008 + 0x200 + 0x800 + 0x400,
-        ANY_CLOTH = 0x010 + 0x080 + 0x100,
-        ANY_MAIL = 0x004 + 0x040 + 0x1000
-    }
-    for char, mask in pairs(any_map) do
-        if bits == mask then
-            return "ANY_CLASS"
-        end
-    end
-    -- hmm, weird case, better itemize
-    local parse = bits .. ": "
-    for char, mask in pairs(map) do
-        if (BitAND(bits, mask) == mask) then
-            parse = parse .. char .. " "
-        end
-    end
-    return parse
+
+    -- Right now, the remaining code is useless. Just pass "Any Class" and depend on cloth\mail\etc to filter.
+    return "ANY_CLASS"
+
+    -- -- Check for "any" match between class
+    -- local any_map = { 
+    --     ANY_PLATE = 0x001 + 0x002 + 0x020,
+    --     ANY_LEATHER = 0x008 + 0x200 + 0x800 + 0x400,
+    --     ANY_CLOTH = 0x010 + 0x080 + 0x100,
+    --     ANY_MAIL = 0x004 + 0x040 + 0x1000
+    -- }
+    -- for char, mask in pairs(any_map) do
+    --     if cleanBits == mask then
+    --         return char .. ""
+    --     end
+    -- end
+    -- -- hmm, weird case, better itemize
+    -- local parse = cleanBits .. ": "
+    -- for char, mask in pairs(map) do
+    --     if (BitAND(cleanBits, mask) == mask) then
+    --         parse = parse .. char .. " "
+    --     end
+    -- end
+    -- return parse
 end
 
 function ParseArmorMask(bits)
@@ -350,22 +365,30 @@ function ParseArmorMask(bits)
     if bits == 0 then
         return "ANY_ARMOR"
     end
+
+    local cleanBits = BitAND(bits, math.pow(2, GetNumClasses()) - 1)
+
+    -- 0 == All classes can wear
+    if cleanBits == 0 then
+        return "ANY_ARMOR"
+    end
+
     local map = { 
         PLATE = 0x001 + 0x002 + 0x020,
-        LEATHER = 0x008 + 0x200 + 0x800 + 0x400,
+        LEATHER = 0x008 + 0x200 + 0x400 + 0x800,
         CLOTH = 0x010 + 0x080 + 0x100,
         MAIL = 0x004 + 0x040 + 0x1000
     }
-    local parse = bits .. ": "
+    
     for char, mask in pairs(map) do
-        if (BitAND(bits, mask) > 0) then
+        if (BitAND(cleanBits, mask) > 0) then
             return char .. ""
         end
     end
     -- hmm, weird case, better itemize
-    local parse = bits .. ": "
+    local parse = cleanBits .. ": "
     for char, mask in pairs(map) do
-        if (BitAND(bits, mask) == mask) then
+        if (BitAND(cleanBits, mask) == mask) then
             parse = parse .. char .. " "
         end
     end

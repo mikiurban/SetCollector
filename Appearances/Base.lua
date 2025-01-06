@@ -102,7 +102,7 @@ function SetCollector:IncludeSet(collection, uid, setID, armorType, class, facti
             description = description.." ("..setInfo.expansionID..")"
         end
         local set = {
-            ID = collection.Code..string.format("%04d", uid)..setID..armorType.Code..class.Code..faction.Code,
+            ID = collection.Code..string.format("%06d", uid)..setID..armorType.Code..class.Code..faction.Code,
             setID = setInfo.setID,
             Collection = collection.Description,
             Title = setInfo.name,
@@ -167,7 +167,7 @@ end
 
 function SetCollector:CreateSet(collection, uid, title, armorType, class, faction, location, ...)
     local set = {
-        ID = collection.Code..string.format("%04d", uid)..armorType.Code..class.Code..faction.Code,
+        ID = collection.Code..string.format("%06d", uid)..armorType.Code..class.Code..faction.Code,
         Collection = collection.Description,
         Title = title,
         TooltipID = SetCollector:CreateTooltipID(collection, uid, title),
