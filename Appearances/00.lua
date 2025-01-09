@@ -80,7 +80,8 @@ local function GetHeritageAppearances()
         IncludeSet(COLLECTION,10099,1981,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
     }
     VERSION = 100107
-    AddSetsToDatabase(VERSION, COLLECTION, sets)sets = {
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+    sets = {
         IncludeSet(COLLECTION,11001,3085,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
         IncludeSet(COLLECTION,11001,3086,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
     }
