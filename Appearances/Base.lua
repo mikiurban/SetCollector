@@ -58,29 +58,28 @@ local function is_numeric(x)
     return false
 end
 
-function SetCollector:CreateAppearance(ID, sourceID, slotID, ...)
+function SetCollector:CreateAppearance(ID, sourceID, slotID, itemID, ...)
 	local t = { 
         ID = ID or 0,
         sourceID = sourceID or 0,
         slotID = slotID or 0,
-		alternateIDs = {}
+		itemID = itemID
     }
-    -- if select('#', ...) > 0 then -- add alternate appearance IDs
 	return t
 end
 
 function SetCollector:CreateAppearanceFromItemID(itemID)
-    appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
-    if (sourceID) then
+    local slotID = 0
+    local appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
+    if sourceID then
         slotID = select(1, C_TransmogCollection.GetSourceInfo(sourceID))
     end
     local t = { 
         ID = appearanceID or 0,
         sourceID = sourceID or 0,
         slotID = slotID or 0,
-        alternateIDs = {}
+        itemID = itemID
     }
-    -- if select('#', ...) > 0 then -- add alternate appearance IDs
     return t
 end
 
@@ -151,10 +150,11 @@ function SetCollector:IncludeVariant(setID, setInfo, ...)
     if appearances then
         variant.Count = #appearances
         for pos in pairs(appearances) do
+            local itemID = C_TransmogCollection.GetSourceItemID(appearances[pos].appearanceID)
             local sourceInfo = C_TransmogCollection.GetSourceInfo(appearances[pos].appearanceID);
             if (sourceInfo) then
                 local slotID = C_Transmog.GetSlotForInventoryType(sourceInfo.invType)
-                table.insert(variant.Appearances, SetCollector:CreateAppearance(sourceInfo.visualID or nil, sourceInfo.sourceID or nil, slotID or nil))
+                table.insert(variant.Appearances, SetCollector:CreateAppearance(sourceInfo.visualID or nil, sourceInfo.sourceID or nil, slotID or nil, itemID or nil))
             end
         end
         local function compare(a, b)
