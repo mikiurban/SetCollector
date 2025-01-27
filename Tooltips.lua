@@ -87,7 +87,7 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
                             if sourceCollected then
                                 tooltip:AddDoubleLine(link, sources[i])
                             else
-                                local name = GetItemInfo(link)
+                                local name = C_Item.GetItemNameByID(link)
                                 if ( name ) then
                                     tooltip:AddDoubleLine("|cFF777777"..name.."|r",sources[i])
                                 end

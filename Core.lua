@@ -56,7 +56,7 @@ end
 function SetCollector:GetAppearanceInfo(itemLink)
 	if itemLink then
         local appearanceID, sourceID, itemID, setIDs
-        itemID = GetItemInfoInstant(itemLink)
+        itemID = C_Item.GetItemInfoInstant(itemLink)
         appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemLink)
         if sourceID then
             setIDs = C_TransmogSets.GetSetsContainingSourceID(sourceID)
@@ -142,10 +142,10 @@ function SetCollector:UpdateCollections()
 end
 
 function SetCollector:PLAYER_LOGIN()
-  local DEBUG = SetCollector:GetDebug()
-  if DEBUG then SetCollector:Print("Running PLAYER_LOGIN processes"); end
-	SetCollector:InitializeFilter(DEBUG)
-	SetCollector:InitializeModel(DEBUG)
+    local DEBUG = SetCollector:GetDebug()
+    if DEBUG then SetCollector:Print("Running PLAYER_LOGIN processes"); end
+    SetCollector:InitializeFilter(DEBUG)
+    SetCollector:InitializeModel(DEBUG)
 end
 
 --
