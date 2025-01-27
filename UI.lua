@@ -372,38 +372,49 @@ end
 local function SetItemButton(button, appearanceID, sourceID, itemID)
   if button then
     local id, app, src, isCollected, icon, sLink = itemID, appearanceID, sourceID, false, nil, nil
+		local tempIcon, tempLink = nil, nil
 		if id then
 			app, src = C_TransmogCollection.GetItemInfo(id)
 		end
 		if src and src > 0 then
-			_, _, _, icon, isCollected, sLink = C_TransmogCollection.GetAppearanceSourceInfo(src)
+			_, _, _, tempIcon, isCollected, tempLink = C_TransmogCollection.GetAppearanceSourceInfo(src)
+			icon = icon or tempIcon
+			sLink = sLink or tempLink
 		end
 		local sources = C_TransmogCollection.GetAllAppearanceSources(app)
 		if sources and not isCollected then
 			for _, source in ipairs(sources) do
-				_, _, _, icon, isCollected, sLink = C_TransmogCollection.GetAppearanceSourceInfo(source)
+				_, _, _, tempIcon, isCollected, tempLink = C_TransmogCollection.GetAppearanceSourceInfo(source)
+				icon = icon or tempIcon
+				sLink = sLink or tempLink
 				if isCollected then
 					break
 				end
 			end
 		end
-    if sLink and icon then
+
+		if icon then
+			button.icon:SetTexture(icon)
+		end
+
+    if sLink then
+			local iRarity = C_Item.GetItemQualityByID(sLink)
+			if iRarity then
+				local r, g, b, _ = C_Item.GetItemQualityColor(iRarity)
+				button.glow:SetVertexColor(r, g, b)
+			end
+
       if not id then
         id = C_Item.GetItemInfoInstant(sLink)
       end
+
       if id and id > 0 then
         button.link = sLink
         button.ItemID = id
-        button.icon:SetTexture(icon)
 
-        if isCollected then
+				if isCollected then
           button.icon:SetVertexColor(1, 1, 1, 1)
           button.icon:SetDesaturated(false)
-          local iRarity = select(3, C_Item.GetItemInfo(sLink))
-          if iRarity then
-            local r, g, b, _ = C_Item.GetItemQualityColor(iRarity)
-            button.glow:SetVertexColor(r, g, b)
-          end
           button.glow:Show()
         else
           button.icon:SetVertexColor(1, 0.25, 0.25, 0.5)
@@ -470,7 +481,7 @@ for i=1, 5 do
 	variantTab:SetScript("OnClick",VariantTab_OnClick)
 	variantTab:Hide()
 end
-PanelTemplates_SetNumTabs(SetCollectorSetDisplay, 5)
+PanelTemplates_SetNumTabs(_G["SetCollectorSetDisplay"], 5)
 
 function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 	local db = SetCollector.db.global.collections
@@ -486,8 +497,8 @@ function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 			variantTab.Preview = false
 			variantTab:Hide()
 		end
-		PanelTemplates_SetNumTabs(SetCollectorSetDisplay, 5)
-		SetCollector:SetVariantTab(SetCollectorSetDisplay, 1)
+		PanelTemplates_SetNumTabs(_G["SetCollectorSetDisplay"], 5)
+		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], 1)
 		
 	elseif ( collection and set and set ~= 0 and #db[collection].Sets[set].Variants > 1 ) then
 		for i=1, 5 do
@@ -523,8 +534,8 @@ function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 				variantTab:Hide()
 			end
 		end
-		PanelTemplates_SetNumTabs(SetCollectorSetDisplay, #db[collection].Sets[set].Variants)
-		SetCollector:SetVariantTab(SetCollectorSetDisplay, variant or 1)
+		PanelTemplates_SetNumTabs(_G["SetCollectorSetDisplay"], #db[collection].Sets[set].Variants)
+		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], variant or 1)
 	else
 		for i=1, 5 do
 			local variantTab = _G["SetCollectorSetDisplayTab"..i]
@@ -534,8 +545,8 @@ function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 			variantTab.Preview = false
 			variantTab:Hide()
 		end
-		PanelTemplates_SetNumTabs(SetCollectorSetDisplay, 5)
-		SetCollector:SetVariantTab(SetCollectorSetDisplay, 1)
+		PanelTemplates_SetNumTabs(_G["SetCollectorSetDisplay"], 5)
+		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], 1)
 	end
 end
 
