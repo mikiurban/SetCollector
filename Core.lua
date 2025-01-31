@@ -325,7 +325,7 @@ function ParseClassMask(bits)
         MONK = 0x200,
         DRUID = 0x400,
         DEMONHUNTER = 0x800,
-        DRAKTHYR = 0x1000
+        EVOKER = 0x1000
     }
     
     -- Check for exact match between class

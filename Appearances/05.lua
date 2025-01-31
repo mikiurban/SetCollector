@@ -90,6 +90,25 @@ local function GetExpansionAppearances()
         IncludeSet(COLLECTION,10501,1438,MAIL,SHAMAN,ANY_FACTION),
         IncludeSet(COLLECTION,10501,1437,CLOTH,WARLOCK,ANY_FACTION),
         IncludeSet(COLLECTION,10501,1436,PLATE,WARRIOR,ANY_FACTION),
+
+        IncludeSet(COLLECTION,10502,3371,CLOTH,ANY_CLASS,ANY_FACTION,3373,3372), -- Spirit-Waker's Vestments, Red, Green
+        IncludeSet(COLLECTION,10502,3375,CLOTH,ANY_CLASS,ANY_FACTION,3376,3374), -- Mistwalker's Vestments, White, Blue
+        IncludeSet(COLLECTION,10502,3377,CLOTH,ANY_CLASS,ANY_FACTION,3379,3378), -- Vestments of the Eternal Dynasty, Yellow, Blue
+        IncludeSet(COLLECTION,10502,3380,CLOTH,ANY_CLASS,ANY_FACTION,3381), -- Guise of the Shado-Pan, Original
+        IncludeSet(COLLECTION,10502,3388,LEATHER,ANY_CLASS,ANY_FACTION,3387,3386,3389), -- Thunderpaw Battlegear, Light, Dark, Red
+        IncludeSet(COLLECTION,10502,3390,LEATHER,ANY_CLASS,ANY_FACTION,3391,3392,3393), -- Mistveil Leathers, Brown, Crimson, Indigo
+        IncludeSet(COLLECTION,10502,3394,CLOTH,ANY_CLASS,ANY_FACTION,3396,3395), -- Tian Monastery Clothing, White, Red
+        IncludeSet(COLLECTION,10502,3397,LEATHER,ANY_CLASS,ANY_FACTION,3399,3398), -- Snowdrift Battlegear, Red, Brown
+        IncludeSet(COLLECTION,10502,3405,CLOTH,ANY_CLASS,ANY_FACTION,3403,3404), -- Kor'kron Shaman Vestments, Cool, Warm
+        IncludeSet(COLLECTION,10502,3406,MAIL,ANY_CLASS,ANY_FACTION,3408,3407,3409), -- Trailseeker's Laminar Armor, Green, Gold, White
+        IncludeSet(COLLECTION,10502,3410,MAIL,ANY_CLASS,ANY_FACTION,3412,3411), -- Dawnwatcher's Scale Armor, Red, Purple
+        IncludeSet(COLLECTION,10502,3413,CLOTH,ANY_CLASS,ANY_FACTION,3415,3414), -- Sun Pearl Clothing, Yellow, Red
+        IncludeSet(COLLECTION,10502,3416,MAIL,ANY_CLASS,ANY_FACTION,3418,3417,3419), -- Jade Guardian's Regalia, Red, Brown, Yellow
+        IncludeSet(COLLECTION,10502,3423,PLATE,ANY_CLASS,ANY_FACTION,3424,3425), -- Spiritguard's Warplate, Gold, Silver
+        IncludeSet(COLLECTION,10502,3426,PLATE,ANY_CLASS,ANY_FACTION,3427,3428,3429), -- Shan'ze Warplate, Purple, Red, Yellow
+        IncludeSet(COLLECTION,10502,3430,PLATE,ANY_CLASS,ANY_FACTION,3432,3431,3433), -- Gatecrasher's Battleplate, Green, Blue, Red
+        IncludeSet(COLLECTION,10502,3436,CLOTH,ANY_CLASS,ANY_FACTION,3435,3434,3437), -- Robes of Quiet Reflection, Green, Brown, Yellow
+        IncludeSet(COLLECTION,10502,3439,CLOTH,ANY_CLASS,ANY_FACTION,3438,3368), -- Vestments of Serenity, Green, White
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
@@ -222,6 +241,19 @@ local function GetPvPAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
+local function GetDungeonAppearances()
+    local COLLECTION, VERSION = SetCollector.DUNGEON, 50000
+
+    local sets = {
+        -- Mists of Pandaria: Dungeon
+        IncludeSet(COLLECTION,10502,3400,MAIL,ANY_CLASS,ANY_FACTION,3402,3401), -- Mogu Lord's Regalia, Jade, Gold
+        IncludeSet(COLLECTION,10502,3365,CLOTH,ANY_CLASS,ANY_FACTION,3370,3369), -- Breezebinder's Vestments, Red, Purple
+        IncludeSet(COLLECTION,10502,3422,PLATE,ANY_CLASS,ANY_FACTION,3421,3420), -- Swarmbreaker's Battleplate, Light, Dark
+        IncludeSet(COLLECTION,10502,3383,LEATHER,ANY_CLASS,ANY_FACTION,3382,3384,3385), -- Mogubreaker Battlegear, Black, Red, Yellow
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+end
+
 local function GetRaidAppearances()
     local COLLECTION, VERSION = SetCollector.RAID, 70000
 
@@ -237,7 +269,7 @@ local function GetRaidAppearances()
         IncludeSet(COLLECTION,10501,477,LEATHER,ROGUE,ANY_FACTION,478,479),
         IncludeSet(COLLECTION,10501,427,MAIL,SHAMAN,ANY_FACTION,338,428),
         IncludeSet(COLLECTION,10501,461,CLOTH,WARLOCK,ANY_FACTION,462,463),
-        IncludeSet(COLLECTION,10501,444,PLATE,WARRIOR,ANY_FACTION,445,446),
+        IncludeSet(COLLECTION,10501,444,PLATE,WARRIOR,ANY_FACTION,445,446,3440),
         -- Throne of Thunder
         IncludeSet(COLLECTION,10502,575,PLATE,DEATHKNIGHT,ANY_FACTION,576,577),
         IncludeSet(COLLECTION,10502,560,LEATHER,DRUID,ANY_FACTION,561,562),
@@ -278,6 +310,7 @@ function SetCollector:GetVersion05Appearances(expansion)
         --GetLegendaries()
         GetPvPAppearances()
         GetRaidAppearances()
+        GetDungeonAppearances()
     end
 end
 

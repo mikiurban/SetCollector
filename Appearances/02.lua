@@ -92,7 +92,7 @@ local function GetCraftedAppearances()
 end
 
 local function GetLegendaries()
-    local COLLECTION, VERSION = SetCollector.RAID, 70000
+    local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     
     local sets = {
         CreateSet(COLLECTION,10201,"LG_MELEE_70",ANY_ARMOR,ANY_CLASS,ANY_FACTION,NO_LOCATION,
@@ -220,6 +220,20 @@ local function GetRaidAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
+local function GetDungeonAppearances()
+    local COLLECTION, VERSION = SetCollector.DUNGEON, 20000
+
+    local sets = {
+        -- The Burning Crusade: Dungeon
+        IncludeSet(COLLECTION,10200,4125,LEATHER,ANY_CLASS,ANY_FACTION,4126,4127,4128), -- Wastewalker Battlegear, Reputation Vendors - Red, Dungeons - Brown, Purple
+        IncludeSet(COLLECTION,10200,4129,MAIL,ANY_CLASS,ANY_FACTION,4130,4131,4132), -- Seer's Mail Battlegear, Dungeons - Blue, Purple, Reputation Vendors - Red
+        IncludeSet(COLLECTION,10200,4133,PLATE,ANY_CLASS,ANY_FACTION,4135,4134,4136), -- Telhamant Anchorite's Raiment, Dungeons - Silver, Reputation Vendors - Red, Silver
+        IncludeSet(COLLECTION,10200,4137,CLOTH,ANY_CLASS,ANY_FACTION,4138,4139,4140), -- Mana-Etched Vestments, Dungeons - Purple, Reputation Vendors - Red, Dungeons - White
+        IncludeSet(COLLECTION,10200,4141,CLOTH,ANY_CLASS,ANY_FACTION,4142,4143), -- Dreadweave Raiment, Dungeons - Green, Reputation Vendors - Red
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+end
+
 --
 --    GLOBAL FUNCTIONS
 --
@@ -227,10 +241,11 @@ end
 function SetCollector:GetVersion02Appearances(expansion)
     if expansion.v02 then
         -- Common
-        --GetLegendaries()
+        GetLegendaries()
         GetOtherAppearances()
         GetPvPAppearances()
         GetRaidAppearances()
+        GetDungeonAppearances()
     end
 end
 

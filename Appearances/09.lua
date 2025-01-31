@@ -229,13 +229,14 @@ local function GetExpansionAppearances()
         IncludeSet(COLLECTION,10904,2019,LEATHER,ANY_CLASS,ANY_FACTION,2020,2021,2022),
         IncludeSet(COLLECTION,10904,2023,MAIL,ANY_CLASS,ANY_FACTION,2024,2025,2026),
         IncludeSet(COLLECTION,10904,2029,PLATE,ANY_CLASS,ANY_FACTION,2030,2028,2027),
-
-        IncludeSet(COLLECTION,10905,2484,MAIL,HUNTER,ANY_FACTION), -- Dark Ranger's Attire
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
-    VERSION = 90100
+    VERSION = 90105
     sets = {
+        IncludeSet(COLLECTION,10905,2481,PLATE,PALADIN,ANY_FACTION), -- Blood Knight's Dedication
+        IncludeSet(COLLECTION,10905,2484,MAIL,HUNTER,ANY_FACTION), -- Dark Ranger's Attire
+        
         IncludeSet(COLLECTION,10905,2205,ANY_ARMOR,ANY_CLASS,ANY_FACTION,2202,2203,2204),
         IncludeSet(COLLECTION,10905,2208,ANY_ARMOR,ANY_CLASS,ANY_FACTION,2206,2207,2209),
         IncludeSet(COLLECTION,10905,2212,ANY_ARMOR,ANY_CLASS,ANY_FACTION,2210,2211,2213),
@@ -365,7 +366,7 @@ local function GetPvPAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
     -- Season 2
     VERSION = 90100
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10902,2224,CLOTH,ANY_CLASS,ANY_FACTION,2228,2246),
         IncludeSet(COLLECTION,10902,2225,LEATHER,ANY_CLASS,ANY_FACTION,2229,2247),
         IncludeSet(COLLECTION,10902,2226,MAIL,ANY_CLASS,ANY_FACTION,2230,2248),
@@ -374,7 +375,7 @@ local function GetPvPAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
     -- Season 3
     VERSION = 90200
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10903,2565,CLOTH,ANY_CLASS,ANY_FACTION), -- Eternal Aspirant's Vestment
         IncludeSet(COLLECTION,10903,2566,LEATHER,ANY_CLASS,ANY_FACTION), -- Eternal Aspirant's Leathers
         IncludeSet(COLLECTION,10903,2567,MAIL,ANY_CLASS,ANY_FACTION), -- Eternal Aspirant's Chain

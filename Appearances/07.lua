@@ -128,6 +128,12 @@ local function GetDungeonAppearances()
         IncludeSet(COLLECTION,10705,1468,PLATE,ANY_CLASS,ANY_FACTION),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 70001
+    sets = {
+        IncludeSet(COLLECTION,10706,4247,MAIL,ANY_CLASS,ANY_FACTION), -- Drake Hunter's Kit
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetExpansionAppearances()
@@ -168,6 +174,15 @@ local function GetOtherAppearances()
         IncludeSet(COLLECTION,10703,1459,LEATHER,ANY_CLASS,ANY_FACTION),
         IncludeSet(COLLECTION,10703,1458,MAIL,ANY_CLASS,ANY_FACTION),
         IncludeSet(COLLECTION,10703,1456,PLATE,ANY_CLASS,ANY_FACTION)
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.OTHER, 70001
+    sets = {
+        -- Timewalking: Vrykul Battlegear
+        IncludeSet(COLLECTION,10705,4248,PLATE,ANY_CLASS,ANY_FACTION), -- Drekirjar Warrior's Battlegear
+        IncludeSet(COLLECTION,10705,4246,LEATHER,ANY_CLASS,ANY_FACTION), -- Invasion Stalkers Guise
+        IncludeSet(COLLECTION,10705,4245,CLOTH,ANY_CLASS,ANY_FACTION), -- Broken Shore Battlemender's Gear
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
@@ -281,7 +296,7 @@ local function GetRaidAppearances()
 
     -- The Nighthold
     VERSION = 70000
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10701,1002,PLATE,DEATHKNIGHT,ANY_FACTION,1003,1004,1005),
         IncludeSet(COLLECTION,10701,998,LEATHER,DEMONHUNTER,ANY_FACTION,999,1000,1001),
         IncludeSet(COLLECTION,10701,994,LEATHER,DRUID,ANY_FACTION,995,996,997),
@@ -299,7 +314,7 @@ local function GetRaidAppearances()
 
     -- Tomb of Sargeras Normal, RF, H, M, and Mage Tower (labeled "Timewalked")
     VERSION = 70200
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10702,1337,PLATE,DEATHKNIGHT,ANY_FACTION,1338,1339,1340,2294),
         IncludeSet(COLLECTION,10702,1333,LEATHER,DEMONHUNTER,ANY_FACTION,1334,1335,1336,2295),
         IncludeSet(COLLECTION,10702,1329,LEATHER,DRUID,ANY_FACTION,1330,1331,1332,2296),
@@ -317,7 +332,7 @@ local function GetRaidAppearances()
 
     -- Antorus, the Burning Throne
     VERSION = 70300
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10703,1472,PLATE,DEATHKNIGHT,ANY_FACTION,1473,1474,1475),
         IncludeSet(COLLECTION,10703,1476,LEATHER,DEMONHUNTER,ANY_FACTION,1477,1478,1479),
         IncludeSet(COLLECTION,10703,1480,LEATHER,DRUID,ANY_FACTION,1481,1482,1483),

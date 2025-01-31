@@ -118,6 +118,28 @@ local function GetPvPAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
+local function GetOtherAppearances()
+    local COLLECTION, VERSION = SetCollector.OTHER, 70000
+
+    local sets = {
+        IncludeSet(COLLECTION,30001,4144,LEATHER,ANY_CLASS,ANY_FACTION), -- Drakkari Stalker's Trappings
+        IncludeSet(COLLECTION,30001,4146,MAIL,ANY_CLASS,ANY_FACTION), -- Brunnhildar Scout's Kit
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+end
+
+local function GetDungeonAppearances()
+    local COLLECTION, VERSION = SetCollector.DUNGEON, 70000
+
+    local sets = {
+        -- Wrath of the Lich King: PVP
+        IncludeSet(COLLECTION,10301,4147,PLATE,ANY_CLASS,ANY_FACTION), -- Ymirjar Deathbringer's Battleplate
+        IncludeSet(COLLECTION,10301,4145,PLATE,ANY_CLASS,ANY_FACTION), -- Jotunheim Berserker's Battleplate
+        IncludeSet(COLLECTION,10301,4148,CLOTH,ANY_CLASS,ANY_FACTION), -- Coldarra Spellbinder's Regalia
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+end
+
 local function GetRaidAppearances()
     local COLLECTION, VERSION = SetCollector.RAID, 70000
 
@@ -190,6 +212,8 @@ function SetCollector:GetVersion03Appearances(expansion)
         --GetLegendaries()
         GetPvPAppearances()
         GetRaidAppearances()
+        GetOtherAppearances()
+        GetDungeonAppearances()
     end
 end
 

@@ -235,8 +235,8 @@ local function GetOtherAppearances()
         IncludeSet(COLLECTION,10811,1903,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
         IncludeSet(COLLECTION,10812,1913,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
         IncludeSet(COLLECTION,10813,1914,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
-        IncludeSet(COLLECTION,10814,1822,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
-        IncludeSet(COLLECTION,10815,1823,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
+        IncludeSet(COLLECTION,10814,1822,ANY_ARMOR,ANY_CLASS,ANY_FACTION), -- Brawler's Garb",
+        IncludeSet(COLLECTION,10815,1823,ANY_ARMOR,ANY_CLASS,ANY_FACTION), -- Brawler's Garb",
         IncludeSet(COLLECTION,10816,1637,ANY_ARMOR,ANY_CLASS,ANY_FACTION),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -297,7 +297,7 @@ local function GetRaidAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
     -- Battle of Dazar'alor
     VERSION = 80100
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10802,1806,CLOTH,ANY_CLASS,ANY_FACTION,1807,1808,1809),
         IncludeSet(COLLECTION,10802,1810,LEATHER,ANY_CLASS,ANY_FACTION,1811,1812,1813),
         IncludeSet(COLLECTION,10802,1814,MAIL,ANY_CLASS,ANY_FACTION,1815,1816,1817),
@@ -306,7 +306,7 @@ local function GetRaidAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
     -- The Eternal Palace
     VERSION = 80200
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10803,1845,CLOTH,ANY_CLASS,ANY_FACTION,1833,1837,1841),
         IncludeSet(COLLECTION,10803,1844,LEATHER,ANY_CLASS,ANY_FACTION,1832,1836,1840),
         IncludeSet(COLLECTION,10803,1843,MAIL,ANY_CLASS,ANY_FACTION,1831,1835,1839),
@@ -315,7 +315,7 @@ local function GetRaidAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
     -- Ny'alotha
     VERSION = 80300
-    local sets = {
+    sets = {
         IncludeSet(COLLECTION,10804,1994,CLOTH,ANY_CLASS,ANY_FACTION,1995,1996,1997),
         IncludeSet(COLLECTION,10804,1990,LEATHER,ANY_CLASS,ANY_FACTION,1991,1992,1993),
         IncludeSet(COLLECTION,10804,1986,MAIL,ANY_CLASS,ANY_FACTION,1987,1988,1989),
@@ -330,7 +330,6 @@ end
 
 function SetCollector:GetVersion08Appearances(expansion)
     if expansion.v08 then
-        GetDungeonAppearances()
         --GetLegendaries()
         GetRaidAppearances()
         GetDungeonAppearances()

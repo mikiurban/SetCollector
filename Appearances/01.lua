@@ -227,7 +227,7 @@ local function GetDungeonAppearances()
 end
 
 local function GetLegendaries()
-    local COLLECTION, VERSION = SetCollector.RAID, 70000
+    local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     
     local sets = {
         CreateSet(COLLECTION,10101,"LG_60",ANY_ARMOR,ANY_CLASS,ANY_FACTION,NO_LOCATION,

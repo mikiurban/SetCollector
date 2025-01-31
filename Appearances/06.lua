@@ -119,6 +119,16 @@ local function GetOtherAppearances()
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.OTHER, 60001
+    sets = {
+        -- Timewalking, Draenor Crafter's Work
+        IncludeSet(COLLECTION,10601,4240,CLOTH,ANY_CLASS,ANY_FACTION), -- Karabor Priest's Vestments
+        IncludeSet(COLLECTION,10601,4242,LEATHER,ANY_CLASS,ANY_FACTION), -- Shattrath Artificer's Regalia
+        IncludeSet(COLLECTION,10601,4243,MAIL,ANY_CLASS,ANY_FACTION), -- Gorgrond Cragstalker's Hunting Gear
+        IncludeSet(COLLECTION,10601,4244,PLATE,ANY_CLASS,ANY_FACTION), -- Shadowmoon Anchorite's Guardplate
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetPvPAppearances()
