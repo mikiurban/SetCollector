@@ -372,9 +372,11 @@ end
 local function SetItemButton(button, appearanceID, sourceID, itemID)
   if button then
     local id, app, src, isCollected, icon, sLink = itemID, appearanceID, sourceID, false, nil, nil
-		local tempIcon, tempLink = nil, nil
+		local tempIcon, tempLink, tempApp, tempSrc = nil, nil, nil, nil
 		if id then
-			app, src = C_TransmogCollection.GetItemInfo(id)
+			tempApp, tempSrc = C_TransmogCollection.GetItemInfo(id)
+			app = app or tempApp
+			src = src or tempSrc
 		end
 		if src and src > 0 then
 			_, _, _, tempIcon, isCollected, tempLink = C_TransmogCollection.GetAppearanceSourceInfo(src)
