@@ -138,7 +138,7 @@ title:SetHeight(14)
 title:SetPoint("TOP", 0, -4)
 title:SetFrameLevel(100)
 title:SetAttribute("parentKey", "Title")
-	
+
 if frame.TitleContainer then
 	frame.TitleContainer.TitleText:SetText(L["ADDON_NAME"])
 else
@@ -147,7 +147,7 @@ end
 
 tinsert(UISpecialFrames, frame:GetName())							-- Hides frame when Escape is pressed or Game menu selected.
 
-  	
+
 local helpButton = CreateFrame("Button","$parentTutorialButton",frame,"MainHelpPlateButton")
 helpButton:SetPoint("TOPLEFT",frame, 39, 20)
 
@@ -203,7 +203,7 @@ local function GetSetButton(index)
 end
 
 local function UnsetHighlight(button, ...)
-	if ( button ) then			
+	if ( button ) then
 		button.Text:SetTextColor(1.0, 0.82, 0);
 		button.Texture:Hide()
 	end
@@ -254,7 +254,7 @@ function SetCollectorSetButton_OnClick(self, button, ...)
 end
 
 function SetCollectorSetButton_OnEnter(self)
-	if ( IsShownInList(self) and self.Collection and self.Set ) then 
+	if ( IsShownInList(self) and self.Collection and self.Set ) then
 		self.Text:SetFontObject("GameFontHighlightLeft")
 		SetCollector:GetSetTooltip(self)
 	end
@@ -373,7 +373,7 @@ local function SetItemButton(button, appearanceID, sourceID, itemID)
   if button then
     local id, app, src, isCollected, icon, sLink = itemID, appearanceID, sourceID, false, nil, nil
 		local tempIcon, tempLink, tempApp, tempSrc = nil, nil, nil, nil
-		if id then
+		if id and id > 0 then
 			tempApp, tempSrc = C_TransmogCollection.GetItemInfo(id)
 			app = app or tempApp
 			src = src or tempSrc
@@ -383,14 +383,16 @@ local function SetItemButton(button, appearanceID, sourceID, itemID)
 			icon = icon or tempIcon
 			sLink = sLink or tempLink
 		end
-		local sources = C_TransmogCollection.GetAllAppearanceSources(app)
-		if sources and not isCollected then
-			for _, source in ipairs(sources) do
-				_, _, _, tempIcon, isCollected, tempLink = C_TransmogCollection.GetAppearanceSourceInfo(source)
-				icon = icon or tempIcon
-				sLink = sLink or tempLink
-				if isCollected then
-					break
+		if app and app > 0 then
+			local sources = C_TransmogCollection.GetAllAppearanceSources(app)
+			if sources and not isCollected then
+				for _, source in ipairs(sources) do
+					_, _, _, tempIcon, isCollected, tempLink = C_TransmogCollection.GetAppearanceSourceInfo(source)
+					icon = icon or tempIcon
+					sLink = sLink or tempLink
+					if isCollected then
+						break
+					end
 				end
 			end
 		end
@@ -453,7 +455,7 @@ end
 
 local function VariantTab_OnClick(self, button, ...)
     PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-	if ( button == "LeftButton" ) then 
+	if ( button == "LeftButton" ) then
 		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], self:GetID());
 	elseif ( button == "RightButton" ) then
 		SetCollector:SetFavoriteVariant(self.Set, self:GetID())
@@ -501,7 +503,7 @@ function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 		end
 		PanelTemplates_SetNumTabs(_G["SetCollectorSetDisplay"], 5)
 		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], 1)
-		
+
 	elseif ( collection and set and set ~= 0 and #db[collection].Sets[set].Variants > 1 ) then
 		for i=1, 5 do
 			local collected = SetCollector:GetCollectedCount(collection, set, i)
@@ -741,7 +743,7 @@ end
 	--	local _, specName, _, icon = GetSpecializationInfo(currFilter - LE_LOOT_FILTER_SPEC1 + 1);
 	--	name = specName;
 	end
-	
+
 	UIDropDownMenu_SetText(filterButton, name);
 end]]
 
@@ -762,7 +764,7 @@ local function SetFilter(self, classIndex)
 		--SetCollector:Print("Setting Filter, Updating UI")
 		SetCollector:UpdateCollections();
 		--UpdateFilterString()
-	
+
 		-- Clear Selection
 		UnsetHighlight(SELECTED_BUTTON)
 		SELECTED_BUTTON = nil
@@ -775,15 +777,15 @@ local function InitFilter()
 	local info = UIDropDownMenu_CreateInfo();
 	--local currFilter = GetFilterOptions();
     local className = UnitClass("player");
-    
+
 	--UpdateFilterString()
 	info.func = SetFilter;
-	
+
 	--info.text = className;
 	--info.checked = (currFilter ~= LE_LOOT_FILTER_ALL);
 	--info.arg1 = LE_LOOT_FILTER_CLASS;
 	--UIDropDownMenu_AddButton(info);
-	
+
 	--local numSpecs = GetNumSpecializations();
 	--for i = 1, numSpecs do
 	--	local _, name, _, icon = GetSpecializationInfo(i);
@@ -805,37 +807,37 @@ local function InitFilter()
 	--info.arg1 = NO_CLASS_FILTER;
 	--info.func = SetFilter;
 	--UIDropDownMenu_AddButton(info);
-	
+
 	info.leftPadding = nil;
 	info.text = FAVORITES_FILTER;
 	info.checked = SHOW_ONLY_FAVORITES;
 	info.arg1 = "favorites";
 	UIDropDownMenu_AddButton(info);
-	
+
 	info.leftPadding = nil;
 	info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"];
 	info.checked = SHOW_ONLY_OBTAINABLE;
 	info.arg1 = "obtainable";
 	UIDropDownMenu_AddButton(info);
-	
+
 	--[[info.leftPadding = nil;
 	info.text = L["TRANSMOG_FILTER"] or L["MISSING_LOCALIZATION"];
 	info.checked = SHOW_ONLY_TRANSMOG;
 	info.arg1 = "transmog";
 	UIDropDownMenu_AddButton(info);]]--
-	
+
 	info.leftPadding = nil;
 	info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"];
 	info.checked = SHOW_HIDDEN;
 	info.arg1 = "hidden";
 	UIDropDownMenu_AddButton(info);
-	
+
 	--UpdateFilterString()
 end
 
 function SetCollector:DropDownMenu_Initialize(frame, func)
 	-- This should be used instead of UIDropDownMenu_Initialize, which causes tainting. Code reference: Altoholic
-	frame.displayMode = "MENU" 
+	frame.displayMode = "MENU"
 	frame.initialize = func
 end
 
@@ -874,7 +876,7 @@ end
 
 function SetCollector:ToggleTutorial()
 	local helpPlate, mainHelpButton = GetTutorial()
-		
+
 	if ( helpPlate and not HelpPlate_IsShowing(helpPlate) and frame:IsShown()) then
 		HelpPlate_Show(helpPlate, frame:GetName(), mainHelpButton, HelpPlateSeen)
 		SetCollector_HELP_VISIBLE = true
@@ -901,7 +903,7 @@ function SetCollector:UpdatePortrait()
 	else
 		local _, _, _, icon = GetSpecializationInfo(masteryIndex);
 		portrait:SetTexCoord(0, 1, 0, 1);
-		SetPortraitToTexture(portrait, icon);	
+		SetPortraitToTexture(portrait, icon);
 	end
 end
 
@@ -1120,14 +1122,14 @@ function SetCollector:SetupUI(DEBUG)
     ResetUILocation()
 	local tutorialScript = function() SetCollector:ToggleTutorial() end
 	helpButton:SetScript("OnClick", tutorialScript)
-	
+
 	local onShowScript = function() SetCollector:OnShow() end
 	frame:SetScript("OnShow", onShowScript)
 	local onHideScript = function() SetCollector:OnHide() end
 	frame:SetScript("OnHide", onHideScript)
-	
+
 	SetCollector:SetVariantTab(SetCollectorSetDisplay, 1)
-	
+
 	CreateMinimapButton()
 	-- Other delayed build actions
 end

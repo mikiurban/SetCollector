@@ -58,12 +58,12 @@ local function is_numeric(x)
     return false
 end
 
-function SetCollector:CreateAppearance(ID, sourceID, slotID, itemID, ...)
-	local t = { 
+function SetCollector:CreateAppearance(ID, sourceID, slotID, itemID)
+	local t = {
         ID = ID or 0,
         sourceID = sourceID or 0,
         slotID = slotID or 0,
-		itemID = itemID
+		itemID = itemID or 0
     }
 	return t
 end
@@ -74,7 +74,7 @@ function SetCollector:CreateAppearanceFromItemID(itemID)
     if sourceID then
         slotID = select(1, C_TransmogCollection.GetSourceInfo(sourceID))
     end
-    local t = { 
+    local t = {
         ID = appearanceID or 0,
         sourceID = sourceID or 0,
         slotID = slotID or 0,
@@ -108,8 +108,10 @@ function SetCollector:IncludeSet(collection, uid, setID, armorType, class, facti
             TooltipID = SetCollector:CreateTooltipID(collection, uid, setID),
             ArmorType = armorType,
             Class = class.Description,
-            Faction = faction.Description,
+            ClassMask = setInfo.classMask,
+            Faction = setInfo.requiredFaction or "Any",
             Location = description,
+            UIOrder = setInfo.uiOrder,
             Variants = { SetCollector:IncludeVariant(setID, setInfo) }
         }
 

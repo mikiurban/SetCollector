@@ -305,6 +305,7 @@ L["HO_LOVELY_DRESS"] = "Lovely Dress"
 L["HO_MIDSUMMER_REVELER"] = "Midsummer Reveler"
 L["HO_PILGRIMS_ATTIRE"] = "Pilgrim's Attire"
 L["HO_PILGRIMS_DRESS"] = "Pilgrim's Dress"
+L["HO_PILGRIMS_ROBE"] = "Pilgrim's Robe"
 L["HO_TUXEDO"] = "Tuxedo"
 L["HO_WINTER_GARB"] = "Winter Garb"
 L["HOLIDAY"] = "Holiday"
@@ -409,7 +410,8 @@ L["ITEMS_COLLECTED"] = "%d/%d"
 L["L100"] = "100"
 L["L90"] = "90"
 L["LEATHER"] = "Leather"
-L["LG_60"] = "Sulfuras, Hand of Ragnaros"
+L["LG_60_SULF"] = "Sulfuras, Hand of Ragnaros"
+L["LG_60_THUN"] = "Thunderfury, Blessed Blade of the Windseeker"
 L["LG_80"] = "Shadowmourne"
 L["LG_85"] = "Dragonwrath, Tarecgosa's Rest"
 L["LG_120"] = "Ashjra'kamas, Shroud of Resolve"
@@ -791,7 +793,7 @@ L["SHIFT_RIGHT_CLICK_HIDDEN"] = "Shift-Right-click to hide/unhide a set."
 L["SHOW_DETAIL"] = "Show Detail"
 L["SLASH_HELP"] = [=[Possible commands include show, hide, resetdb and help.
 For example, /SetCollector show]=]
-L["SLASH_HELP_BUTTON"] = [=[Shows (button show) or hides (button hide) the Minimap button for Set Collector. Leave blank (button) to toggle. 
+L["SLASH_HELP_BUTTON"] = [=[Shows (button show) or hides (button hide) the Minimap button for Set Collector. Leave blank (button) to toggle.
 For example, /SetCollector button hide or /SetCollector button]=]
 L["SLASH_HELP_SORT"] = [=[Sets the direction of the default collection sort. Use asc for ascending and desc for descending.
 For example, /SetCollector sort asc]=]

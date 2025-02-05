@@ -76,9 +76,9 @@ local function GetCraftedAppearances()
             CreateVariant("1",TRANSMOG,A(6209,9308),A(),A(6207,9306),A(6210,9309),A(6208,9307)),   -- Fel Iron
             CreateVariant("2",TRANSMOG,A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Adamantite
             CreateVariant("3",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   -- Swift Steel
-            CreateVariant("4",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   -- 
-            CreateVariant("5",TRANSMOG,A()),   -- 
-            CreateVariant("6",TRANSMOG,A(),A(),A(),A(),A(),A(),A())   -- 
+            CreateVariant("4",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   --
+            CreateVariant("5",TRANSMOG,A()),   --
+            CreateVariant("6",TRANSMOG,A(),A(),A(),A(),A(),A(),A())   --
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",PLATE,ANY_CLASS,ANY_FACTION,NO_LOCATION,
             CreateVariant("1",TRANSMOG,A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Fel Iron
@@ -93,129 +93,126 @@ end
 
 local function GetLegendaries()
     local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
-    
+
     local sets = {
         CreateSet(COLLECTION,10201,"LG_MELEE_70",ANY_ARMOR,ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_MELEE_70",TRANSMOG,A(8460,15136),A(8461,15137))
+            CreateVariant("LG_MELEE_70",TRANSMOG,A(8460,15136,21,32837),A(8461,15137,22,32838))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetOtherAppearances()
-    local COLLECTION, VERSION = SetCollector.OTHER, 90000
+    local COLLECTION, VERSION = SetCollector.OTHER, 20000
     local sets = {
-        -- Trial of Style
-        IncludeSet(COLLECTION,10202,1450,CLOTH,ANY_CLASS,ANY_FACTION), -- Mana-Etched Regalia
-        IncludeSet(COLLECTION,10202,1449,LEATHER,ANY_CLASS,ANY_FACTION), -- Obsidian Prowler's Garb
-        IncludeSet(COLLECTION,10202,1448,MAIL,ANY_CLASS,ANY_FACTION), -- Der'izu Armor
-        IncludeSet(COLLECTION,10202,1447,PLATE,ANY_CLASS,ANY_FACTION), -- Righteous Battleplate
-
-        IncludeSet(COLLECTION,10202,1529,CLOTH,ANY_CLASS,ANY_FACTION), -- Mindwrack Raiment
-        IncludeSet(COLLECTION,10202,1528,LEATHER,ANY_CLASS,ANY_FACTION), -- Tundraspite Armor
-        IncludeSet(COLLECTION,10202,1527,MAIL,ANY_CLASS,ANY_FACTION), -- Crimson Sentinel Garb
-        IncludeSet(COLLECTION,10202,1526,PLATE,ANY_CLASS,ANY_FACTION), -- Goldspine Plate
-
-        IncludeSet(COLLECTION,10204,1827,CLOTH,ANY_CLASS,ANY_FACTION), -- Tranquil Spiritbind Regalia
-        IncludeSet(COLLECTION,10204,1826,LEATHER,ANY_CLASS,ANY_FACTION), -- Restless Dreambound Battlegear
-        IncludeSet(COLLECTION,10204,1825,MAIL,ANY_CLASS,ANY_FACTION), -- Chainmail of the Timeless Hunt
-        IncludeSet(COLLECTION,10204,1824,PLATE,ANY_CLASS,ANY_FACTION), -- Armor of the Amaranthine Path
+        IncludeSet(COLLECTION,20000,1447,PLATE,ANY_CLASS,ANY_FACTION), -- Righteous Battleplate
+        IncludeSet(COLLECTION,20000,1448,MAIL,ANY_CLASS,ANY_FACTION), -- Der'izu Armor
+        IncludeSet(COLLECTION,20000,1449,LEATHER,ANY_CLASS,ANY_FACTION), -- Obsidian Prowler's Garb
+        IncludeSet(COLLECTION,20000,1450,CLOTH,ANY_CLASS,ANY_FACTION), -- Mana-Etched Regalia
+        IncludeSet(COLLECTION,20000,1526,PLATE,ANY_CLASS,ANY_FACTION), -- Goldspine Plate
+        IncludeSet(COLLECTION,20000,1527,MAIL,ANY_CLASS,ANY_FACTION), -- Crimson Sentinel Garb
+        IncludeSet(COLLECTION,20000,1528,LEATHER,ANY_CLASS,ANY_FACTION), -- Tundraspite Armor
+        IncludeSet(COLLECTION,20000,1529,CLOTH,ANY_CLASS,ANY_FACTION), -- Mindwrack Raiment
+        IncludeSet(COLLECTION,20000,1824,PLATE,ANY_CLASS,ANY_FACTION), -- Armor of the Amaranthine Path
+        IncludeSet(COLLECTION,20000,1825,MAIL,ANY_CLASS,ANY_FACTION), -- Chainmail of the Timeless Hunt
+        IncludeSet(COLLECTION,20000,1826,LEATHER,ANY_CLASS,ANY_FACTION), -- Restless Dreambound Battlegear
+        IncludeSet(COLLECTION,20000,1827,CLOTH,ANY_CLASS,ANY_FACTION), -- Tranquil Spiritbind Regalia
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetPvPAppearances()
-    local COLLECTION, VERSION = SetCollector.PVP, 70000
+    local COLLECTION, VERSION = SetCollector.PVP, 20000
     local sets = {
         -- Season 1
-        IncludeSet(COLLECTION,10201,977,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,976,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,975,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,974,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,973,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,972,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,971,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,970,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,381,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20000,381,PLATE,WARRIOR,ANY_FACTION), -- Gladiator's Plate Armor
+        IncludeSet(COLLECTION,20000,970,CLOTH,WARLOCK,ANY_FACTION), -- Gladiator's Felweave Armor
+        IncludeSet(COLLECTION,20000,971,MAIL,SHAMAN,ANY_FACTION), -- Gladiator's Ringmail Armor
+        IncludeSet(COLLECTION,20000,972,LEATHER,ROGUE,ANY_FACTION), -- Gladiator's Leather Armor
+        IncludeSet(COLLECTION,20000,973,CLOTH,PRIEST,ANY_FACTION), -- Gladiator's Satin Armor
+        IncludeSet(COLLECTION,20000,974,PLATE,PALADIN,ANY_FACTION), -- Gladiator's Scaled Armor
+        IncludeSet(COLLECTION,20000,975,CLOTH,MAGE,ANY_FACTION), -- Gladiator's Silk Armor
+        IncludeSet(COLLECTION,20000,976,MAIL,HUNTER,ANY_FACTION), -- Gladiator's Chain Armor
+        IncludeSet(COLLECTION,20000,977,LEATHER,DRUID,ANY_FACTION), -- Gladiator's Dragonhide Armor
         -- Season 2
-        IncludeSet(COLLECTION,10202,969,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,968,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,967,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,966,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,380,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,965,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,964,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,963,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,962,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20003,380,CLOTH,PRIEST,ANY_FACTION), -- Merciless Gladiator's Satin Armor
+        IncludeSet(COLLECTION,20003,962,PLATE,WARRIOR,ANY_FACTION), -- Merciless Gladiator's Plate Armor
+        IncludeSet(COLLECTION,20003,963,CLOTH,WARLOCK,ANY_FACTION), -- Merciless Gladiator's Felweave Armor
+        IncludeSet(COLLECTION,20003,964,MAIL,SHAMAN,ANY_FACTION), -- Merciless Gladiator's Ringmail Armor
+        IncludeSet(COLLECTION,20003,965,LEATHER,ROGUE,ANY_FACTION), -- Merciless Gladiator's Leather Armor
+        IncludeSet(COLLECTION,20003,966,PLATE,PALADIN,ANY_FACTION), -- Merciless Gladiator's Scaled Armor
+        IncludeSet(COLLECTION,20003,967,CLOTH,MAGE,ANY_FACTION), -- Merciless Gladiator's Silk Armor
+        IncludeSet(COLLECTION,20003,968,MAIL,HUNTER,ANY_FACTION), -- Merciless Gladiator's Chain Armor
+        IncludeSet(COLLECTION,20003,969,LEATHER,DRUID,ANY_FACTION), -- Merciless Gladiator's Dragonhide Armor
         -- Season 3
-        IncludeSet(COLLECTION,10203,961,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,960,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,959,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,958,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,379,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,957,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,956,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,955,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,954,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20100,379,CLOTH,PRIEST,ANY_FACTION), -- Vengeful Gladiator's Satin Armor
+        IncludeSet(COLLECTION,20100,954,PLATE,WARRIOR,ANY_FACTION), -- Vengeful Gladiator's Plate Armor
+        IncludeSet(COLLECTION,20100,955,CLOTH,WARLOCK,ANY_FACTION), -- Vengeful Gladiator's Felweave Armor
+        IncludeSet(COLLECTION,20100,956,MAIL,SHAMAN,ANY_FACTION), -- Vengeful Gladiator's Ringmail Armor
+        IncludeSet(COLLECTION,20100,957,LEATHER,ROGUE,ANY_FACTION), -- Vengeful Gladiator's Leather Armor
+        IncludeSet(COLLECTION,20100,958,PLATE,PALADIN,ANY_FACTION), -- Vengeful Gladiator's Scaled Armor
+        IncludeSet(COLLECTION,20100,959,CLOTH,MAGE,ANY_FACTION), -- Vengeful Gladiator's Silk Armor
+        IncludeSet(COLLECTION,20100,960,MAIL,HUNTER,ANY_FACTION), -- Vengeful Gladiator's Chain Armor
+        IncludeSet(COLLECTION,20100,961,LEATHER,DRUID,ANY_FACTION), -- Vengeful Gladiator's Dragonhide Armor
         -- Season 4
-        IncludeSet(COLLECTION,10204,1202,PLATE,DEATHKNIGHT,ANY_FACTION), -- Brutal Gladiator's Dreadplate Armor
-        IncludeSet(COLLECTION,10204,953,LEATHER,DRUID,ANY_FACTION), -- Brutal Gladiator's Dragonhide Armor
-        IncludeSet(COLLECTION,10204,952,MAIL,HUNTER,ANY_FACTION), -- Brutal Gladiator's Chain Armor
-        IncludeSet(COLLECTION,10204,951,CLOTH,MAGE,ANY_FACTION), -- Brutal Gladiator's Silk Armor
-        IncludeSet(COLLECTION,10204,950,PLATE,PALADIN,ANY_FACTION), -- Brutal Gladiator's Scaled Armor
-        IncludeSet(COLLECTION,10204,378,CLOTH,PRIEST,ANY_FACTION), -- Brutal Gladiator's Satin Armor
-        IncludeSet(COLLECTION,10204,949,LEATHER,ROGUE,ANY_FACTION), -- Brutal Gladiator's Leather Armor
-        IncludeSet(COLLECTION,10204,948,MAIL,SHAMAN,ANY_FACTION), -- Brutal Gladiator's Ringmail Armor
-        IncludeSet(COLLECTION,10204,947,CLOTH,WARLOCK,ANY_FACTION), -- Brutal Gladiator's Felweave Armor
-        IncludeSet(COLLECTION,10204,946,PLATE,WARRIOR,ANY_FACTION), -- Brutal Gladiator's Plate Armor
+        IncludeSet(COLLECTION,20400,378,CLOTH,PRIEST,ANY_FACTION), -- Brutal Gladiator's Satin Armor
+        IncludeSet(COLLECTION,20400,946,PLATE,WARRIOR,ANY_FACTION), -- Brutal Gladiator's Plate Armor
+        IncludeSet(COLLECTION,20400,947,CLOTH,WARLOCK,ANY_FACTION), -- Brutal Gladiator's Felweave Armor
+        IncludeSet(COLLECTION,20400,948,MAIL,SHAMAN,ANY_FACTION), -- Brutal Gladiator's Ringmail Armor
+        IncludeSet(COLLECTION,20400,949,LEATHER,ROGUE,ANY_FACTION), -- Brutal Gladiator's Leather Armor
+        IncludeSet(COLLECTION,20400,950,PLATE,PALADIN,ANY_FACTION), -- Brutal Gladiator's Scaled Armor
+        IncludeSet(COLLECTION,20400,951,CLOTH,MAGE,ANY_FACTION), -- Brutal Gladiator's Silk Armor
+        IncludeSet(COLLECTION,20400,952,MAIL,HUNTER,ANY_FACTION), -- Brutal Gladiator's Chain Armor
+        IncludeSet(COLLECTION,20400,953,LEATHER,DRUID,ANY_FACTION), -- Brutal Gladiator's Dragonhide Armor
+        IncludeSet(COLLECTION,20400,1202,PLATE,DEATHKNIGHT,ANY_FACTION), -- Brutal Gladiator's Dreadplate Armor
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetRaidAppearances()
-    local COLLECTION, VERSION = SetCollector.RAID, 70000
+    local COLLECTION, VERSION = SetCollector.RAID, 20000
 
     local sets = {
         -- Gruul's Lair
-        IncludeSet(COLLECTION,10201,922,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,913,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,898,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,906,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,354,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,890,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,872,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,864,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10201,849,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20000,354,CLOTH,PRIEST,ANY_FACTION), -- Incarnate Regalia
+        IncludeSet(COLLECTION,20000,849,PLATE,WARRIOR,ANY_FACTION), -- Warbringer Armor
+        IncludeSet(COLLECTION,20000,864,CLOTH,WARLOCK,ANY_FACTION), -- Voidheart Raiment
+        IncludeSet(COLLECTION,20000,872,MAIL,SHAMAN,ANY_FACTION), -- Cyclone Regalia
+        IncludeSet(COLLECTION,20000,890,LEATHER,ROGUE,ANY_FACTION), -- Netherblade
+        IncludeSet(COLLECTION,20000,898,CLOTH,MAGE,ANY_FACTION), -- Aldor Regalia
+        IncludeSet(COLLECTION,20000,906,PLATE,PALADIN,ANY_FACTION), -- Justicar Armor
+        IncludeSet(COLLECTION,20000,913,MAIL,HUNTER,ANY_FACTION), -- Demon Stalker Armor
+        IncludeSet(COLLECTION,20000,922,LEATHER,DRUID,ANY_FACTION), -- Malorne Raiment
         -- Serpentshrine Cavern
-        IncludeSet(COLLECTION,10202,921,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,918,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,905,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,897,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,353,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,889,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,871,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,863,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10202,848,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20003,353,CLOTH,PRIEST,ANY_FACTION), -- Avatar Regalia
+        IncludeSet(COLLECTION,20003,848,PLATE,WARRIOR,ANY_FACTION), -- Destroyer Armor
+        IncludeSet(COLLECTION,20003,863,CLOTH,WARLOCK,ANY_FACTION), -- Corruptor Raiment
+        IncludeSet(COLLECTION,20003,871,MAIL,SHAMAN,ANY_FACTION), -- Cataclysm Regalia
+        IncludeSet(COLLECTION,20003,889,LEATHER,ROGUE,ANY_FACTION), -- Deathmantle
+        IncludeSet(COLLECTION,20003,897,PLATE,PALADIN,ANY_FACTION), -- Crystalforge Armor
+        IncludeSet(COLLECTION,20003,905,CLOTH,MAGE,ANY_FACTION), -- Tirisfal Regalia
+        IncludeSet(COLLECTION,20003,918,MAIL,HUNTER,ANY_FACTION), -- Rift Stalker Armor
+        IncludeSet(COLLECTION,20003,921,LEATHER,DRUID,ANY_FACTION), -- Nordrassil Raiment
         -- Black Temple
-        IncludeSet(COLLECTION,10203,920,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,912,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,904,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,896,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,351,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,888,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,870,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,862,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10203,847,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20100,351,CLOTH,PRIEST,ANY_FACTION), -- Absolution Regalia
+        IncludeSet(COLLECTION,20100,847,PLATE,WARRIOR,ANY_FACTION), -- Onslaught Armor
+        IncludeSet(COLLECTION,20100,862,CLOTH,WARLOCK,ANY_FACTION), -- Malefic Raiment
+        IncludeSet(COLLECTION,20100,870,MAIL,SHAMAN,ANY_FACTION), -- Skyshatter Regalia
+        IncludeSet(COLLECTION,20100,888,LEATHER,ROGUE,ANY_FACTION), -- Slayer's Armor
+        IncludeSet(COLLECTION,20100,896,PLATE,PALADIN,ANY_FACTION), -- Lightbringer Armor
+        IncludeSet(COLLECTION,20100,904,CLOTH,MAGE,ANY_FACTION), -- Tempest Regalia
+        IncludeSet(COLLECTION,20100,912,MAIL,HUNTER,ANY_FACTION), -- Gronnstalker's Armor
+        IncludeSet(COLLECTION,20100,920,LEATHER,DRUID,ANY_FACTION), -- Thunderheart Raiment
         -- Sunwell Plateau
-        IncludeSet(COLLECTION,10204,919,LEATHER,DRUID,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,911,MAIL,HUNTER,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,903,CLOTH,MAGE,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,895,PLATE,PALADIN,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,352,CLOTH,PRIEST,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,887,LEATHER,ROGUE,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,869,MAIL,SHAMAN,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,932,CLOTH,WARLOCK,ANY_FACTION),
-        IncludeSet(COLLECTION,10204,931,PLATE,WARRIOR,ANY_FACTION),
+        IncludeSet(COLLECTION,20400,352,CLOTH,PRIEST,ANY_FACTION), -- Vestments of Absolution
+        IncludeSet(COLLECTION,20400,869,MAIL,SHAMAN,ANY_FACTION), -- Skyshatter Raiment
+        IncludeSet(COLLECTION,20400,887,LEATHER,ROGUE,ANY_FACTION), -- Slayer's Battlegear
+        IncludeSet(COLLECTION,20400,895,PLATE,PALADIN,ANY_FACTION), -- Lightbringer Battlegear
+        IncludeSet(COLLECTION,20400,903,CLOTH,MAGE,ANY_FACTION), -- Tempest Garb
+        IncludeSet(COLLECTION,20400,911,MAIL,HUNTER,ANY_FACTION), -- Gronnstalker's Battlegear
+        IncludeSet(COLLECTION,20400,919,LEATHER,DRUID,ANY_FACTION), -- Thunderheart Regalia
+        IncludeSet(COLLECTION,20400,931,PLATE,WARRIOR,ANY_FACTION), -- Onslaught Battlegear
+        IncludeSet(COLLECTION,20400,932,CLOTH,WARLOCK,ANY_FACTION), -- Malefic Regalia
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
@@ -225,11 +222,11 @@ local function GetDungeonAppearances()
 
     local sets = {
         -- The Burning Crusade: Dungeon
-        IncludeSet(COLLECTION,10200,4125,LEATHER,ANY_CLASS,ANY_FACTION,4126,4127,4128), -- Wastewalker Battlegear, Reputation Vendors - Red, Dungeons - Brown, Purple
-        IncludeSet(COLLECTION,10200,4129,MAIL,ANY_CLASS,ANY_FACTION,4130,4131,4132), -- Seer's Mail Battlegear, Dungeons - Blue, Purple, Reputation Vendors - Red
-        IncludeSet(COLLECTION,10200,4133,PLATE,ANY_CLASS,ANY_FACTION,4135,4134,4136), -- Telhamant Anchorite's Raiment, Dungeons - Silver, Reputation Vendors - Red, Silver
-        IncludeSet(COLLECTION,10200,4137,CLOTH,ANY_CLASS,ANY_FACTION,4138,4139,4140), -- Mana-Etched Vestments, Dungeons - Purple, Reputation Vendors - Red, Dungeons - White
-        IncludeSet(COLLECTION,10200,4141,CLOTH,ANY_CLASS,ANY_FACTION,4142,4143), -- Dreadweave Raiment, Dungeons - Green, Reputation Vendors - Red
+        IncludeSet(COLLECTION,20000,4125,LEATHER,ANY_CLASS,ANY_FACTION,4126,4127,4128), -- Wastewalker Battlegear, Reputation Vendors - Red, Dungeons - Brown, Purple
+        IncludeSet(COLLECTION,20000,4129,MAIL,ANY_CLASS,ANY_FACTION,4130,4131,4132), -- Seer's Mail Battlegear, Dungeons - Blue, Purple, Reputation Vendors - Red
+        IncludeSet(COLLECTION,20000,4133,PLATE,ANY_CLASS,ANY_FACTION,4135,4134,4136), -- Telhamant Anchorite's Raiment, Dungeons - Silver, Reputation Vendors - Red, Silver
+        IncludeSet(COLLECTION,20000,4137,CLOTH,ANY_CLASS,ANY_FACTION,4138,4139,4140), -- Mana-Etched Vestments, Dungeons - Purple, Reputation Vendors - Red, Dungeons - White
+        IncludeSet(COLLECTION,20000,4141,CLOTH,ANY_CLASS,ANY_FACTION,4142,4143), -- Dreadweave Raiment, Dungeons - Green, Reputation Vendors - Red
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end

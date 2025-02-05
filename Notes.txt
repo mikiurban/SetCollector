@@ -1,0 +1,7 @@
+* Filter by race
+* Move item data to DB root, then use C_Item.GetItemInfo and ItemMixin:ContinueOnItemLoad to load cached/noncached items
+* Remove one of the redundant ANY_ARMOR and ANY_CLASS filters
+* In IncludeSet() use the set ID to dynamically determine class, armor, faction, race restrictions instead of passing as a param
+* use UI Sort Order to sort stuff instead of version
+* Show All variants complete, one-set complete, and/or Incomplete only
+* Show exact item complete only

@@ -57,105 +57,93 @@ local function CreateVariant(...) return SetCollector:CreateVariant(...) end
 local function IncludeSet(...) return SetCollector:IncludeSet(...) end
 local function AddSetsToDatabase(...) return SetCollector:AddSetsToDatabase(...) end
 
---[[
-local function GetCraftingAppearances()
-    local COLLECTION, VERSION = SetCollector.CRAFTED, 70000
-    local sets = {
-        CreateSet(COLLECTION,10401,"CR_040000",CLOTH,ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("CR_040000",TRANSMOG,A(15522,36447))
-        ),
-    }
-    AddSetsToDatabase(VERSION, COLLECTION, sets)
-end
-]]--
-
 local function GetLegendaries()
     local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     local sets = {
         CreateSet(COLLECTION,10401,"LG_85",ANY_ARMOR,ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_85",TRANSMOG,A(15522,36447))
+            CreateVariant("LG_85",TRANSMOG,I(71086))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetPvPAppearances()
-    local COLLECTION, VERSION = SetCollector.PVP, 70000
+    local COLLECTION, VERSION = SetCollector.PVP, 40000
     local sets = {
         -- Season 9
-        IncludeSet(COLLECTION,10401,759,PLATE,DEATHKNIGHT,ANY_FACTION,760,1201),
-        IncludeSet(COLLECTION,10401,757,LEATHER,DRUID,ANY_FACTION,758,1200),
-        IncludeSet(COLLECTION,10401,755,MAIL,HUNTER,ANY_FACTION,756,1199),
-        IncludeSet(COLLECTION,10401,753,CLOTH,MAGE,ANY_FACTION,754,1198),
-        IncludeSet(COLLECTION,10401,751,PLATE,PALADIN,ANY_FACTION,752,1197),
-        IncludeSet(COLLECTION,10401,369,CLOTH,PRIEST,ANY_FACTION,370,371),
-        IncludeSet(COLLECTION,10401,749,LEATHER,ROGUE,ANY_FACTION,750,1196),
-        IncludeSet(COLLECTION,10401,747,MAIL,SHAMAN,ANY_FACTION,748,1195),
-        IncludeSet(COLLECTION,10401,628,CLOTH,WARLOCK,ANY_FACTION,629,1194),
-        IncludeSet(COLLECTION,10401,626,PLATE,WARRIOR,ANY_FACTION,627,1193),
+        IncludeSet(SetCollector.PVP,40000,369,CLOTH,PRIEST,ANY_FACTION,371,370), -- Bloodthirsty Gladiator's Satin Armor, Honor, Elite
+        IncludeSet(SetCollector.PVP,40000,626,PLATE,WARRIOR,ANY_FACTION,627,1193), -- Bloodthirsty Gladiator's Plate Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,628,CLOTH,WARLOCK,ANY_FACTION,629,1194), -- Bloodthirsty Gladiator's Felweave Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,747,MAIL,SHAMAN,ANY_FACTION,748,1195), -- Bloodthirsty Gladiator's Ringmail Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,749,LEATHER,ROGUE,ANY_FACTION,750,1196), -- Bloodthirsty Gladiator's Leather Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,751,PLATE,PALADIN,ANY_FACTION,752,1197), -- Bloodthirsty Gladiator's Scaled Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,753,CLOTH,MAGE,ANY_FACTION,754,1198), -- Bloodthirsty Gladiator's Silk Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,755,MAIL,HUNTER,ANY_FACTION,756,1199), -- Bloodthirsty Gladiator's Chain Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,757,LEATHER,DRUID,ANY_FACTION,758,1200), -- Bloodthirsty Gladiator's Dragonhide Armor, Elite, Honor
+        IncludeSet(SetCollector.PVP,40000,759,PLATE,DEATHKNIGHT,ANY_FACTION,760,1201), -- Bloodthirsty Gladiator's Dreadplate Armor, Elite, Honor
         -- Season 10
-        IncludeSet(COLLECTION,10402,624,PLATE,DEATHKNIGHT,ANY_FACTION,625),
-        IncludeSet(COLLECTION,10402,622,LEATHER,DRUID,ANY_FACTION,623),
-        IncludeSet(COLLECTION,10402,620,MAIL,HUNTER,ANY_FACTION,621),
-        IncludeSet(COLLECTION,10402,618,CLOTH,MAGE,ANY_FACTION,619),
-        IncludeSet(COLLECTION,10402,616,PLATE,PALADIN,ANY_FACTION,617),
-        IncludeSet(COLLECTION,10402,612,CLOTH,PRIEST,ANY_FACTION,614),
-        IncludeSet(COLLECTION,10402,615,LEATHER,ROGUE,ANY_FACTION,613),
-        IncludeSet(COLLECTION,10402,610,MAIL,SHAMAN,ANY_FACTION,611),
-        IncludeSet(COLLECTION,10402,608,CLOTH,WARLOCK,ANY_FACTION,609),
-        IncludeSet(COLLECTION,10402,606,PLATE,WARRIOR,ANY_FACTION,607),
+        IncludeSet(SetCollector.PVP,40200,606,PLATE,WARRIOR,ANY_FACTION,607), -- Ruthless Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,608,CLOTH,WARLOCK,ANY_FACTION,609), -- Ruthless Gladiator's Felweave Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,610,MAIL,SHAMAN,ANY_FACTION,611), -- Ruthless Gladiator's Ringmail Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,612,CLOTH,PRIEST,ANY_FACTION,614), -- Ruthless Gladiator's Satin Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,615,LEATHER,ROGUE,ANY_FACTION,613), -- Ruthless Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,616,PLATE,PALADIN,ANY_FACTION,617), -- Ruthless Gladiator's Scaled Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,618,CLOTH,MAGE,ANY_FACTION,619), -- Ruthless Gladiator's Silk Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,620,MAIL,HUNTER,ANY_FACTION,621), -- Ruthless Gladiator's Chain Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,622,LEATHER,DRUID,ANY_FACTION,623), -- Ruthless Gladiator's Dragonhide Armor, Elite
+        IncludeSet(SetCollector.PVP,40200,624,PLATE,DEATHKNIGHT,ANY_FACTION,625), -- Ruthless Gladiator's Dreadplate Armor, Elite
         -- Season 11
-        IncludeSet(COLLECTION,10403,604,PLATE,DEATHKNIGHT,ANY_FACTION,605),
-        IncludeSet(COLLECTION,10403,602,LEATHER,DRUID,ANY_FACTION,603),
-        IncludeSet(COLLECTION,10403,600,MAIL,HUNTER,ANY_FACTION,601),
-        IncludeSet(COLLECTION,10403,598,CLOTH,MAGE,ANY_FACTION,599),
-        IncludeSet(COLLECTION,10403,596,PLATE,PALADIN,ANY_FACTION,597),
-        IncludeSet(COLLECTION,10403,365,CLOTH,PRIEST,ANY_FACTION,366),
-        IncludeSet(COLLECTION,10403,594,LEATHER,ROGUE,ANY_FACTION,595),
-        IncludeSet(COLLECTION,10403,592,MAIL,SHAMAN,ANY_FACTION,593),
-        IncludeSet(COLLECTION,10403,590,CLOTH,WARLOCK,ANY_FACTION,591),
-        IncludeSet(COLLECTION,10403,588,PLATE,WARRIOR,ANY_FACTION,589),
+        IncludeSet(SetCollector.PVP,40300,365,CLOTH,PRIEST,ANY_FACTION,366), -- Cataclysmic Gladiator's Satin Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,588,PLATE,WARRIOR,ANY_FACTION,589), -- Cataclysmic Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,590,CLOTH,WARLOCK,ANY_FACTION,591), -- Cataclysmic Gladiator's Felweave Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,592,MAIL,SHAMAN,ANY_FACTION,593), -- Cataclysmic Gladiator's Ringmail Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,594,LEATHER,ROGUE,ANY_FACTION,595), -- Cataclysmic Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,596,PLATE,PALADIN,ANY_FACTION,597), -- Cataclysmic Gladiator's Scaled Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,598,CLOTH,MAGE,ANY_FACTION,599), -- Cataclysmic Gladiator's Silk Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,600,MAIL,HUNTER,ANY_FACTION,601), -- Cataclysmic Gladiator's Chain Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,602,LEATHER,DRUID,ANY_FACTION,603), -- Cataclysmic Gladiator's Dragonhide Armor, Elite
+        IncludeSet(SetCollector.PVP,40300,604,PLATE,DEATHKNIGHT,ANY_FACTION,605), -- Cataclysmic Gladiator's Dreadplate Armor, Elite
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetRaidAppearances()
-    local COLLECTION, VERSION = SetCollector.RAID, 70000
+    local COLLECTION, VERSION = SetCollector.RAID, 40000
 
     local sets = {
-        -- Bastion of Twilight
-        IncludeSet(COLLECTION,10401,836,PLATE,DEATHKNIGHT,ANY_FACTION,837),
-        IncludeSet(COLLECTION,10401,820,LEATHER,DRUID,ANY_FACTION,821),
-        IncludeSet(COLLECTION,10401,733,MAIL,HUNTER,ANY_FACTION,734),
-        IncludeSet(COLLECTION,10401,717,CLOTH,MAGE,ANY_FACTION,718),
-        IncludeSet(COLLECTION,10401,701,PLATE,PALADIN,ANY_FACTION,702),
-        IncludeSet(COLLECTION,10401,344,CLOTH,PRIEST,ANY_FACTION,345),
-        IncludeSet(COLLECTION,10401,685,LEATHER,ROGUE,ANY_FACTION,686),
-        IncludeSet(COLLECTION,10401,635,MAIL,SHAMAN,ANY_FACTION,636),
-        IncludeSet(COLLECTION,10401,669,CLOTH,WARLOCK,ANY_FACTION,670),
-        IncludeSet(COLLECTION,10401,653,PLATE,WARRIOR,ANY_FACTION,654),
+        -- The Bastion of Twilight
+        IncludeSet(SetCollector.RAID,40000,344,CLOTH,PRIEST,ANY_FACTION,345), -- Mercurial Regalia, Heroic
+        IncludeSet(SetCollector.RAID,40000,635,MAIL,SHAMAN,ANY_FACTION,636), -- Regalia of the Raging Elements, Heroic
+        IncludeSet(SetCollector.RAID,40000,653,PLATE,WARRIOR,ANY_FACTION,654), -- Earthen Battleplate, Heroic
+        IncludeSet(SetCollector.RAID,40000,669,CLOTH,WARLOCK,ANY_FACTION,670), -- Shadowflame Regalia, Heroic
+        IncludeSet(SetCollector.RAID,40000,685,LEATHER,ROGUE,ANY_FACTION,686), -- Wind Dancer's Regalia, Heroic
+        IncludeSet(SetCollector.RAID,40000,701,PLATE,PALADIN,ANY_FACTION,702), -- Reinforced Sapphirium Battleplate, Heroic
+        IncludeSet(SetCollector.RAID,40000,717,CLOTH,MAGE,ANY_FACTION,718), -- Firelord's Vestments, Heroic
+        IncludeSet(SetCollector.RAID,40000,733,MAIL,HUNTER,ANY_FACTION,734), -- Lightning-Charged Battlegear, Heroic
+        IncludeSet(SetCollector.RAID,40000,820,LEATHER,DRUID,ANY_FACTION,821), -- Stormrider's Vestments, Heroic
+        IncludeSet(SetCollector.RAID,40000,836,PLATE,DEATHKNIGHT,ANY_FACTION,837), -- Magma Plated Battlearmor, Heroic
         -- Firelands
-        IncludeSet(COLLECTION,10402,834,PLATE,DEATHKNIGHT,ANY_FACTION,835),
-        IncludeSet(COLLECTION,10402,818,LEATHER,DRUID,ANY_FACTION,819),
-        IncludeSet(COLLECTION,10402,731,MAIL,HUNTER,ANY_FACTION,732),
-        IncludeSet(COLLECTION,10402,715,CLOTH,MAGE,ANY_FACTION,716),
-        IncludeSet(COLLECTION,10402,699,PLATE,PALADIN,ANY_FACTION,700),
-        IncludeSet(COLLECTION,10402,342,CLOTH,PRIEST,ANY_FACTION,343),
-        IncludeSet(COLLECTION,10402,683,LEATHER,ROGUE,ANY_FACTION,684),
-        IncludeSet(COLLECTION,10402,633,MAIL,SHAMAN,ANY_FACTION,634),
-        IncludeSet(COLLECTION,10402,667,CLOTH,WARLOCK,ANY_FACTION,668),
-        IncludeSet(COLLECTION,10402,651,PLATE,WARRIOR,ANY_FACTION,652),
+        IncludeSet(SetCollector.RAID,40200,342,CLOTH,PRIEST,ANY_FACTION,343), -- Regalia of the Cleansing Flame, Heroic
+        IncludeSet(SetCollector.RAID,40200,633,MAIL,SHAMAN,ANY_FACTION,634), -- Volcanic Regalia, Heroic
+        IncludeSet(SetCollector.RAID,40200,651,PLATE,WARRIOR,ANY_FACTION,652), -- Molten Giant Battleplate, Heroic
+        IncludeSet(SetCollector.RAID,40200,667,CLOTH,WARLOCK,ANY_FACTION,668), -- Balespider's Burning Vestments, Heroic
+        IncludeSet(SetCollector.RAID,40200,683,LEATHER,ROGUE,ANY_FACTION,684), -- Vestments of the Dark Phoenix, Heroic
+        IncludeSet(SetCollector.RAID,40200,699,PLATE,PALADIN,ANY_FACTION,700), -- Battleplate of Immolation, Heroic
+        IncludeSet(SetCollector.RAID,40200,715,CLOTH,MAGE,ANY_FACTION,716), -- Firehawk Robes of Conflagration, Heroic
+        IncludeSet(SetCollector.RAID,40200,731,MAIL,HUNTER,ANY_FACTION,732), -- Flamewaker's Battlegear, Heroic
+        IncludeSet(SetCollector.RAID,40200,818,LEATHER,DRUID,ANY_FACTION,819), -- Obsidian Arborweave Vestments, Heroic
+        IncludeSet(SetCollector.RAID,40200,834,PLATE,DEATHKNIGHT,ANY_FACTION,835), -- Elementium Deathplate Battlearmor, Heroic
         -- Dragon Soul
-        IncludeSet(COLLECTION,10403,831,PLATE,DEATHKNIGHT,ANY_FACTION,832,833),
-        IncludeSet(COLLECTION,10403,815,LEATHER,DRUID,ANY_FACTION,816,817),
-        IncludeSet(COLLECTION,10403,728,MAIL,HUNTER,ANY_FACTION,729,730),
-        IncludeSet(COLLECTION,10403,712,CLOTH,MAGE,ANY_FACTION,713,714),
-        IncludeSet(COLLECTION,10403,696,PLATE,PALADIN,ANY_FACTION,697,698),
-        IncludeSet(COLLECTION,10403,339,CLOTH,PRIEST,ANY_FACTION,340,341),
-        IncludeSet(COLLECTION,10403,680,LEATHER,ROGUE,ANY_FACTION,681,682),
-        IncludeSet(COLLECTION,10403,630,MAIL,SHAMAN,ANY_FACTION,632,663),
-        IncludeSet(COLLECTION,10403,664,CLOTH,WARLOCK,ANY_FACTION,665,666),
-        IncludeSet(COLLECTION,10403,631,PLATE,WARRIOR,ANY_FACTION,649,650),
+        IncludeSet(SetCollector.RAID,40300,339,CLOTH,PRIEST,ANY_FACTION,341,340), -- Regalia of Dying Light, Heroic, Raid Finder
+        IncludeSet(SetCollector.RAID,40300,630,MAIL,SHAMAN,ANY_FACTION,632,663), -- Spiritwalker's Regalia, Raid Finder, Heroic
+        IncludeSet(SetCollector.RAID,40300,649,PLATE,WARRIOR,ANY_FACTION,650,631), -- Colossal Dragonplate Battlegear, Raid Finder, Heroic
+        IncludeSet(SetCollector.RAID,40300,664,CLOTH,WARLOCK,ANY_FACTION,665,666), -- Vestments of the Faceless Shroud, Raid Finder, Heroic
+        IncludeSet(SetCollector.RAID,40300,680,LEATHER,ROGUE,ANY_FACTION,682,681), -- Blackfang Battleweave, Heroic, Raid Finder
+        IncludeSet(SetCollector.RAID,40300,696,PLATE,PALADIN,ANY_FACTION,698,697), -- Battleplate of Radiant Glory, Heroic, Raid Finder
+        IncludeSet(SetCollector.RAID,40300,712,CLOTH,MAGE,ANY_FACTION,713,714), -- Time Lord's Regalia, Raid Finder, Heroic
+        IncludeSet(SetCollector.RAID,40300,728,MAIL,HUNTER,ANY_FACTION,730,729), -- Wyrmstalker Battlegear, Heroic, Raid Finder
+        IncludeSet(SetCollector.RAID,40300,815,LEATHER,DRUID,ANY_FACTION,817,816), -- Deep Earth Vestments, Heroic, Raid Finder
+        IncludeSet(SetCollector.RAID,40300,831,PLATE,DEATHKNIGHT,ANY_FACTION,833,832), -- Necrotic Boneplate Armor, Heroic, Raid Finder
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
@@ -167,7 +155,7 @@ end
 function SetCollector:GetVersion04Appearances(expansion)
     if expansion.v04 then
         -- Common
-        --GetLegendaries()
+        GetLegendaries()
         GetPvPAppearances()
         GetRaidAppearances()
     end

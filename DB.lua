@@ -136,7 +136,7 @@ end
 function SetCollector:GetCollectionsList()
 	local db = SetCollector.db.global.collections
 	local collections = {}
-	
+
 	for i=1, #db do
 		collections[i] = {
 			Title = db[i].Title,
@@ -152,7 +152,7 @@ function SetCollector:GetCollectionsList()
 			end
 		end
 	end
-	
+
 	return collections
 end
 
@@ -213,7 +213,7 @@ function SetCollector:GetCollectedCount(collection, set, variant)
 		end
 	end
 	--if sourcesCount == 0 and collectedCount == 0 then collectedCount = "*" end
-	
+
 	return collectedCount
 end
 
@@ -314,9 +314,9 @@ function SetCollector:GetSetTooltip(self)
 		local db = SetCollector.db.global.collections
 		local collection = db[self.Collection].Title
 		local set = L[db[self.Collection].Sets[self.Set].Title] or L["MISSING_LOCALIZATION"]
-		
+
 		local isObtainable = SetCollector:IsSetObtainable(self.Collection, self.Set)
-		
+
 		GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -16, 16)
 		GameTooltip:SetText(set, 1, 1, 1)
 
@@ -334,18 +334,18 @@ function SetCollector:GetSetTooltip(self)
 				GameTooltip:AddLine(line)
 			end
 		end
-		
+
 		if not isObtainable then
 			GameTooltip:AddLine(L["NO_OBTAIN"], 1, 0, 0)
 		end
-		
+
 		local rightclick = L["RIGHT_CLICK_FAVORITE"] or L["MISSING_LOCALIZATION"]
 		GameTooltip:AddLine(" ")
 		GameTooltip:AddLine(rightclick, 1, 1, 1)
-		
+
 		local shiftrightclick = L["SHIFT_RIGHT_CLICK_HIDDEN"] or L["MISSING_LOCALIZATION"]
 		GameTooltip:AddLine(shiftrightclick, 1, 1, 1)
-		
+
 		GameTooltip:Show()
 	end
 end
@@ -467,7 +467,7 @@ function SetCollector:AddAppearances(debug)
 	--if debug then	SetCollector:Print("Adding Appearances to database") end
 	SetCollector.db.global.collections = CreateCollections()
 	--if debug then SetCollector:Print("Added "..#SetCollector.db.global.collections.." collections.") end
-	
+
 	-- FUTURE: Older expansion sets disabled by default. Can be enabled in settings.
 	local expansions = SetCollector.db.global.expansions
 	SetCollector:GetVersion00Appearances(expansions)	-- Starter Area(s)/Holidays
@@ -482,7 +482,7 @@ function SetCollector:AddAppearances(debug)
 	SetCollector:GetVersion09Appearances(expansions)	-- Shadowlands
 	SetCollector:GetVersion10Appearances(expansions)	-- Dragonflight
 	SetCollector:GetVersion11Appearances(expansions)	-- The War Within
-	
+
 	--if debug then SetCollector:Print("Finished adding appearances to database.") end
 end
 
@@ -504,7 +504,7 @@ end
 
 function SetCollector:GetExpansionStatus(version)
 	local expansions = SetCollector.db.global.expansions
-	if version == "0" then return expansions.v00 
+	if version == "0" then return expansions.v00
 	elseif version == "1" then return expansions.v01
 	elseif version == "2" then return expansions.v02
 	elseif version == "3" then return expansions.v03
@@ -545,7 +545,7 @@ function SetCollector:ResetDB()
 	local debug = SetCollector:GetDebug()
 	SetCollector.db:ResetDB("default")
 	SetCollector:AddAppearances(debug)
-	if debug then 
+	if debug then
 		SetCollector:Print(L["DB_RESET"])
 		SetCollector:SetDebug(debug)
 	end

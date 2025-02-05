@@ -116,10 +116,10 @@ local function GetExpansionAppearances()
         -- Spreading the Light
         IncludeSet(COLLECTION,VERSION,3518,ANY_ARMOR,ANY_CLASS,ANY_FACTION,3877,3876), -- Darkened Arathi Attire, Purple, Dark
         -- Hallowfall Gear
-        IncludeSet(COLLECTION,VERSION,3655,PLATE,ANY_CLASS,ANY_FACTION,3696,3879), -- Aegis of Hidden Stars, Aspirant, Delves
-        IncludeSet(COLLECTION,VERSION,3657,LEATHER,ANY_CLASS,ANY_FACTION,3880,3698), -- Myconic Shell, Delves, Aspirant
-        IncludeSet(COLLECTION,VERSION,3656,MAIL,ANY_CLASS,ANY_FACTION,3697,3878), -- Chains of the Stygian Sea, Aspirant, Delves
-        IncludeSet(COLLECTION,VERSION,3658,CLOTH,ANY_CLASS,ANY_FACTION,3699,3881), -- Unkindled Waxweave Panoply, Aspirant, Delves
+        IncludeSet(COLLECTION,VERSION,3879,PLATE,ANY_CLASS,ANY_FACTION), -- Aegis of Hidden Stars, Aspirant, Delves
+        IncludeSet(COLLECTION,VERSION,3880,LEATHER,ANY_CLASS,ANY_FACTION), -- Myconic Shell, Delves, Aspirant
+        IncludeSet(COLLECTION,VERSION,3878,MAIL,ANY_CLASS,ANY_FACTION), -- Chains of the Stygian Sea, Aspirant, Delves
+        IncludeSet(COLLECTION,VERSION,3881,CLOTH,ANY_CLASS,ANY_FACTION), -- Unkindled Waxweave Panoply, Aspirant, Delves
         -- Hallowfall Arathi Renown
         IncludeSet(COLLECTION,VERSION,3518,ANY_ARMOR,ANY_CLASS,ANY_FACTION), -- Expeditionary Arathi Attire
         }
@@ -128,10 +128,10 @@ local function GetExpansionAppearances()
     COLLECTION, VERSION = SetCollector.EXPANSION, 110005
     sets = {
         -- Rare Monster Hunting
-        IncludeSet(COLLECTION,VERSION,3643,PLATE,ANY_CLASS,ANY_FACTION,4149), -- Khaz Algar Trophymaster's Plate Armor, Rare Monsters
-        IncludeSet(COLLECTION,VERSION,3642,MAIL,ANY_CLASS,ANY_FACTION,4150), -- Khaz Algar Trophymaster's Mail Armor, Rare Monsters
-        IncludeSet(COLLECTION,VERSION,3641,LEATHER,ANY_CLASS,ANY_FACTION,4151), -- Khaz Algar Trophymaster's Leather Armor, Rare Monsters
-        IncludeSet(COLLECTION,VERSION,3640,ANY_ARMOR,ANY_CLASS,ANY_FACTION,4152), -- Khaz Algar Trophymaster's Cloth Armor, Rare Monsters
+        IncludeSet(COLLECTION,VERSION,4149,PLATE,ANY_CLASS,ANY_FACTION), -- Khaz Algar Trophymaster's Plate Armor, Rare Monsters
+        IncludeSet(COLLECTION,VERSION,4150,MAIL,ANY_CLASS,ANY_FACTION), -- Khaz Algar Trophymaster's Mail Armor, Rare Monsters
+        IncludeSet(COLLECTION,VERSION,4151,LEATHER,ANY_CLASS,ANY_FACTION), -- Khaz Algar Trophymaster's Leather Armor, Rare Monsters
+        IncludeSet(COLLECTION,VERSION,4152,ANY_ARMOR,ANY_CLASS,ANY_FACTION), -- Khaz Algar Trophymaster's Cloth Armor, Rare Monsters
         }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
@@ -189,23 +189,23 @@ local function GetPvPAppearances()
     local COLLECTION, VERSION = SetCollector.PVP, 110000
     local sets = {
         -- The War Within Season 1
-        IncludeSet(COLLECTION,VERSION,3824,LEATHER,DRUID,ANY_FACTION,3837), -- Forged Gladiator's Leather Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3826,MAIL,HUNTER,ANY_FACTION,3839), -- Forged Gladiator's Chain Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3828,PLATE,PALADIN,ANY_FACTION,3841), -- Forged Gladiator's Plate Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3830,LEATHER,ROGUE,ANY_FACTION,3843), -- Forged Gladiator's Leather Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3832,PLATE,WARRIOR,ANY_FACTION,3845), -- Forged Gladiator's Plate Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3656,MAIL,ANY_CLASS,ANY_FACTION,3697), -- Forged Aspirant's Chain Armor, Aspirant
-        IncludeSet(COLLECTION,VERSION,3658,CLOTH,ANY_CLASS,ANY_FACTION,3699), -- Forged Aspirant's Silk Armor, Aspirant
-        IncludeSet(COLLECTION,VERSION,3821,CLOTH,MAGE,ANY_FACTION,3834), -- Forged Gladiator's Silk Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3823,LEATHER,DEMONHUNTER,ANY_FACTION,3836), -- Forged Gladiator's Leather Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3825,MAIL,EVOKER,ANY_FACTION,3838), -- Forged Gladiator's Chain Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3827,LEATHER,MONK,ANY_FACTION,3840), -- Forged Gladiator's Leather Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3829,CLOTH,PRIEST,ANY_FACTION,3842), -- Forged Gladiator's Silk Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3831,MAIL,SHAMAN,ANY_FACTION,3844), -- Forged Gladiator's Chain Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3833,CLOTH,WARLOCK,ANY_FACTION,3846), -- Forged Gladiator's Silk Armor, Elite
-        IncludeSet(COLLECTION,VERSION,3655,PLATE,ANY_CLASS,ANY_FACTION,3696), -- Forged Aspirant's Plate Armor, Aspirant
-        IncludeSet(COLLECTION,VERSION,3657,LEATHER,ANY_CLASS,ANY_FACTION,3698), -- Forged Aspirant's Leather Armor, Aspirant
-        IncludeSet(COLLECTION,VERSION,3822,PLATE,DEATHKNIGHT,ANY_FACTION,3835), -- Forged Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3655,PLATE,ANY_CLASS,ANY_FACTION,3696), -- Forged Aspirant's Plate Armor, Aspirant
+        IncludeSet(SetCollector.PVP,110000,3656,MAIL,ANY_CLASS,ANY_FACTION,3697), -- Forged Aspirant's Chain Armor, Aspirant
+        IncludeSet(SetCollector.PVP,110000,3657,LEATHER,ANY_CLASS,ANY_FACTION,3698), -- Forged Aspirant's Leather Armor, Aspirant
+        IncludeSet(SetCollector.PVP,110000,3658,CLOTH,ANY_CLASS,ANY_FACTION,3699), -- Forged Aspirant's Silk Armor, Aspirant
+        IncludeSet(SetCollector.PVP,110000,3821,CLOTH,MAGE,ANY_FACTION,3834), -- Forged Gladiator's Silk Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3822,PLATE,DEATHKNIGHT,ANY_FACTION,3835), -- Forged Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3823,LEATHER,DEMONHUNTER,ANY_FACTION,3836), -- Forged Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3824,LEATHER,DRUID,ANY_FACTION,3837), -- Forged Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3825,MAIL,EVOKER,ANY_FACTION,3838), -- Forged Gladiator's Chain Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3826,MAIL,HUNTER,ANY_FACTION,3839), -- Forged Gladiator's Chain Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3827,LEATHER,MONK,ANY_FACTION,3840), -- Forged Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3828,PLATE,PALADIN,ANY_FACTION,3841), -- Forged Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3829,CLOTH,PRIEST,ANY_FACTION,3842), -- Forged Gladiator's Silk Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3830,LEATHER,ROGUE,ANY_FACTION,3843), -- Forged Gladiator's Leather Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3831,MAIL,SHAMAN,ANY_FACTION,3844), -- Forged Gladiator's Chain Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3832,PLATE,WARRIOR,ANY_FACTION,3845), -- Forged Gladiator's Plate Armor, Elite
+        IncludeSet(SetCollector.PVP,110000,3833,CLOTH,WARLOCK,ANY_FACTION,3846), -- Forged Gladiator's Silk Armor, Elite
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
@@ -214,19 +214,19 @@ local function GetRaidAppearances()
     local COLLECTION, VERSION = SetCollector.RAID, 110000
     local sets = {
         -- Nerub-ar Palace
-        IncludeSet(COLLECTION,VERSION,3751,CLOTH,PRIEST,ANY_FACTION,3750,3749,3752), -- Shards of Living Luster, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3759,MAIL,SHAMAN,ANY_FACTION,3757,3758,3760), -- Waves of the Forgotten Reservoir, Heroic, Mythic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3767,PLATE,WARRIOR,ANY_FACTION,3766,3765,3768), -- Warsculptor's Masterwork, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3723,LEATHER,DEMONHUNTER,ANY_FACTION,3721,3722,3724), -- Husk of the Hypogeal Nemesis, Heroic, Mythic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3731,MAIL,EVOKER,ANY_FACTION,3730,3729,3732), -- Destroyer's Scarred Wards, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3739,CLOTH,MAGE,ANY_FACTION,3738,3737,3740), -- Sparks of Violet Rebirth, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3747,PLATE,PALADIN,ANY_FACTION,3745,3746,3748), -- Entombed Seraph's Radiance, Heroic, Mythic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3755,LEATHER,ROGUE,ANY_FACTION,3754,3753,3756), -- K'areshi Phantom's Bindings, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,VERSION,3763,CLOTH,WARLOCK,ANY_FACTION,3762,3761,3764), -- Rites of the Hexflame Coven, Mythic, Heroic, Raid Finder
         IncludeSet(COLLECTION,VERSION,3711,PLATE,DEATHKNIGHT,ANY_FACTION,3718,3719,3720), -- Exhumed Centurion's Relics, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3723,LEATHER,DEMONHUNTER,ANY_FACTION,3721,3722,3724), -- Husk of the Hypogeal Nemesis, Heroic, Mythic, Raid Finder
         IncludeSet(COLLECTION,VERSION,3727,LEATHER,DRUID,ANY_FACTION,3726,3725,3728), -- Mane of the Greatlynx, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3731,MAIL,EVOKER,ANY_FACTION,3730,3729,3732), -- Destroyer's Scarred Wards, Mythic, Heroic, Raid Finder
         IncludeSet(COLLECTION,VERSION,3735,MAIL,HUNTER,ANY_FACTION,3733,3734,3736), -- Lightless Scavenger's Necessities, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3739,CLOTH,MAGE,ANY_FACTION,3738,3737,3740), -- Sparks of Violet Rebirth, Mythic, Heroic, Raid Finder
         IncludeSet(COLLECTION,VERSION,3743,LEATHER,MONK,ANY_FACTION,3742,3741,3744), -- Gatecrasher's Fortitude, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3747,PLATE,PALADIN,ANY_FACTION,3745,3746,3748), -- Entombed Seraph's Radiance, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3751,CLOTH,PRIEST,ANY_FACTION,3750,3749,3752), -- Shards of Living Luster, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3755,LEATHER,ROGUE,ANY_FACTION,3754,3753,3756), -- K'areshi Phantom's Bindings, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3759,MAIL,SHAMAN,ANY_FACTION,3757,3758,3760), -- Waves of the Forgotten Reservoir, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3763,CLOTH,WARLOCK,ANY_FACTION,3762,3761,3764), -- Rites of the Hexflame Coven, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,VERSION,3767,PLATE,WARRIOR,ANY_FACTION,3766,3765,3768), -- Warsculptor's Masterwork, Mythic, Heroic, Raid Finder
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end

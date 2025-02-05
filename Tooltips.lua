@@ -40,12 +40,12 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
             local show_location = SetCollector.db.global.tooltips.show_location
             if debug or show_set then
                 if SetCollector.db.global.collections.Appearances[appearanceID] then
-                
+
                     -- Need to update this for when an appearance is in multiple collections, sets, or variants
                     collection = SetCollector.db.global.collections.Appearances[appearanceID].collection
                     variant = SetCollector.db.global.collections.Appearances[appearanceID].variant
                     set = SetCollector.db.global.collections.Appearances[appearanceID].set
-                    
+
                     tooltip:AddLine(" ")
                     local title = "|cFFFFFFFF"..L[SetCollector.db.global.collections[collection].Sets[set].Title].."|r"
                     tooltip:AddLine(title)
@@ -73,7 +73,7 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
                 if itemID then
                     tooltip:AddDoubleLine("Item ID:", itemID)
                 end
-        
+
                 if appearanceID then
                     tooltip:AddDoubleLine("Appearance ID:", appearanceID)
                     tooltip:AddDoubleLine("Source ID:", sourceID)
@@ -92,7 +92,7 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
                                     tooltip:AddDoubleLine("|cFF777777"..name.."|r",sources[i])
                                 end
                             end
-                            
+
                         end
                     else
                         tooltip:AddLine("None")
@@ -104,7 +104,7 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
                         tooltip:AddLine("Set ID: "..set)
                     end
                 end
-                
+
                 tooltip:AddLine(" ")
             end
         end

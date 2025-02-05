@@ -38,10 +38,10 @@ function SetCollector:OnInitialize()
 	SetCollector:SetupDB(true)
 	SetCollector:SetupUI(true)
 	if SetCollector:GetDebug() then SetCollector:Print("Initialized"); end
-	
+
     LibStub("AceConfig-3.0"):RegisterOptionsTable("SetCollector", SetCollector:GetOptions())
     self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SetCollector", "Set Collector")
-	
+
 	SetCollector:RegisterEvent("PLAYER_LOGIN")
 end
 
@@ -312,7 +312,7 @@ function ParseClassMask(bits)
         return "ANY_CLASS"
     end
 
-    local map = { 
+    local map = {
         WARRIOR = 0x001,
         PALADIN = 0x002,
         HUNTER = 0x004,
@@ -327,7 +327,7 @@ function ParseClassMask(bits)
         DEMONHUNTER = 0x800,
         EVOKER = 0x1000
     }
-    
+
     -- Check for exact match between class
     for char, mask in pairs(map) do
         if cleanBits == mask then
@@ -339,7 +339,7 @@ function ParseClassMask(bits)
     return "ANY_CLASS"
 
     -- -- Check for "any" match between class
-    -- local any_map = { 
+    -- local any_map = {
     --     ANY_PLATE = 0x001 + 0x002 + 0x020,
     --     ANY_LEATHER = 0x008 + 0x200 + 0x800 + 0x400,
     --     ANY_CLOTH = 0x010 + 0x080 + 0x100,
@@ -373,13 +373,13 @@ function ParseArmorMask(bits)
         return "ANY_ARMOR"
     end
 
-    local map = { 
+    local map = {
         PLATE = 0x001 + 0x002 + 0x020,
         LEATHER = 0x008 + 0x200 + 0x400 + 0x800,
         CLOTH = 0x010 + 0x080 + 0x100,
         MAIL = 0x004 + 0x040 + 0x1000
     }
-    
+
     for char, mask in pairs(map) do
         if (BitAND(cleanBits, mask) > 0) then
             return char .. ""
@@ -410,7 +410,7 @@ function SetCollector:ExportSetData()
                 local collection = "(missing)"
                 if (SetCollector.db.global.setMap["SET " .. setID] ~= nil) then
                     collection = SetCollector.db.global.setMap["SET " .. setID].collection
-                end 
+                end
                 local strArmorMask = ParseArmorMask(setInfo.classMask)
                 local strClassMask = ParseClassMask(setInfo.classMask)
                 local strFaction = string.upper(setInfo.requiredFaction or "ANY_FACTION")
@@ -431,7 +431,7 @@ function SetCollector:ExportSetData()
                 tree[setInfo.patchID][collection][baseSetID][setID] = strDesc
 
                 -- Build: IncludeSet(COLLECTION,11000,2601,ANY_ARMOR,DEATHKNIGHT,ANY_FACTION,2614,2615,2616), -- Haunted Frostbrood Remains
-               
+
                 local heading = " -- " .. strLabel -- "Dragonflight Season 1"
                 local lua2 = {"IncludeSet(SetCollector." .. collection, setInfo.patchID, baseSetID, strArmorMask, strClassMask, strFaction}
                 local lua2comment = {"), -- " .. setInfo.name}
@@ -472,45 +472,45 @@ function SetCollector:MySlashProcessorFunc(input)
 
 	elseif command == "show" then
 		SetCollector:ShowUI()
-		
+
 	elseif command == "hide" then
 		SetCollector:HideUI()
-		
+
 	elseif command == "docked" then
 		SetCollector:SetUIDockedAndUpdate()
-		
+
 	elseif command == "button" then
 		SetCollector:ToggleMinimapButton()
 
 	elseif command == "version" then
 		SetCollector:ToggleExpansion(parameters)
-		
+
 	elseif command == "debug" then
 		SetCollector:OptionsSetDebug()
-		
+
 	elseif command == "resetdb" then
         SetCollector:ResetDB()
-        
+
     elseif command == "item" then
         if (parameters) then
             SetCollector:PrintItem(parameters)
         end
-        
+
     elseif command == "export" then
         SetCollector:ExportSetData()
-        
+
     elseif command == "set" then
         if (parameters ~= nil) then
             SetCollector:ListSet(parameters)
         --elseif (parameters == "sources") then
         --    SetCollector:ListSetSources(parameters)
         end
-        
+
     elseif command == "sources" then
         if (parameters ~= nil) then
             SetCollector:ListSetSources(parameters)
         end
-        
+
     elseif command == "sets" then
         -- TODO: add parameters for count and starting setID (or pagination)
         if (parameters == "all") then
@@ -518,9 +518,9 @@ function SetCollector:MySlashProcessorFunc(input)
         else
             SetCollector:ListBaseSets()
         end
-		
+
 	else
     	SetCollector:Print(L["SLASH_HELP"])
-		
+
   end
 end
