@@ -1,32 +1,35 @@
 -- Shared Appearance variables and functions
+-- https://warcraft.wiki.gg/wiki/ClassId
 
-SetCollector.ALL				=	{ Code = "A", Description = "All" }
-SetCollector.ANY				=	{ Code = "Z", Description = "Any" }
+SetCollector.DEATHKNIGHT        = 0x0020
+SetCollector.DEMONHUNTER        = 0x0800
+SetCollector.DRUID              = 0x0400
+SetCollector.EVOKER             = 0x1000
+SetCollector.HUNTER             = 0x0004
+SetCollector.MAGE               = 0x0080
+SetCollector.MONK               = 0x0200
+SetCollector.PALADIN            = 0x0002
+SetCollector.PRIEST             = 0x0010
+SetCollector.ROGUE              = 0x0008
+SetCollector.SHAMAN             = 0x0040
+SetCollector.WARLOCK            = 0x0100
+SetCollector.WARRIOR            = 0x0001
+SetCollector.ANY_CLASS          = 0x0000
 
-SetCollector.CLOTH				= { Code = "C", Description = "CLOTH" }
-SetCollector.LEATHER			= { Code = "L", Description = "LEATHER" }
-SetCollector.MAIL				= { Code = "M", Description = "MAIL" }
-SetCollector.PLATE				= { Code = "P", Description = "PLATE" }
-SetCollector.ANY_ARMOR			= { Code = "Z", Description = "Any" }
+-- Some transmog are restricted to classes based on intended armor type
+SetCollector.CLOTH				= SetCollector.MAGE + SetCollector.PRIEST + SetCollector.WARLOCK
+SetCollector.LEATHER			= SetCollector.ROGUE + SetCollector.DRUID + SetCollector.MONK + SetCollector.DEMONHUNTER
+SetCollector.MAIL				= SetCollector.HUNTER + SetCollector.SHAMAN + SetCollector.EVOKER
+SetCollector.PLATE				= SetCollector.WARRIOR + SetCollector.PALADIN + SetCollector.DEATHKNIGHT
 
-SetCollector.DEATHKNIGHT		= { Code = "DK", Description = "DEATHKNIGHT" }
-SetCollector.DEMONHUNTER		= { Code = "DH", Description = "DEMONHUNTER" }
-SetCollector.DRUID 			    = { Code = "DR", Description = "DRUID" }
-SetCollector.EVOKER             = { Code = "DT", Description = "EVOKER" }
-SetCollector.HUNTER 			= { Code = "HU", Description = "HUNTER" }
-SetCollector.MAGE 				= { Code = "MA", Description = "MAGE" }
-SetCollector.MONK 				= { Code = "MO", Description = "MONK" }
-SetCollector.PALADIN 			= { Code = "PA", Description = "PALADIN" }
-SetCollector.PRIEST 			= { Code = "PR", Description = "PRIEST" }
-SetCollector.ROGUE 			    = { Code = "RO", Description = "ROGUE" }
-SetCollector.SHAMAN 			= { Code = "SH", Description = "SHAMAN" }
-SetCollector.WARLOCK 			= { Code = "WK", Description = "WARLOCK" }
-SetCollector.WARRIOR 			= { Code = "WR", Description = "WARRIOR" }
-SetCollector.ANY_CLASS			= { Code = "Z", Description = "Any" }
+-- Some transmog have unusual class restrictions
+SetCollector.AZZINOTH           = SetCollector.WARRIOR + SetCollector.ROGUE + SetCollector.DEATHKNIGHT + SetCollector.MONK + SetCollector.DEMONHUNTER
+SetCollector.DRAGONWRATH        = SetCollector.PRIEST + SetCollector.SHAMAN + SetCollector.MAGE + SetCollector.WARLOCK + SetCollector.DRUID + SetCollector.EVOKER
 
-SetCollector.ALLIANCE 			= { Code = "A", Description = "Alliance" }
-SetCollector.HORDE 			    = { Code = "H", Description = "Horde" }
-SetCollector.ANY_FACTION			= { Code = "Z", Description = "Any" }
+-- Factions
+SetCollector.ALLIANCE 			= PLAYER_FACTION_GROUP[PLAYER_FACTION_GROUP.Alliance]
+SetCollector.HORDE 			    = PLAYER_FACTION_GROUP[PLAYER_FACTION_GROUP.Horde]
+SetCollector.ANY_FACTION        = "Any"
 
 -- Collection Types
 SetCollector.OUTFITS 			= { ID = 1, Code = "OU", Description = "OUTFITS" }
@@ -93,21 +96,33 @@ function SetCollector:CreateTooltipID(collection, id, title)
     return identifier
 end
 
-function SetCollector:IncludeSet(collection, uid, setID, armorType, class, faction, ...)
+function ShortFaction(faction)
+    if not faction then
+        return "AN" -- Any
+    end
+    if faction == PLAYER_FACTION_GROUP[PLAYER_FACTION_GROUP.Horde] then
+        return "HO"
+    end
+    if faction == PLAYER_FACTION_GROUP[PLAYER_FACTION_GROUP.Alliance] then
+        return "AL"
+    end
+    return "AN"
+end
+
+function SetCollector:IncludeSet(collection, uid, setID, ...)
     local setInfo = (setID and C_TransmogSets.GetSetInfo(setID)) or nil;
     if setInfo then
-        local description = (setInfo.label or "")
+        local description = setInfo.label or ""
+        local faction = ShortFaction(setInfo.requiredFaction)
         if SetCollector:GetDebug() then
             description = description.." ("..setInfo.expansionID..")"
         end
         local set = {
-            ID = collection.Code..string.format("%06d", uid)..setID..armorType.Code..class.Code..faction.Code,
+            ID = collection.Code..string.format("%06d", uid)..string.format("%06d", setID)..faction,
             setID = setInfo.setID,
             Collection = collection.Description,
             Title = setInfo.name,
             TooltipID = SetCollector:CreateTooltipID(collection, uid, setID),
-            ArmorType = armorType,
-            Class = class.Description,
             ClassMask = setInfo.classMask,
             Faction = setInfo.requiredFaction or "Any",
             Location = description,
@@ -167,16 +182,17 @@ function SetCollector:IncludeVariant(setID, setInfo, ...)
     return variant
 end
 
-function SetCollector:CreateSet(collection, uid, title, armorType, class, faction, location, ...)
+function SetCollector:CreateSet(collection, uid, title, classMask, faction, location, ...)
     local set = {
-        ID = collection.Code..string.format("%06d", uid)..armorType.Code..class.Code..faction.Code,
+        ID = collection.Code..string.format("%06d", uid)..ShortFaction(faction),
+        setID = nil,
         Collection = collection.Description,
         Title = title,
         TooltipID = SetCollector:CreateTooltipID(collection, uid, title),
-        ArmorType = armorType,
-        Class = class.Description,
-        Faction = faction.Description,
+        ClassMask = classMask,
+        Faction = faction or "Any",
         Location = location,
+        UIOrder = uid,
         Variants = {...}
     }
     return set
@@ -196,10 +212,14 @@ end
 function SetCollector:AddSetToDatabase(version, collection, set)
 	if WOW_VERSION >= version then
         SetCollector.db.global.collections[collection.ID].Sets[set.ID] = set
-        for i=1, #set.Variants do
-            for j=1, #set.Variants[i].Appearances do
-                local index = set.Variants[i].Appearances[j].ID
-                SetCollector.db.global.collections.Appearances[index] = { collection = collection.ID, set = set.ID, variant = j }
+        if set.Variants then
+            for i=1, #set.Variants do
+                if set.Variants[i].Appearances then
+                    for j=1, #set.Variants[i].Appearances do
+                        local index = set.Variants[i].Appearances[j].ID
+                        SetCollector.db.global.collections.Appearances[index] = { collection = collection.ID, set = set.ID, variant = j }
+                    end
+                end
             end
         end
     end

@@ -50,34 +50,6 @@ local defaults = {
 local L = LibStub("AceLocale-3.0"):GetLocale("SetCollector", true)
 local WOW_VERSION = select(4,GetBuildInfo())
 
-local ALL			= { Code = "A", Description = "All" }
-local ANY			= { Code = "Z", Description = "Any" }
-
-local CLOTH			= { Code = "C", Description = "CLOTH" }
-local LEATHER		= { Code = "L", Description = "LEATHER" }
-local MAIL			= { Code = "M", Description = "MAIL" }
-local PLATE			= { Code = "P", Description = "PLATE" }
-local ANY_ARMOR			= { Code = "Z", Description = "Any" }
-
-local DEATHKNIGHT 	= { Code = "DK", Description = "DEATHKNIGHT" }
-local DEMONHUNTER 	= { Code = "DH", Description = "DEMONHUNTER" }
-local DRUID 		= { Code = "DR", Description = "DRUID" }
-local EVOKER 		= { Code = "DT", Description = "EVOKER" }
-local HUNTER 		= { Code = "HU", Description = "HUNTER" }
-local MAGE 			= { Code = "MA", Description = "MAGE" }
-local MONK 			= { Code = "MO", Description = "MONK" }
-local PALADIN 		= { Code = "PA", Description = "PALADIN" }
-local PRIEST 		= { Code = "PR", Description = "PRIEST" }
-local ROGUE 		= { Code = "RO", Description = "ROGUE" }
-local SHAMAN 		= { Code = "SH", Description = "SHAMAN" }
-local WARLOCK 		= { Code = "WK", Description = "WARLOCK" }
-local WARRIOR 		= { Code = "WR", Description = "WARRIOR" }
-local ANY_CLASS			= { Code = "Z", Description = "Any" }
-
-local ALLIANCE 		= { Code = "A", Description = "Alliance" }
-local HORDE 		= { Code = "H", Description = "Horde" }
-local ANY_FACTION			= { Code = "Z", Description = "Any" }
-
 -- Collection Types
 local OUTFITS 		= { ID = 1, Code = "OU", Description = "OUTFITS" }
 local ARTIFACT 		= { ID = 2, Code = "AR", Description = "ARTIFACT" }
@@ -350,30 +322,32 @@ function SetCollector:GetSetTooltip(self)
 	end
 end
 
-function SetCollector:SetIsFilteredOutByArmorType(collection, set, type)
-	local db = SetCollector.db.global.collections
-	local setType = db[collection].Sets[set].ArmorType.Description
-	if (setType == ANY.Description or setType == type or type == "Any") then
-		return false
-	else
-		return true
+function SetCollector:BitAND(a,b)--Bitwise and
+	local p,c=1,0
+	while a>0 and b>0 do
+			local ra,rb=a%2,b%2
+			if ra+rb>1 then c=c+p end
+			a,b,p=(a-ra)/2,(b-rb)/2,p*2
 	end
+	return c
 end
 
-function SetCollector:SetIsFilteredOutByClass(collection, set, class)
+function SetCollector:SetIsFilteredOutByClassMask(collection, set)
 	local db = SetCollector.db.global.collections
-	local setClass = db[collection].Sets[set].Class
-	if (setClass == ANY.Description or setClass == class or class == "All" or class == "Any") then
+	local mask = db[collection].Sets[set].ClassMask
+	local cleanMask = SetCollector:BitAND(mask, math.pow(2, GetNumClasses()) - 1) -- Sometimes the class mask includes non-existent classes
+	if cleanMask == 0 then
 		return false
-	else
-		return true
 	end
+	local _, _, classId = UnitClass("player")
+	local classFlag = math.pow(2, classId - 1) -- classId is ones based, we need zeroes based.  WAR = 1 (2^(1-1) = 1), PAL = 2 (2^(2-1) = 2), etc
+	return SetCollector:BitAND(cleanMask, classFlag) == 0
 end
 
 function SetCollector:SetIsFilteredOutByFaction(collection, set, faction)
 	local db = SetCollector.db.global.collections
 	local setFaction = db[collection].Sets[set].Faction
-	if (setFaction == ANY.Description or setFaction == faction or faction == "Any") then
+	if (setFaction == SetCollector.ANY_FACTION or setFaction == faction or faction == "Any") then
 		return false
 	else
 		return true

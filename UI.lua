@@ -43,36 +43,9 @@ local SELECTED_BUTTON = nil
 local SORT_BY = "key"					-- Default Sort Value
 local SORT_DIR = "DESC"				-- Default Sort Direction
 
-local ALL					=	{ Code = "A", Description = "All" }
-local ANY					=	{ Code = "Z", Description = "Any" }
-
-local CLOTH				= { Code = "C", Description = "CLOTH" }
-local LEATHER			= { Code = "L", Description = "LEATHER" }
-local MAIL				= { Code = "M", Description = "MAIL" }
-local PLATE				= { Code = "P", Description = "PLATE" }
-local ANY_ARMOR			= { Code = "Z", Description = "Any" }
-
 --
 --  Local Functions
 --
-
-local function GetClassArmorType(class)
-	if		class == "DEATHKNIGHT"	then return PLATE.Description
-	elseif	class == "DEMONHUNTER"	then return LEATHER.Description
-	elseif	class == "DRUID"		then return LEATHER.Description
-	elseif	class == "EVOKER"		then return MAIL.Description
-	elseif	class == "HUNTER"		then return MAIL.Description
-	elseif	class == "MAGE"			then return CLOTH.Description
-	elseif	class == "MONK"			then return LEATHER.Description
-	elseif	class == "PALADIN"		then return PLATE.Description
-	elseif	class == "PRIEST"		then return CLOTH.Description
-	elseif	class == "ROGUE"		then return LEATHER.Description
-	elseif	class == "SHAMAN"		then return MAIL.Description
-	elseif	class == "WARLOCK"		then return CLOTH.Description
-	elseif	class == "WARRIOR"		then return PLATE.Description
-	else return ANY.Description
-	end
-end
 
 --
 --  Setup Frame
@@ -168,10 +141,10 @@ scrollFrame:SetPoint("TOPLEFT","$parentLeftInset","TOPLEFT",2,-5)
 scrollFrame:SetPoint("BOTTOMRIGHT","$parentLeftInset","BOTTOMRIGHT", -4, 3)
 
 local function IsShownInList(button)
-	top = SetCollectorFrame.CollectionsFrame:GetTop()
-	bottom = SetCollectorFrame.CollectionsFrame:GetBottom()
-	buttonTop = button:GetTop()
-	buttonBottom = button:GetBottom()
+	local top = SetCollectorFrame.CollectionsFrame:GetTop()
+	local bottom = SetCollectorFrame.CollectionsFrame:GetBottom()
+	local buttonTop = button:GetTop()
+	local buttonBottom = button:GetBottom()
 	if buttonBottom < top and buttonTop > bottom then
 		return true
 	end
@@ -949,12 +922,15 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 	if DEBUG then SetCollector:Print("Updating ScrollFrame") end
 	if collections then
 		if DEBUG then SetCollector:Print("Received list of collections.") end
-		prevButton = nil
-		rowIndex = 1
-		
+		local prevButton = nil
+		local rowIndex = 1
+
+		local _, class = UnitClass("player")
+		local faction = UnitFactionGroup("player")
+
 		for i=1, #collections do
 			rowIndex = rowIndex + 1
-			button = GetCollectionButton(rowIndex)
+			local button = GetCollectionButton(rowIndex)
 			if ( COLLECTION_COLLAPSED[i] == true ) then
 				button:SetText(L[collections[i].Title].."...")
 			else
@@ -970,31 +946,29 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 			local archivePrevButton = prevButton
 			local setsDisplayed = 0
 			prevButton = button
-			
+
 			if i == 1 then
 				local outfits = C_TransmogCollection.GetOutfits()
 				for j=1, #outfits do
 					local outfitID = outfits[j]
-					
+
 					rowIndex = rowIndex + 1
-					titleButton = GetSetButton(rowIndex)
+					local titleButton = GetSetButton(rowIndex)
 					titleButton.Text:SetWidth(COLLECTION_LIST_WIDTH - 48)
-					
+
 					titleButton.Collection = 0
 					titleButton.Set = 0
 					titleButton.Outfit = outfitID
 					titleButton:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 0)
 					titleButton:Hide()
-					
-					--titleButton.Check:Show()	-- It is possible to create sets without having collected all of the appearances
+
 					titleButton.Favorite:Show()
-						
+
 					titleButton.Text:SetText(C_TransmogCollection.GetOutfitInfo(outfitID))
-                    --titleButton.SubText:SetText("|cff555555"..L["OUTFITS"].."|r")
-					
+
 					local height = titleButton.Text:GetHeight() + titleButton.SubText:GetHeight() + 10
 					titleButton:SetHeight(height)
-                    if not COLLECTION_COLLAPSED[i] then
+					if not COLLECTION_COLLAPSED[i] then
 						titleButton:Show()
 						prevButton = titleButton
 						setsDisplayed = setsDisplayed + 1
@@ -1003,21 +977,16 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 			elseif collections[i].sets then
 				local sortedList = SetCollector:SortList(collections[i].sets, SORT_BY, SORT_DIR)
 				for j,value in sortedList do
-					
+
 					rowIndex = rowIndex + 1
-					titleButton = GetSetButton(rowIndex)
+					local titleButton = GetSetButton(rowIndex)
 					titleButton.Text:SetWidth(COLLECTION_LIST_WIDTH - 32)
-					
+
 					titleButton.Collection = i
 					titleButton.Set = j
 					titleButton:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 0)
 					titleButton:Hide()
-					
-				  local _, class = UnitClass("player")
-				  local armorType = GetClassArmorType(class)
-				  
-				  local faction = UnitFactionGroup("player")
-					
+
 					local isObtainable = SetCollector:IsSetObtainable(i, j)
 					local isTransmog = SetCollector:IsTransmogSet(i, j)
 					local isFavorite = SetCollector:IsFavoriteSet(j)
@@ -1027,7 +996,7 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 						titleButton.Favorite:Hide()
 					end
 					local isHidden = SetCollector:IsHiddenSet(j)
-					
+
 					local isCollected = SetCollector:IsSetFullyCollected(i, j)
 					if isCollected then
 						titleButton.Text:SetWidth(COLLECTION_LIST_WIDTH - 48)
@@ -1040,25 +1009,21 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 							titleButton.Check:Show()
 						end
 					end
-					
+
 					if isObtainable then
 						titleButton.Text:SetText(L[collections[i].sets[j].Title] or L["MISSING_LOCALIZATION"])			-- Putting Text into FontString allows for Wrapping using SetWidth
 					else
 						titleButton.Text:SetText("|cff999999"..(L[collections[i].sets[j].Title] or L["MISSING_LOCALIZATION"]))
 					end
-					
+
 					if (collections[i].sets[j].Location and collections[i].sets[j].Location ~= "") then
 						titleButton.SubText:SetText("|cff555555"..(L[collections[i].sets[j].Location] or L["MISSING_LOCALIZATION"]).."|r")
 					end
-					
+
 					local height = titleButton.Text:GetHeight() + titleButton.SubText:GetHeight() + 10
 					titleButton:SetHeight(height)
-					
-					if SetCollector:SetIsFilteredOutByArmorType(i, j, armorType) then
-						-- Keep it hidden
-					elseif SetCollector:SetIsFilteredOutByClass(i, j, class) then
-						-- Keep it hidden
-					elseif SetCollector:SetIsFilteredOutByFaction(i, j, faction) then
+
+					if SetCollector:SetIsFilteredOutByClassMask(i, j) then
 						-- Keep it hidden
 					elseif SHOW_ONLY_OBTAINABLE == true and not isObtainable then
 						-- Keep it hidden
@@ -1073,7 +1038,7 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 						prevButton = titleButton
 						setsDisplayed = setsDisplayed + 1
 					end
-				end	
+				end
 			end
 			if setsDisplayed == 0 and not COLLECTION_COLLAPSED[i] then					-- Hides the Collections button when no sets are displayed
 				button:Hide()
