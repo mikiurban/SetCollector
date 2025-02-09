@@ -289,112 +289,6 @@ function SetCollector:ListSetSources(setID)
     end
 end
 
-local function BitAND(a,b)--Bitwise and
-    local p,c=1,0
-    while a>0 and b>0 do
-        local ra,rb=a%2,b%2
-        if ra+rb>1 then c=c+p end
-        a,b,p=(a-ra)/2,(b-rb)/2,p*2
-    end
-    return c
-end
-
-function ParseClassMask(bits)
-    -- 0 == All classes can wear
-    if bits == nil or bits == 0 then
-        return "ANY_CLASS"
-    end
-
-    local cleanBits = BitAND(bits, math.pow(2, GetNumClasses()) - 1)
-
-    -- 0 == All classes can wear
-    if cleanBits == 0 then
-        return "ANY_CLASS"
-    end
-
-    local map = {
-        WARRIOR = 0x001,
-        PALADIN = 0x002,
-        HUNTER = 0x004,
-        ROGUE = 0x008,
-        PRIEST = 0x010,
-        DEATHKNIGHT = 0x020,
-        SHAMAN = 0x040,
-        MAGE = 0x080,
-        WARLOCK = 0x100,
-        MONK = 0x200,
-        DRUID = 0x400,
-        DEMONHUNTER = 0x800,
-        EVOKER = 0x1000
-    }
-
-    -- Check for exact match between class
-    for char, mask in pairs(map) do
-        if cleanBits == mask then
-            return char .. ""
-        end
-    end
-
-    -- Right now, the remaining code is useless. Just pass "Any Class" and depend on cloth\mail\etc to filter.
-    return "ANY_CLASS"
-
-    -- -- Check for "any" match between class
-    -- local any_map = {
-    --     ANY_PLATE = 0x001 + 0x002 + 0x020,
-    --     ANY_LEATHER = 0x008 + 0x200 + 0x800 + 0x400,
-    --     ANY_CLOTH = 0x010 + 0x080 + 0x100,
-    --     ANY_MAIL = 0x004 + 0x040 + 0x1000
-    -- }
-    -- for char, mask in pairs(any_map) do
-    --     if cleanBits == mask then
-    --         return char .. ""
-    --     end
-    -- end
-    -- -- hmm, weird case, better itemize
-    -- local parse = cleanBits .. ": "
-    -- for char, mask in pairs(map) do
-    --     if (BitAND(cleanBits, mask) == mask) then
-    --         parse = parse .. char .. " "
-    --     end
-    -- end
-    -- return parse
-end
-
-function ParseArmorMask(bits)
-    -- 0 == All classes can wear
-    if bits == 0 then
-        return "ANY_ARMOR"
-    end
-
-    local cleanBits = BitAND(bits, math.pow(2, GetNumClasses()) - 1)
-
-    -- 0 == All classes can wear
-    if cleanBits == 0 then
-        return "ANY_ARMOR"
-    end
-
-    local map = {
-        PLATE = 0x001 + 0x002 + 0x020,
-        LEATHER = 0x008 + 0x200 + 0x400 + 0x800,
-        CLOTH = 0x010 + 0x080 + 0x100,
-        MAIL = 0x004 + 0x040 + 0x1000
-    }
-
-    for char, mask in pairs(map) do
-        if (BitAND(cleanBits, mask) > 0) then
-            return char .. ""
-        end
-    end
-    -- hmm, weird case, better itemize
-    local parse = cleanBits .. ": "
-    for char, mask in pairs(map) do
-        if (BitAND(cleanBits, mask) == mask) then
-            parse = parse .. char .. " "
-        end
-    end
-    return parse .. ""
-end
-
 function SetCollector:ExportSetData()
     local tree = {}
     local exportTree = {}
@@ -411,9 +305,6 @@ function SetCollector:ExportSetData()
                 if (SetCollector.db.global.setMap["SET " .. setID] ~= nil) then
                     collection = SetCollector.db.global.setMap["SET " .. setID].collection
                 end
-                local strArmorMask = ParseArmorMask(setInfo.classMask)
-                local strClassMask = ParseClassMask(setInfo.classMask)
-                local strFaction = string.upper(setInfo.requiredFaction or "ANY_FACTION")
                 local strDesc = (setInfo.description or "(blank)")
                 local strLabel = (setInfo.label or "(blank)")
 
@@ -430,10 +321,10 @@ function SetCollector:ExportSetData()
 
                 tree[setInfo.patchID][collection][baseSetID][setID] = strDesc
 
-                -- Build: IncludeSet(COLLECTION,11000,2601,ANY_ARMOR,DEATHKNIGHT,ANY_FACTION,2614,2615,2616), -- Haunted Frostbrood Remains
+                -- Build: IncludeSet(COLLECTION,11000,2601,2614,2615,2616), -- Haunted Frostbrood Remains
 
                 local heading = " -- " .. strLabel -- "Dragonflight Season 1"
-                local lua2 = {"IncludeSet(SetCollector." .. collection, setInfo.patchID, baseSetID, strArmorMask, strClassMask, strFaction}
+                local lua2 = {"IncludeSet(SetCollector." .. collection, setInfo.patchID, baseSetID}
                 local lua2comment = {"), -- " .. setInfo.name}
 
                 for tempId, desc in pairs(tree[setInfo.patchID][collection][baseSetID]) do
