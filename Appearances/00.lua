@@ -121,7 +121,8 @@ local function GetHeritageAppearances()
     VERSION = 100107
     sets = {
         IncludeSet(COLLECTION,VERSION,3086), -- Forsaken Champion's Attire
-        IncludeSet(COLLECTION,VERSION,3130), -- Kaldorei Protector's Adornment, Raiment of Amirdrassil
+        IncludeSet(COLLECTION,VERSION,3130), -- Raiment of Amirdrassil
+        IncludeSet(COLLECTION,VERSION,3121), -- Kaldorei Protector's Adornment
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
