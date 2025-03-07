@@ -141,6 +141,41 @@ local function GetExpansionAppearances()
         IncludeSet(COLLECTION,VERSION,4208,4210,4209,4211), -- Violet Clockwork Attire, Green, Gold, Purple
         }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.EXPANSION, 110100
+    sets = {
+        -- Cosmetic Armor Vendor
+        IncludeSet(COLLECTION,110100,4265,4334,4266,4336,4333,4335), -- Blackwater Bruiser's Attire, Green, Purple, Blue, Yellow, Red
+        -- The Cartels of Undermine
+        IncludeSet(COLLECTION,110100,4265,4266), -- Undermine Enforcer's Attire, Purple
+        IncludeSet(COLLECTION,110100,4342,4351), -- Smartest in Town, Renown
+        IncludeSet(COLLECTION,110100,4343,4352), -- Toughest in Town, Renown
+        IncludeSet(COLLECTION,110100,4344,4350), -- Slickest in Town, Renown
+        IncludeSet(COLLECTION,110100,4345,4353), -- Craftiest in Town, Renown
+
+        -- Undermine Outdoor Activities
+        IncludeSet(COLLECTION,110100,4342,4351,4358,4354), -- Laundered Attire, Renown, World Drops, World Quests and World Drops
+        IncludeSet(COLLECTION,110100,4343,4357,4352,4361), -- Descaled Wear, World Quests and World Drops, Renown, World Drops
+        IncludeSet(COLLECTION,110100,4344,4359,4355,4350), -- Upcycled Outfit, World Drops, World Quests and World Drops, Renown
+        IncludeSet(COLLECTION,110100,4345,4360,4353,4356), -- Power-Washed Wardrobe, World Drops, Renown, World Quests and World Drops
+
+        -- Undermine Gear
+        IncludeSet(COLLECTION,110100,4337,4267), -- Noxious Injector Apparatus, Delves
+        IncludeSet(COLLECTION,110100,4338,4268), -- Nitroclad Kit, Delves
+        IncludeSet(COLLECTION,110100,4339,4269), -- Blastborne Loadout, Delves
+        IncludeSet(COLLECTION,110100,4340,4270), -- Junkreaver's Apparel, Delves
+        IncludeSet(COLLECTION,110100,4342,4351,4354), -- Mindboost Scholar Regalia, Renown, World Quests and World Drops
+        IncludeSet(COLLECTION,110100,4343,4357,4352), -- Rustfang Rebel Gear, World Quests and World Drops, Renown
+        IncludeSet(COLLECTION,110100,4344,4355,4350), -- Smoketrail Racer Suit, World Quests and World Drops, Renown
+        IncludeSet(COLLECTION,110100,4345,4353,4356), -- Dustfire Outlaw Attire, Renown, World Quests and World Drops
+
+        -- Cartels Bestie
+        IncludeSet(COLLECTION,110100,4265), -- Goblin Bruiser's Attire
+
+        -- Vestments of the Heavens
+        IncludeSet(COLLECTION,110100,4206,4207), -- Radiant Vestments of the Heavens, Purple
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetOtherAppearances()
@@ -204,6 +239,29 @@ local function GetPvPAppearances()
         IncludeSet(SetCollector.PVP,110000,3833,3846), -- Forged Gladiator's Silk Armor, Elite
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.PVP, 110100
+    sets = {
+        -- The War Within Season 2
+        IncludeSet(COLLECTION,110100,4006,4019), -- Prized Gladiator's Plate Armor, Elite
+        IncludeSet(COLLECTION,110100,4007,4020), -- Prized Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110100,4008,4021), -- Prized Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110100,4009,4022), -- Prized Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110100,4010,4023), -- Prized Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110100,4011,4024), -- Prized Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110100,4012,4025), -- Prized Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110100,4013,4026), -- Prized Gladiator's Plate Armor, Elite
+        IncludeSet(COLLECTION,110100,4014,4027), -- Prized Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110100,4015,4028), -- Prized Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110100,4016,4029), -- Prized Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110100,4017,4031), -- Prized Gladiator's Plate Armor, Elite
+        IncludeSet(COLLECTION,110100,4018,4030), -- Prized Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110100,4337,4267), -- Prized Aspirant's Silk Armor, Delves
+        IncludeSet(COLLECTION,110100,4338,4268), -- Prized Aspirant's Leather Armor, Delves
+        IncludeSet(COLLECTION,110100,4339,4269), -- Prized Aspirant's Chain Armor, Delves
+        IncludeSet(COLLECTION,110100,4340,4270), -- Prized Aspirant's Plate Armor, Delves
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetRaidAppearances()
@@ -225,6 +283,25 @@ local function GetRaidAppearances()
         IncludeSet(COLLECTION,VERSION,3767,3766,3765,3768), -- Warsculptor's Masterwork, Mythic, Heroic, Raid Finder
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 110100
+    sets = {
+        -- Liberation of Undermine
+        IncludeSet(COLLECTION,110100,4277,4276,4275,4278), -- Cauldron Champion's Encore, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110100,4281,4279,4280,4282), -- Fel-Dealer's Contraband, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4285,4283,4284,4286), -- Roots of Reclaiming Blight, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4289,4288,4287,4290), -- Opulent Treasurescale's Hoard, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110100,4293,4291,4292,4294), -- Tireless Collector's Bounties, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4297,4295,4296,4298), -- Jewels of the Aspectral Emissary, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4301,4300,4299,4302), -- Ageless Serpent's Foresight, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110100,4305,4303,4304,4306), -- Oath of the Aureate Sentry, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4309,4307,4308,4310), -- Confessor's Unshakable Virtue, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4313,4312,4311,4314), -- Spectral Gambler's Last Call, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110100,4317,4315,4316,4318), -- Currents of the Gale Sovereign, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4321,4319,4320,4322), -- Spliced Fiendtrader's Influence, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110100,4325,4324,4323,4326), -- Enforcer's Backalley Brawlplate, Mythic, Heroic, Raid Finder
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetTradingPostAppearances()
@@ -241,6 +318,15 @@ local function GetTradingPostAppearances()
     sets = {
         -- Ornate Lunar Festival Attire
         IncludeSet(COLLECTION,VERSION,4213,4214,4215,4216), -- Ornate Teal Lunar Festival Attire, Pink, Purple, Teal
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.TRADING, 110007
+    sets = {
+         -- Ornaments of the Butterfly
+        IncludeSet(COLLECTION,110100,4261,4262,4263,4264), -- Ornaments of the Pearlescent Butterfly, Pink, Red, Purple
+        -- Garden Dweller's Collection
+        IncludeSet(COLLECTION,110100,4271,4273,4272,4274), -- Forest Dweller's Rooted Attire, Purple, Pink, Blue
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
