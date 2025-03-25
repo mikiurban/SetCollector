@@ -51,19 +51,20 @@ local L = LibStub("AceLocale-3.0"):GetLocale("SetCollector", true)
 local WOW_VERSION = select(4,GetBuildInfo())
 
 -- Collection Types
-local OUTFITS 		= { ID = 1, Code = "OU", Description = "OUTFITS" }
-local ARTIFACT 		= { ID = 2, Code = "AR", Description = "ARTIFACT" }
-local LEGENDARY 	= { ID = 3, Code = "ZZ", Description = "LEGENDARY" }
-local RAID 			= { ID = 4, Code = "TR", Description = "RAID" }
-local DUNGEON 		= { ID = 5, Code = "DG", Description = "DUNGEON" }
-local CHALLENGE 	= { ID = 6, Code = "CD", Description = "CHALLENGE" }
-local PVP 			= { ID = 7, Code = "PV", Description = "PVP" }
-local EXPANSION 	= { ID = 8, Code = "EX", Description = "EXPANSION" }
-local CRAFTED 		= { ID = 9, Code = "CR", Description = "CRAFTED" }
-local OTHER			= { ID = 10, Code = "OT", Description = "OTHER" }
-local CUSTOM		= { ID = 11, Code = "CU", Description = "CUSTOM" }
-local HOLIDAY		= { ID = 12, Code = "HO", Description = "HOLIDAY" }
-local TRADING		= { ID = 13, Code = "TP", Description = "TRADING" }
+local OUTFITS     = { ID =  1, Code = "OU", Description = "OUTFITS" }
+local ARTIFACT    = { ID =  2, Code = "AR", Description = "ARTIFACT" }
+local LEGENDARY   = { ID =  3, Code = "ZZ", Description = "LEGENDARY" }
+local RAID        = { ID =  4, Code = "TR", Description = "RAID" }
+local DUNGEON     = { ID =  5, Code = "DG", Description = "DUNGEON" }
+local CHALLENGE   = { ID =  6, Code = "CD", Description = "CHALLENGE" }
+local PVP         = { ID =  7, Code = "PV", Description = "PVP" }
+local EXPANSION   = { ID =  8, Code = "EX", Description = "EXPANSION" }
+local CRAFTED     = { ID =  9, Code = "CR", Description = "CRAFTED" }
+local OTHER       = { ID = 10, Code = "OT", Description = "OTHER" }
+local TRIAL_STYLE = { ID = 11, Code = "TS", Description = "TRIAL_STYLE" }
+local CUSTOM      = { ID = 12, Code = "CU", Description = "CUSTOM" }
+local HOLIDAY     = { ID = 13, Code = "HO", Description = "HOLIDAY" }
+local TRADING     = { ID = 14, Code = "TP", Description = "TRADING" }
 
 local OBTAIN		= true
 local NO_OBTAIN 		= false
@@ -93,6 +94,7 @@ local function CreateCollections()
 		[EXPANSION.ID] 	= { Title = EXPANSION.Description, Sets = { } },
 		[CRAFTED.ID] 		= { Title = CRAFTED.Description, Sets = { } },
 		[OTHER.ID] 			= { Title = OTHER.Description, Sets = { } },
+		[TRIAL_STYLE.ID]= { Title = TRIAL_STYLE.Description, Sets = { } },
 		[CUSTOM.ID] 		= { Title = CUSTOM.Description, Sets = { } },
 		[HOLIDAY.ID] 		= { Title = HOLIDAY.Description, Sets = { } },
 		[TRADING.ID] 		= { Title = TRADING.Description, Sets = { } },

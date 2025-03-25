@@ -99,7 +99,7 @@ local function GetLegendaries()
 end
 
 local function GetOtherAppearances()
-    local COLLECTION, VERSION = SetCollector.OTHER, 20000
+    local COLLECTION, VERSION = SetCollector.TRIAL_STYLE, 20000
     local sets = {
         IncludeSet(COLLECTION,20000,1447), -- Righteous Battleplate
         IncludeSet(COLLECTION,20000,1448), -- Der'izu Armor

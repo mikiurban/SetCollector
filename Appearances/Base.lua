@@ -42,9 +42,10 @@ SetCollector.PVP 				= { ID = 7, Code = "PV", Description = "PVP" }
 SetCollector.EXPANSION 			= { ID = 8, Code = "EX", Description = "EXPANSION" }
 SetCollector.CRAFTED 			= { ID = 9, Code = "CR", Description = "CRAFTED" }
 SetCollector.OTHER				= { ID = 10, Code = "OT", Description = "OTHER" }
-SetCollector.CUSTOM			    = { ID = 11, Code = "CU", Description = "CUSTOM" }
-SetCollector.HOLIDAY			= { ID = 12, Code = "HO", Description = "HOLIDAY" }
-SetCollector.TRADING			= { ID = 13, Code = "TP", Description = "TRADING" }
+SetCollector.TRIAL_STYLE    	= { ID = 11, Code = "TS", Description = "TRIAL_STYLE" }
+SetCollector.CUSTOM			    = { ID = 12, Code = "CU", Description = "CUSTOM" }
+SetCollector.HOLIDAY			= { ID = 13, Code = "HO", Description = "HOLIDAY" }
+SetCollector.TRADING			= { ID = 14, Code = "TP", Description = "TRADING" }
 
 SetCollector.OBTAIN			    = true
 SetCollector.NO_OBTAIN 			= false
