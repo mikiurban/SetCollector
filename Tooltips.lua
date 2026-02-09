@@ -82,12 +82,11 @@ TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tool
                     local sources = C_TransmogCollection.GetAllAppearanceSources(appearanceID)
                     if sources then
                         for i=1, #sources do
-                            local link = select(6, C_TransmogCollection.GetAppearanceSourceInfo(sources[i]))
-                            local sourceCollected = SetCollector:IsSourceCollected(sources[i])
-                            if sourceCollected then
-                                tooltip:AddDoubleLine(link, sources[i])
+                            local info = C_TransmogCollection.GetAppearanceSourceInfo(sources[i])
+                            if info.isCollected then
+                                tooltip:AddDoubleLine(info.itemLink, sources[i])
                             else
-                                local name = C_Item.GetItemNameByID(link)
+                                local name = C_Item.GetItemNameByID(info.itemLink)
                                 if ( name ) then
                                     tooltip:AddDoubleLine("|cFF777777"..name.."|r",sources[i])
                                 end

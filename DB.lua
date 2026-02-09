@@ -152,9 +152,9 @@ function SetCollector:GetAppearanceSources(appearanceID)
 		local sourceIDs = C_TransmogCollection.GetAllAppearanceSources(appearanceID);
         local sources = { }
         for i=1, #sourceIDs do
-            local categoryID, visualID, canEnchant, icon, isCollected, itemLink, transmogLink = C_TransmogCollection.GetAppearanceSourceInfo(sourceIDs[i])
+            local info = C_TransmogCollection.GetAppearanceSourceInfo(sourceIDs[i])
             sources[i] = {}
-            sources[i]["isCollected"] = isCollected
+            sources[i]["isCollected"] = info.isCollected
             sources[i]["sourceID"] = sourceIDs[i]
         end
 		--local sources = C_TransmogCollection.GetAppearanceSources(appearanceID); -- now requires additional parameters
@@ -166,27 +166,22 @@ end
 function SetCollector:GetCollectedCount(collection, set, variant)
 	local collectedCount = 0
 	local db = SetCollector.db.global
-	if db.collections[collection].Sets[set].Variants[variant] then
+	if db and db.collections[collection].Sets[set].Variants[variant] then
 		local appearances = db.collections[collection].Sets[set].Variants[variant].Appearances or { }
 		for i=1, #appearances do
-			local isCollected
+			local isCollected = false
 			if appearances[i].ID then
 				local sources = C_TransmogCollection.GetAllAppearanceSources(appearances[i].ID)
-				--local sources = SetCollector:GetAppearanceSources(appearances[i].ID)
-				if sources then
-					for j=1, #sources do
-                        --if sources[j] and sources[j].isCollected then
-                        local info = C_TransmogCollection.GetAppearanceInfoBySource(sources[j])
-                        if info and info.sourceIsCollected then
-						    isCollected = true
-						end
+				for j=1, #sources do
+					local info = C_TransmogCollection.GetAppearanceInfoBySource(sources[j])
+					if info then
+						isCollected = isCollected or info.sourceIsCollected
 					end
 				end
 			end
 			if isCollected then collectedCount = collectedCount + 1 end
 		end
 	end
-	--if sourcesCount == 0 and collectedCount == 0 then collectedCount = "*" end
 
 	return collectedCount
 end
@@ -205,7 +200,10 @@ end
 
 function SetCollector:IsSourceCollected(sourceID)
   if sourceID then
-    return select(5, C_TransmogCollection.GetAppearanceSourceInfo(sourceID))
+		local info = C_TransmogCollection.GetAppearanceSourceInfo(sourceID)
+    if info then
+				return info.isCollected
+		end
   end
   return false
 end

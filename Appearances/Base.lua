@@ -62,12 +62,13 @@ local function is_numeric(x)
     return false
 end
 
-function SetCollector:CreateAppearance(ID, sourceID, slotID, itemID)
+function SetCollector:CreateAppearance(ID, sourceID, slotID, itemID, category)
 	local t = {
         ID = ID or 0,
         sourceID = sourceID or 0,
         slotID = slotID or 0,
-		itemID = itemID or 0
+		itemID = itemID or 0,
+        category = category or 0
     }
 	return t
 end
@@ -170,13 +171,14 @@ function SetCollector:IncludeVariant(setID, setInfo, ...)
         for pos in pairs(appearances) do
             local itemID = C_TransmogCollection.GetSourceItemID(appearances[pos].appearanceID)
             local sourceInfo = C_TransmogCollection.GetSourceInfo(appearances[pos].appearanceID);
+            local category = C_TransmogCollection.GetCategoryForItem(appearances[pos].appearanceID);
             if (sourceInfo) then
                 local slotID = C_Transmog.GetSlotForInventoryType(sourceInfo.invType)
-                table.insert(variant.Appearances, SetCollector:CreateAppearance(sourceInfo.visualID or nil, sourceInfo.sourceID or nil, slotID or nil, itemID or nil))
+                table.insert(variant.Appearances, SetCollector:CreateAppearance(sourceInfo.visualID, sourceInfo.sourceID, slotID, itemID, category))
             end
         end
         local function compare(a, b)
-            return a.slotID < b.slotID
+            return a.category < b.category
         end
         table.sort(variant.Appearances, compare)
     end
