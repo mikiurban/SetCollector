@@ -120,10 +120,6 @@ end
 
 tinsert(UISpecialFrames, frame:GetName())							-- Hides frame when Escape is pressed or Game menu selected.
 
-
-local helpButton = CreateFrame("Button","$parentTutorialButton",frame,"MainHelpPlateButton")
-helpButton:SetPoint("TOPLEFT",frame, 39, 20)
-
 --
 --  ScrollFrame
 --
@@ -201,7 +197,6 @@ function SetCollectorSetButton_OnClick(self, button, ...)
                 SetHighlight(self)
             else
                 SetCollector:SetVariantTabs()
-                --ClearItemButtons()
                 UnsetHighlight(self)
             end
         elseif ( not IsShiftKeyDown() and button == "RightButton" ) then
@@ -406,18 +401,11 @@ end
 
 
 local function ClearItemButtons(button)
-	if button then
-		for i=button, #EQUIPMENT do
-			_G["SetCollectorSetDisplayModelFrameItem"..i]:Hide()
-		end
-	else
-		for i=1, #EQUIPMENT do
-			_G["SetCollectorSetDisplayModelFrameItem"..i]:Hide()
-		end
+	local startPos = button or 1
+	for i=startPos, #EQUIPMENT do
+		_G["SetCollectorSetDisplayModelFrameItem"..i]:Hide()
 	end
 end
-
-
 
 --
 --  Variant Tabs
@@ -524,7 +512,7 @@ function SetCollector:UpdateSelectedVariantTab(self)
 			local collection = _G["SetCollectorSetDisplayTab" .. selected].Collection
 			local set = _G["SetCollectorSetDisplayTab" .. selected].Set
 
-			ClearItemButtons(1)
+			ClearItemButtons()
 
 			local slotIndex = 0
 			if collection and set then
@@ -786,43 +774,6 @@ function SetCollector:InitializeFilter(DEBUG)
 	if DEBUG then SetCollector:Print("Filters Initialized") end
 end
 
-
-
---
---  Tutorial
---
-
-local AddTutorial = {
-	FramePos = { x = 0,	y = -30 },
-	FrameSize = { width = 638, height = 496	},
-	[1] = { ButtonPos = { x = 500,	y = 10 }, 	HighLightBox = { x = 497, y = 2, width = 200, height = 30 },		ToolTipDir = "LEFT",	ToolTipText = L["TUTORIAL_1"] },
-	[2] = { ButtonPos = { x = 120,	y = -405 }, HighLightBox = { x = 8, y = -30, width = 252, height = 518 },		ToolTipDir = "DOWN",	ToolTipText = L["TUTORIAL_2"] },
-	[3] = { ButtonPos = { x = 310,	y = -31 }, 	HighLightBox = { x = 285, y = -30, width = 412, height = 50 },	ToolTipDir = "LEFT",	ToolTipText = L["TUTORIAL_3"] },
-	[4] = { ButtonPos = { x = 476,	y = -405 }, HighLightBox = { x = 285, y = -83, width = 412, height = 465 },	ToolTipDir = "DOWN",	ToolTipText = L["TUTORIAL_4"] },
-}
-
-local function GetTutorial()
-	local helpPlate, mainHelpButton
-	helpPlate = AddTutorial
-	mainHelpButton = helpButton
-	return helpPlate, mainHelpButton
-end
-
-function SetCollector:ToggleTutorial()
-	local helpPlate, mainHelpButton = GetTutorial()
-
-	if ( helpPlate and not HelpPlate_IsShowing(helpPlate) and frame:IsShown()) then
-		HelpPlate_Show(helpPlate, frame:GetName(), mainHelpButton, HelpPlateSeen)
-		SetCollector_HELP_VISIBLE = true
-		HelpPlateSeen = true
-	else
-		HelpPlate_Hide(true) 								-- True indicates to animate the hide. Blank or flase suppresses the animation.
-	  SetCollector_HELP_VISIBLE = false
-	end
-end
-
-
-
 --
 --  Portrait
 --
@@ -1010,7 +961,6 @@ function SetCollector:OnShow(self)
 end
 
 function SetCollector:OnHide(self)
-	HelpPlate_Hide()
 	SetCollectorSummaryButton:Hide()
 	SetCollector:SetVariantTabs()
 	ClearItemButtons()
@@ -1018,9 +968,7 @@ function SetCollector:OnHide(self)
 end
 
 function SetCollector:SetupUI(DEBUG)
-    ResetUILocation()
-	local tutorialScript = function() SetCollector:ToggleTutorial() end
-	helpButton:SetScript("OnClick", tutorialScript)
+  ResetUILocation()
 
 	local onShowScript = function() SetCollector:OnShow() end
 	frame:SetScript("OnShow", onShowScript)

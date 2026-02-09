@@ -393,8 +393,6 @@ function SetCollector:MySlashProcessorFunc(input)
     elseif command == "set" then
         if (parameters ~= nil) then
             SetCollector:ListSet(parameters)
-        --elseif (parameters == "sources") then
-        --    SetCollector:ListSetSources(parameters)
         end
 
     elseif command == "sources" then
