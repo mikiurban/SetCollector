@@ -96,6 +96,29 @@ end
 --  Global Functions
 --
 
+function SetCollector:ParseClassMask(mask)
+    local cleanMask = SetCollector:BitAND(mask, SetCollector.ALL_CLASSES)
+    if (SetCollector:BitAND(cleanMask, SetCollector.ANY_CLASS)) then return "ANY_CLASS" end
+    if (SetCollector:BitAND(cleanMask, SetCollector.CLOTH)) then return "ANY_CLOTH" end
+    if (SetCollector:BitAND(cleanMask, SetCollector.LEATHER)) then return "ANY_LEATHER" end
+    if (SetCollector:BitAND(cleanMask, SetCollector.MAIL)) then return "ANY_MAIL" end
+    if (SetCollector:BitAND(cleanMask, SetCollector.PLATE)) then return "ANY_PLATE" end
+    if (SetCollector:BitAND(cleanMask, SetCollector.DEATHKNIGHT)) then return 'DEATHKNIGHT' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.DEMONHUNTER)) then return 'DEMONHUNTER' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.DRUID)) then return 'DRUID' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.EVOKER)) then return 'EVOKER' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.HUNTER)) then return 'HUNTER' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.MAGE)) then return 'MAGE' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.MONK)) then return 'MONK' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.PALADIN)) then return 'PALADIN' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.PRIEST)) then return 'PRIEST' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.ROGUE)) then return 'ROGUE' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.SHAMAN)) then return 'SHAMAN' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.WARLOCK)) then return 'WARLOCK' end
+    if (SetCollector:BitAND(cleanMask, SetCollector.WARRIOR)) then return 'WARRIOR' end
+    return 'UNKNOWN'
+end
+
 function SetCollector:GetDebug()
 	DEBUG = SetCollector.db.global.debug
 	return DEBUG
@@ -292,6 +315,9 @@ end
 function SetCollector:ExportSetData()
     local tree = {}
     local exportTree = {}
+    local dumpList = {}
+    local dumpColumns = {"setID", "baseSetID", "name", "desc", "label", "patchID", "classMask", "uiOrder", "faction"}
+    table.insert(dumpList, table.concat(dumpColumns, "|"))
     local sets = C_TransmogSets.GetAllSets()
     if (sets) then
         for i, set in ipairs(sets) do
@@ -348,11 +374,16 @@ function SetCollector:ExportSetData()
                 end
 
                 exportTree[setInfo.patchID][setInfo.patchID][heading][baseSetID] = lua2
+                local faction = setInfo.requiredFaction or ""
+                local mask = SetCollector:ParseClassMask(setInfo.classMask)
+                dumpColumns = {setID, baseSetID, setInfo.name, strDesc, strLabel, setInfo.patchID, mask, setInfo.uiOrder, faction}
+                table.insert(dumpList, table.concat(dumpColumns, "|"))
             end
         end
     end
 
     SetCollector.db.global.export = exportTree
+    SetCollector.db.global.dumpList = dumpList
     SetCollector:Print("Done exporting")
 end
 

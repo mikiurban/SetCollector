@@ -22,6 +22,10 @@ SetCollector.LEATHER			= SetCollector.ROGUE + SetCollector.DRUID + SetCollector.
 SetCollector.MAIL				= SetCollector.HUNTER + SetCollector.SHAMAN + SetCollector.EVOKER
 SetCollector.PLATE				= SetCollector.WARRIOR + SetCollector.PALADIN + SetCollector.DEATHKNIGHT
 
+-- Sometimes the mask goes beyond the range of expected values
+SetCollector.ALL_CLASSES        = 0x1FFF
+
+
 -- Some transmog have unusual class restrictions
 SetCollector.AZZINOTH           = SetCollector.WARRIOR + SetCollector.ROGUE + SetCollector.DEATHKNIGHT + SetCollector.MONK + SetCollector.DEMONHUNTER
 SetCollector.DRAGONWRATH        = SetCollector.PRIEST + SetCollector.SHAMAN + SetCollector.MAGE + SetCollector.WARLOCK + SetCollector.DRUID + SetCollector.EVOKER
