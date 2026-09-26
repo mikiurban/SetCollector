@@ -57,7 +57,7 @@ local function GetLegendaries()
     local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     local sets = {
         CreateSet(COLLECTION,10301,"LG_HEALER_80",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_HEALER_80",TRANSMOG,I(46017))
+            CreateVariant("LG_HEALER_80",I(46017))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -202,12 +202,4 @@ function SetCollector:GetVersion03Appearances(expansion)
         GetRaidAppearances()
         GetOtherAppearances()
     end
-end
-
-function SetCollector:GetVersion03Status()
-    return SetCollector:GetExpansionStatus("3")
-end
-
-function SetCollector:SetVersion03Status()
-    SetCollector:SetExpansionStatus("3")
 end

@@ -57,7 +57,7 @@ local function GetLegendaries()
     local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     local sets = {
         CreateSet(COLLECTION,10401,"LG_85",SetCollector.DRAGONWRATH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_85",TRANSMOG,I(71086))
+            CreateVariant("LG_85",I(71086))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -155,14 +155,4 @@ function SetCollector:GetVersion04Appearances(expansion)
         GetPvPAppearances()
         GetRaidAppearances()
     end
-end
-
-
-function SetCollector:GetVersion04Status()
-    return SetCollector:GetExpansionStatus("4")
-end
-
-
-function SetCollector:SetVersion04Status()
-    SetCollector:SetExpansionStatus("4")
 end

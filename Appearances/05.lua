@@ -57,7 +57,7 @@ local function GetCraftedAppearances()
     local COLLECTION, VERSION = SetCollector.CRAFTED, 70000
     local sets = {
         CreateSet(COLLECTION,10501,"CR_CLOTH_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("CR_CLOTH_90",TRANSMOG,A(22893,63683),A(22895,63686),A(22897,63687),A(22892,63685),A(22894,63684),A(22890,63688))
+            CreateVariant("CR_CLOTH_90",A(22893,63683),A(22895,63686),A(22897,63687),A(22892,63685),A(22894,63684),A(22890,63688))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -104,22 +104,22 @@ local function GetLegendaries()
     local COLLECTION, VERSION = SetCollector.LEGENDARY, 70000
     local sets = {
         CreateSet(COLLECTION,10501,"LG_CASTER_INT_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_CASTER_INT_90",TRANSMOG,I(102246))
+            CreateVariant("LG_CASTER_INT_90",I(102246))
         ),
         CreateSet(COLLECTION,10502,"LG_HEALER_INT_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_HEALER_INT_90",TRANSMOG,I(102247))
+            CreateVariant("LG_HEALER_INT_90",I(102247))
         ),
         CreateSet(COLLECTION,10503,"LG_MELEE_AGI_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_MELEE_AGI_90",TRANSMOG,I(102248))
+            CreateVariant("LG_MELEE_AGI_90",I(102248))
         ),
         CreateSet(COLLECTION,10504,"LG_MELEE_STR_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_MELEE_STR_90",TRANSMOG,I(102249))
+            CreateVariant("LG_MELEE_STR_90",I(102249))
         ),
         CreateSet(COLLECTION,10505,"LG_TANK_AGI_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_TANK_AGI_90",TRANSMOG,I(102245))
+            CreateVariant("LG_TANK_AGI_90",I(102245))
         ),
         CreateSet(COLLECTION,10506,"LG_TANK_STR_90",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_TANK_STR_90",TRANSMOG,I(102250))
+            CreateVariant("LG_TANK_STR_90",I(102250))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -298,12 +298,4 @@ function SetCollector:GetVersion05Appearances(expansion)
         GetRaidAppearances()
         GetDungeonAppearances()
     end
-end
-
-function SetCollector:GetVersion05Status()
-    return SetCollector:GetExpansionStatus("5")
-end
-
-function SetCollector:SetVersion05Status()
-    SetCollector:SetExpansionStatus("5")
 end

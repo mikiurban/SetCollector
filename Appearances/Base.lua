@@ -165,7 +165,6 @@ function SetCollector:IncludeVariant(setID, setInfo, ...)
     end
     local variant = {
         Title = description,
-        Transmog = SetCollector.TRANSMOG,
         Order = order,
         Appearances = {}
     }
@@ -205,10 +204,9 @@ function SetCollector:CreateSet(collection, uid, title, classMask, faction, loca
     return set
 end
 
-function SetCollector:CreateVariant(title, transmog, ...)
+function SetCollector:CreateVariant(title, ...)
     local variant = {
         Title = title,
-        Transmog = transmog,
         Order = 99999,
         Appearances = {...}
     }

@@ -7,14 +7,13 @@ local defaults = {
 		filters = {
 			favorites = false,
 			obtainable = false,
-			transmog = false,
 			hidden = false
 		},
 		sets = {}
 	},
 	global = {
-        debug = false,
-        docked = true,
+		debug = false,
+		docked = true,
 		expansions = {
 			v00 = true,
 			v01 = true,
@@ -31,12 +30,12 @@ local defaults = {
 		},
 		minimap = {
 			hide = false
-        },
-        position = "left",
-        tooltips = {
-            show_set = true,
-            show_location = true
-        },
+		},
+		position = "left",
+		tooltips = {
+			show_set = true,
+			show_location = true
+		},
 		collections = {},
 		export = {},
 		setMap = {}
@@ -68,9 +67,6 @@ local TRADING     = { ID = 14, Code = "TP", Description = "TRADING" }
 
 local OBTAIN		= true
 local NO_OBTAIN 		= false
-
-local TRANSMOG 		= true
-local NO_TRANSMOG 	= false
 
 --
 --  Helpers
@@ -362,14 +358,6 @@ function SetCollector:IsObtainableSet(collection, set)
 	return isObtainable
 end
 
-function SetCollector:IsTransmogSet(collection, set)
-	local isTransmog = false
-	if SetCollector.db.global.collections[collection].Sets[set] then
-		isTransmog = SetCollector.db.global.collections[collection].Sets[set].Variants[1].Transmog
-	end
-	return isTransmog
-end
-
 function SetCollector:IsFavoriteSet(set)
 	local isFavorite = false
 	if SetCollector.db.char.sets[set] then
@@ -438,9 +426,9 @@ end
 --
 
 function SetCollector:AddAppearances(debug)
-	--if debug then	SetCollector:Print("Adding Appearances to database") end
+	SetCollector:DebugPrint("Adding Appearances to database")
 	SetCollector.db.global.collections = CreateCollections()
-	--if debug then SetCollector:Print("Added "..#SetCollector.db.global.collections.." collections.") end
+	SetCollector:DebugPrint("Added "..#SetCollector.db.global.collections.." collections.")
 
 	-- FUTURE: Older expansion sets disabled by default. Can be enabled in settings.
 	local expansions = SetCollector.db.global.expansions
@@ -457,7 +445,7 @@ function SetCollector:AddAppearances(debug)
 	SetCollector:GetVersion10Appearances(expansions)	-- Dragonflight
 	SetCollector:GetVersion11Appearances(expansions)	-- The War Within
 
-	--if debug then SetCollector:Print("Finished adding appearances to database.") end
+	SetCollector:DebugPrint("Finished adding appearances to database.")
 end
 
 function SetCollector:IsUIDocked()
@@ -526,10 +514,7 @@ function SetCollector:ResetDB()
 end
 
 local function HideExpansionToggle(version)
-	if tonumber(WOW_VERSION) >= tonumber(version) then
-		return false
-	end
-	return true
+	return ( tonumber(WOW_VERSION) <= tonumber(version) )
 end
 
 function SetCollector:GetOptions()
@@ -557,8 +542,8 @@ function SetCollector:GetOptions()
 						type = "header",
 						order = 0,
 						name = L["GLOBAL"]
-                    },
-                    docked = {
+					},
+					docked = {
 						type = "toggle",
 						order = 1,
 						name = L["INT_OPT_DOCKED_NAME"],
@@ -566,22 +551,22 @@ function SetCollector:GetOptions()
 						get = "IsUIDocked",
 						set = "SetUIDockedAndUpdate",
 						width = "full"
-                    },
-                    position = {
-                        type = "select",
-                        hidden = true,
+					},
+					position = {
+						type = "select",
+						hidden = true,
 						order = 2,
 						name = L["INT_OPT_POSITION_NAME"],
 						desc = L["INT_OPT_POSITION_DESC"],
 						get = "GetUIPosition",
 						set = function(info,val) SetCollector:SetUIPosition(val) end,
-                        width = "full",
-                        values = {
-                            left = "Left",
-                            center = "Center"
-                        },
-                        style = "radio"
-                    },
+						width = "full",
+						values = {
+								left = "Left",
+								center = "Center"
+						},
+						style = "radio"
+					},
 					minimap = {
 						type = "toggle",
 						order = 5,
@@ -601,8 +586,8 @@ function SetCollector:GetOptions()
 						order = 101,
 						name = L["INT_OPT_FAVORITE_NAME"],
 						desc = L["INT_OPT_FAVORITE_DESC"],
-						get = "GetFavoritesFilter",
-						set = "SetFavoritesFilter",
+						get = function(info) return SetCollector.db.char.filters.favorites end,
+						set = function(info,val) SetCollector.db.char.filters.favorites = val end,
 						width = "full"
 					},
 					obtainable = {
@@ -610,26 +595,17 @@ function SetCollector:GetOptions()
 						order = 102,
 						name = L["INT_OPT_OBTAINABLE_NAME"],
 						desc = L["INT_OPT_OBTAINABLE_DESC"],
-						get = "GetObtainableFilter",
-						set = "SetObtainableFilter",
+						get = function(info) return SetCollector.db.char.filters.obtainable end,
+						set = function(info,val) SetCollector.db.char.filters.obtainable = val end,
 						width = "full"
 					},
-					transmog = {
-						type = "hidden",
-						order = 103,
-						name = L["INT_OPT_TRANSMOG_NAME"],
-						desc = L["INT_OPT_TRANSMOG_DESC"],
-						get = "GetTransmogFilter",
-						set = "SetTransmogFilter",
-						width = "full"
-					},
-					transmog = {
+					hidden = {
 						type = "toggle",
 						order = 104,
 						name = L["INT_OPT_HIDDEN_NAME"],
 						desc = L["INT_OPT_HIDDEN_DESC"],
-						get = "GetHiddenFilter",
-						set = "SetHiddenFilter",
+						get = function(info) return SetCollector.db.char.filters.hidden end,
+						set = function(info,val) SetCollector.db.char.filters.hidden = val end,
 						width = "full"
 					},
 				},
@@ -655,8 +631,8 @@ function SetCollector:GetOptions()
 						order = 10,
 						name = L["INT_OPT_EXPANSION_00_NAME"],
 						desc = L["INT_OPT_EXPANSION_00_DESC"],
-						get = "GetVersion00Status",
-						set = "SetVersion00Status",
+						get = function(info) return SetCollector:GetExpansionStatus("0") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("0") end,
 						width = "full"
 					},
 					v01 = {
@@ -665,8 +641,8 @@ function SetCollector:GetOptions()
 						order = 11,
 						name = L["INT_OPT_EXPANSION_01_NAME"],
 						desc = L["INT_OPT_EXPANSION_01_DESC"],
-						get = "GetVersion01Status",
-						set = "SetVersion01Status",
+						get = function(info) return SetCollector:GetExpansionStatus("1") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("1") end,
 						width = "full"
 					},
 					v02 = {
@@ -675,8 +651,8 @@ function SetCollector:GetOptions()
 						order = 12,
 						name = L["INT_OPT_EXPANSION_02_NAME"],
 						desc = L["INT_OPT_EXPANSION_02_DESC"],
-						get = "GetVersion02Status",
-						set = "SetVersion02Status",
+						get = function(info) return SetCollector:GetExpansionStatus("2") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("2") end,
 						width = "full"
 					},
 					v03 = {
@@ -685,8 +661,8 @@ function SetCollector:GetOptions()
 						order = 13,
 						name = L["INT_OPT_EXPANSION_03_NAME"],
 						desc = L["INT_OPT_EXPANSION_03_DESC"],
-						get = "GetVersion03Status",
-						set = "SetVersion03Status",
+						get = function(info) return SetCollector:GetExpansionStatus("3") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("3") end,
 						width = "full"
 					},
 					v04 = {
@@ -695,8 +671,8 @@ function SetCollector:GetOptions()
 						order = 14,
 						name = L["INT_OPT_EXPANSION_04_NAME"],
 						desc = L["INT_OPT_EXPANSION_04_DESC"],
-						get = "GetVersion04Status",
-						set = "SetVersion04Status",
+						get = function(info) return SetCollector:GetExpansionStatus("4") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("4") end,
 						width = "full"
 					},
 					v05 = {
@@ -705,8 +681,8 @@ function SetCollector:GetOptions()
 						order = 15,
 						name = L["INT_OPT_EXPANSION_05_NAME"],
 						desc = L["INT_OPT_EXPANSION_05_DESC"],
-						get = "GetVersion05Status",
-						set = "SetVersion05Status",
+						get = function(info) return SetCollector:GetExpansionStatus("5") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("5") end,
 						width = "full"
 					},
 					v06 = {
@@ -715,8 +691,8 @@ function SetCollector:GetOptions()
 						order = 16,
 						name = L["INT_OPT_EXPANSION_06_NAME"],
 						desc = L["INT_OPT_EXPANSION_06_DESC"],
-						get = "GetVersion06Status",
-						set = "SetVersion06Status",
+						get = function(info) return SetCollector:GetExpansionStatus("6") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("6") end,
 						width = "full"
 					},
 					v07 = {
@@ -725,8 +701,8 @@ function SetCollector:GetOptions()
 						order = 17,
 						name = L["INT_OPT_EXPANSION_07_NAME"],
 						desc = L["INT_OPT_EXPANSION_07_DESC"],
-						get = "GetVersion07Status",
-						set = "SetVersion07Status",
+						get = function(info) return SetCollector:GetExpansionStatus("7") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("7") end,
 						width = "full"
 					},
 					v08 = {
@@ -735,8 +711,8 @@ function SetCollector:GetOptions()
 						order = 18,
 						name = L["INT_OPT_EXPANSION_08_NAME"],
 						desc = L["INT_OPT_EXPANSION_08_DESC"],
-						get = "GetVersion08Status",
-						set = "SetVersion08Status",
+						get = function(info) return SetCollector:GetExpansionStatus("8") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("8") end,
 						width = "full"
 					},
 					v09 = {
@@ -745,8 +721,8 @@ function SetCollector:GetOptions()
 						order = 19,
 						name = L["INT_OPT_EXPANSION_09_NAME"],
 						desc = L["INT_OPT_EXPANSION_09_DESC"],
-						get = "GetVersion09Status",
-						set = "SetVersion09Status",
+						get = function(info) return SetCollector:GetExpansionStatus("9") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("9") end,
 						width = "full"
 					},
 					v10 = {
@@ -755,8 +731,8 @@ function SetCollector:GetOptions()
 						order = 20,
 						name = L["INT_OPT_EXPANSION_10_NAME"],
 						desc = L["INT_OPT_EXPANSION_10_DESC"],
-						get = "GetVersion10Status",
-						set = "SetVersion10Status",
+						get = function(info) return SetCollector:GetExpansionStatus("10") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("10") end,
 						width = "full"
 					},
 					v11 = {
@@ -765,8 +741,8 @@ function SetCollector:GetOptions()
 						order = 21,
 						name = L["INT_OPT_EXPANSION_11_NAME"],
 						desc = L["INT_OPT_EXPANSION_11_DESC"],
-						get = "GetVersion11Status",
-						set = "SetVersion11Status",
+						get = function(info) return SetCollector:GetExpansionStatus("11") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("11") end,
 						width = "full"
 					},
 				},

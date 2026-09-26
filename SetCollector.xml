@@ -136,7 +136,7 @@
 		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress" />
 		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD" />
 	</Button>
-	<ScrollFrame parentKey="CollectionsFrame" name="SetCollectorCollectionsScrollFrameTemplate" inherits="UIPanelScrollFrameCodeTemplate" virtual="true">
+	<ScrollFrame parentKey="CollectionsFrame" name="SetCollectorCollectionsScrollFrameTemplate" inherits="ScrollFrameTemplate" virtual="true">
 		<Size x="259" y="462"/>
 		<ScrollChild>
 			<Frame parentKey="Contents">
@@ -158,33 +158,6 @@
 				</Frames>
 			</Frame>
 		</ScrollChild>
-		<Frames>
-			<Slider name="$parentScrollBar" inherits="UIPanelScrollBarTemplate" parentKey="ScrollBar">
-				<Layers>
-					<Layer level="ARTWORK">
-						<Texture name="$parentMiddle">
-							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT"/>
-								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
-							</Anchors>
-							<Color r="0" g="0" b="0" a="0.7"/>
-						</Texture>
-					</Layer>
-				</Layers>
-				<Anchors>
-					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="6" y="-16"/>
-						</Offset>
-					</Anchor>
-					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
-						<Offset>
-							<AbsDimension x="6" y="16"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-			</Slider>
-		</Frames>
 	</ScrollFrame>
 
 </Ui>

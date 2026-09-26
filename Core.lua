@@ -37,7 +37,7 @@ local model = CreateFrame("DressUpModel","SetCollectorTooltipDressUpModel",UIPar
 function SetCollector:OnInitialize()
 	SetCollector:SetupDB(true)
 	SetCollector:SetupUI(true)
-	if SetCollector:GetDebug() then SetCollector:Print("Initialized"); end
+	SetCollector:DebugPrint("Initialized")
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable("SetCollector", SetCollector:GetOptions())
     self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SetCollector", "Set Collector")
@@ -46,11 +46,11 @@ function SetCollector:OnInitialize()
 end
 
 function SetCollector:OnEnable()
-  if SetCollector:GetDebug() then SetCollector:Print("Enabled"); end
+  SetCollector:DebugPrint("Enabled")
 end
 
 function SetCollector:OnDisable()
-  if SetCollector:GetDebug() then SetCollector:Print("Disabled"); end
+  SetCollector:DebugPrint("Disabled")
 end
 
 function SetCollector:GetAppearanceInfo(itemLink)
@@ -95,6 +95,10 @@ end
 --
 --  Global Functions
 --
+
+function SetCollector:DebugPrint(message)
+  if SetCollector:GetDebug() then SetCollector:Print(message); end
+end
 
 function SetCollector:ParseClassMask(mask)
     local cleanMask = SetCollector:BitAND(mask, SetCollector.ALL_CLASSES)
@@ -166,7 +170,7 @@ end
 
 function SetCollector:PLAYER_LOGIN()
     local DEBUG = SetCollector:GetDebug()
-    if DEBUG then SetCollector:Print("Running PLAYER_LOGIN processes"); end
+    SetCollector:DebugPrint("Running PLAYER_LOGIN processes")
     SetCollector:InitializeFilter(DEBUG)
     SetCollector:InitializeModel(DEBUG)
 end
@@ -359,7 +363,6 @@ function SetCollector:ExportSetData()
                         table.insert(lua2comment, desc)
                     end
                 end
-                lua2 = table.concat(lua2,",") .. table.concat(lua2comment,", ")
 
                 if (exportTree[setInfo.patchID] == nil) then
                     exportTree[setInfo.patchID] = {}
@@ -373,7 +376,8 @@ function SetCollector:ExportSetData()
                     exportTree[setInfo.patchID][setInfo.patchID][heading] = {}
                 end
 
-                exportTree[setInfo.patchID][setInfo.patchID][heading][baseSetID] = lua2
+                local baseSetId = table.concat(lua2,",") .. table.concat(lua2comment,", ")
+                exportTree[setInfo.patchID][setInfo.patchID][heading][baseSetID] = baseSetId
                 local faction = setInfo.requiredFaction or ""
                 local mask = SetCollector:ParseClassMask(setInfo.classMask)
                 dumpColumns = {setID, baseSetID, setInfo.name, strDesc, strLabel, setInfo.patchID, mask, setInfo.uiOrder, faction}

@@ -30,12 +30,6 @@ local EQUIPMENT = {
 	INVSLOT_TABARD
 }
 
-local SHOW_CLASS_SPEC 			= 0
-local SHOW_ONLY_FAVORITES 	= false
-local SHOW_ONLY_OBTAINABLE 	= false
-local SHOW_ONLY_TRANSMOG 		= false
-local SHOW_HIDDEN 					= false
-
 local COLLECTION_COLLAPSED 	= { false, false, false, false, false, false, false, false }			-- Currently there are eight possible collections
 
 local SELECTED_BUTTON = nil
@@ -89,7 +83,7 @@ end
 
 local function ResetUILocation()
 	if (frame:IsVisible()) then
-		SetCollector:HideUI(false)
+		SetCollector:HideUI()
 	end
     SetDocked(SetCollector:IsUIDocked())
     SetMovable(not SetCollector:IsUIDocked())
@@ -478,7 +472,7 @@ function SetCollector:SetVariantTabs(collection, set, variant, outfit)
 				variantTab:Hide()
 			end
 			PanelTemplates_TabResize(variantTab, 0, nil, 36, variantTab:GetParent().maxTabWidth or 88)
-			if collected == "*" and SHOW_ONLY_OBTAINABLE then
+			if collected == "*" and SetCollector.db.char.filters.obtainable then
 				variantTab:Hide()
 			end
 		end
@@ -588,104 +582,21 @@ filterButton:SetPoint("TOPRIGHT",frame,"TOPRIGHT",-125,-28)
 filterButton:SetAttribute("enableMouse","true")
 filterButton:SetAttribute("parentKey","setFilter")
 
-local function GetFilters()
-	--SHOW_CLASS_SPEC 			= SetCollector.db.char.filters.specialization
-	SHOW_ONLY_FAVORITES 	= SetCollector.db.char.filters.favorites
-	SHOW_ONLY_OBTAINABLE 	= SetCollector.db.char.filters.obtainable
-	SHOW_ONLY_TRANSMOG 		= SetCollector.db.char.filters.transmog
-	SHOW_HIDDEN 					= SetCollector.db.char.filters.hidden
-end
-
-local function SetFilters()
-	--SetCollector.db.char.filters.specialization		= SHOW_CLASS_SPEC
-	SetCollector.db.char.filters.favorites				= SHOW_ONLY_FAVORITES
-	SetCollector.db.char.filters.obtainable				= SHOW_ONLY_OBTAINABLE
-	SetCollector.db.char.filters.transmog					= SHOW_ONLY_TRANSMOG
-	SetCollector.db.char.filters.hidden						= SHOW_HIDDEN
-end
-
-function SetCollector:GetFavoritesFilter()
-	return SHOW_ONLY_FAVORITES
-end
-
-function SetCollector:SetFavoritesFilter()
-	SHOW_ONLY_FAVORITES = not SHOW_ONLY_FAVORITES
-	SetFilters()
-end
-
-function SetCollector:GetObtainableFilter()
-	return SHOW_ONLY_OBTAINABLE
-end
-
-function SetCollector:SetObtainableFilter()
-	SHOW_ONLY_OBTAINABLE = not SHOW_ONLY_OBTAINABLE
-	SetFilters()
-end
-
-function SetCollector:GetTransmogFilter()
-	return SHOW_ONLY_TRANSMOG
-end
-
-function SetCollector:SetTransmogFilter()
-	SHOW_ONLY_TRANSMOG = not SHOW_ONLY_TRANSMOG
-	SetFilters()
-end
-
-function SetCollector:GetHiddenFilter()
-	return SHOW_HIDDEN
-end
-
-function SetCollector:SetHiddenFilter()
-	SHOW_HIDDEN = not SHOW_HIDDEN
-	SetFilters()
-end
-
-local function SetFilterOptions(classIndex)
-	SHOW_CLASS_SPEC = classIndex
-end
-
---local function GetFilterOptions()
---	if SHOW_CLASS_SPEC == 0 or SHOW_CLASS_SPEC == nil then
---		local currentSpec = GetSpecialization();
---		if currentSpec == nil then currentSpec = 0 end
---		SHOW_CLASS_SPEC = currentSpec + 2
---	end
---	return SHOW_CLASS_SPEC;
---end
-
---[[local function UpdateFilterString()
-	local name = ALL;
-	local currFilter = GetFilterOptions();
-
-	if currFilter == LE_LOOT_FILTER_CLASS then
-		name = UnitClass("player");
-	elseif currFilter == NO_CLASS_FILTER then
-		name = ALL_CLASSES
-	--else -- Spec
-	--	local _, specName, _, icon = GetSpecializationInfo(currFilter - LE_LOOT_FILTER_SPEC1 + 1);
-	--	name = specName;
-	end
-
-	UIDropDownMenu_SetText(filterButton, name);
-end]]
-
 local function SetFilter(self, classIndex)
 	if ( classIndex == "favorites" ) then
-		SHOW_ONLY_FAVORITES = not SHOW_ONLY_FAVORITES
+		SetCollector.db.char.filters.favorites = not SetCollector.db.char.filters.favorites
 	elseif ( classIndex == "obtainable" ) then
-		SHOW_ONLY_OBTAINABLE = not SHOW_ONLY_OBTAINABLE
-	elseif ( classIndex == "transmog" ) then
-		SHOW_ONLY_TRANSMOG = not SHOW_ONLY_TRANSMOG
+		SetCollector.db.char.filters.obtainable = not SetCollector.db.char.filters.obtainable
 	elseif ( classIndex == "hidden" ) then
-		SHOW_HIDDEN = not SHOW_HIDDEN
-	--else
-	--	SetFilterOptions(classIndex);
+		SetCollector.db.char.filters.hidden = not SetCollector.db.char.filters.hidden
+	elseif ( tonumber(classIndex) ~= nil ) then
+		SetCollector:ToggleExpansion(classIndex)
+	else
+		-- Nothing to do
+		return
 	end
-	SetFilters()
 	if frame:IsShown() then
-		--SetCollector:Print("Setting Filter, Updating UI")
 		SetCollector:UpdateCollections();
-		--UpdateFilterString()
 
 		-- Clear Selection
 		UnsetHighlight(SELECTED_BUTTON)
@@ -697,64 +608,50 @@ end
 
 local function InitFilter()
 	local info = UIDropDownMenu_CreateInfo();
-	--local currFilter = GetFilterOptions();
-    local className = UnitClass("player");
 
-	--UpdateFilterString()
 	info.func = SetFilter;
-
-	--info.text = className;
-	--info.checked = (currFilter ~= LE_LOOT_FILTER_ALL);
-	--info.arg1 = LE_LOOT_FILTER_CLASS;
-	--UIDropDownMenu_AddButton(info);
-
-	--local numSpecs = GetNumSpecializations();
-	--for i = 1, numSpecs do
-	--	local _, name, _, icon = GetSpecializationInfo(i);
-	--	info.text = name;
-	--	info.arg1 = LE_LOOT_FILTER_SPEC1 + i - 1;
-	--	info.checked = currFilter == (LE_LOOT_FILTER_SPEC1 + i - 1);
-	--	info.leftPadding = 10;
-	--	UIDropDownMenu_AddButton(info);
-	--end
-
-	--info.text = className -- ALL_SPECS;
-	--info.checked = currFilter == LE_LOOT_FILTER_CLASS;
-	--info.arg1 = LE_LOOT_FILTER_CLASS;
-	--info.func = SetFilter;
-	--UIDropDownMenu_AddButton(info);
-
-	--info.text = ALL_CLASSES;
-	--info.checked = currFilter == NO_CLASS_FILTER;
-	--info.arg1 = NO_CLASS_FILTER;
-	--info.func = SetFilter;
-	--UIDropDownMenu_AddButton(info);
 
 	info.leftPadding = nil;
 	info.text = FAVORITES_FILTER;
-	info.checked = SHOW_ONLY_FAVORITES;
+	info.checked = SetCollector.db.char.filters.favorites;
 	info.arg1 = "favorites";
 	UIDropDownMenu_AddButton(info);
 
 	info.leftPadding = nil;
 	info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"];
-	info.checked = SHOW_ONLY_OBTAINABLE;
+	info.checked = SetCollector.db.char.filters.obtainable;
 	info.arg1 = "obtainable";
 	UIDropDownMenu_AddButton(info);
 
-	--[[info.leftPadding = nil;
-	info.text = L["TRANSMOG_FILTER"] or L["MISSING_LOCALIZATION"];
-	info.checked = SHOW_ONLY_TRANSMOG;
-	info.arg1 = "transmog";
-	UIDropDownMenu_AddButton(info);]]--
-
 	info.leftPadding = nil;
 	info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"];
-	info.checked = SHOW_HIDDEN;
+	info.checked = SetCollector.db.char.filters.hidden;
 	info.arg1 = "hidden";
 	UIDropDownMenu_AddButton(info);
+end
 
-	--UpdateFilterString()
+local function InitExpansionFilter()
+	-- local info = UIDropDownMenu_CreateInfo();
+
+	-- info.func = SetFilter;
+
+	-- info.leftPadding = nil;
+	-- info.text = FAVORITES_FILTER;
+	-- info.checked = SHOW_ONLY_FAVORITES;
+	-- info.arg1 = "favorites";
+	-- UIDropDownMenu_AddButton(info);
+
+	-- info.leftPadding = nil;
+	-- info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"];
+	-- info.checked = SHOW_ONLY_OBTAINABLE;
+	-- info.arg1 = "obtainable";
+	-- UIDropDownMenu_AddButton(info);
+
+	-- info.leftPadding = nil;
+	-- info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"];
+	-- info.checked = SHOW_HIDDEN;
+	-- info.arg1 = "hidden";
+	-- UIDropDownMenu_AddButton(info);
 end
 
 function SetCollector:DropDownMenu_Initialize(frame, func)
@@ -764,14 +661,13 @@ function SetCollector:DropDownMenu_Initialize(frame, func)
 end
 
 function SetCollector:InitializeFilter(DEBUG)
-	GetFilters()
-	if DEBUG then SetCollector:Print("Initializing Filters") end
+	SetCollector:DebugPrint("Initializing Filters")
 	SetCollector:UpdateCollections()
 	local init = function() InitFilter() end
 	SetCollector:DropDownMenu_Initialize(filterButton, init)
 	UIDropDownMenu_SetText(filterButton, "Filter")
 	--UpdateFilterString()
-	if DEBUG then SetCollector:Print("Filters Initialized") end
+	SetCollector:DebugPrint("Filters Initialized")
 end
 
 --
@@ -785,10 +681,6 @@ function SetCollector:UpdatePortrait()
 		local _, class = UnitClass("player");
 		portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles");
 		portrait:SetTexCoord(unpack(CLASS_ICON_TCOORDS[class]));
-	-- else
-	-- 	local _, _, _, icon = GetSpecializationInfo(masteryIndex);
-	-- 	portrait:SetTexCoord(0, 1, 0, 1);
-	-- 	SetPortraitToTexture(portrait, icon);
 	end
 end
 
@@ -831,9 +723,9 @@ end
 --
 
 function SetCollector:UpdateScrollFrame(collections, DEBUG)
-	if DEBUG then SetCollector:Print("Updating ScrollFrame") end
+	SetCollector:DebugPrint("Updating ScrollFrame")
 	if collections then
-		if DEBUG then SetCollector:Print("Received list of collections.") end
+		SetCollector:DebugPrint("Received list of collections.")
 		local prevButton = nil
 		local rowIndex = 1
 
@@ -873,7 +765,6 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 					titleButton:Hide()
 
 					local isObtainable = SetCollector:IsSetObtainable(i, j)
-					local isTransmog = SetCollector:IsTransmogSet(i, j)
 					local isFavorite = SetCollector:IsFavoriteSet(j)
 					if isFavorite then
 						titleButton.Favorite:Show()
@@ -910,13 +801,11 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 
 					if SetCollector:SetIsFilteredOutByClassMask(i, j) then
 						-- Keep it hidden
-					elseif SHOW_ONLY_OBTAINABLE == true and not isObtainable then
+					elseif SetCollector.db.char.filters.obtainable == true and not isObtainable then
 						-- Keep it hidden
-					elseif SHOW_ONLY_TRANSMOG == true and not isTransmog then
+					elseif SetCollector.db.char.filters.favorites == true and not isFavorite then
 						-- Keep it hidden
-					elseif SHOW_ONLY_FAVORITES == true and not isFavorite then
-						-- Keep it hidden
-					elseif SHOW_HIDDEN == false and isHidden then
+					elseif SetCollector.db.char.filters.hidden and isHidden then
 						-- Keep it hidden
 					elseif not COLLECTION_COLLAPSED[i] then
 						titleButton:Show()
@@ -934,25 +823,22 @@ function SetCollector:UpdateScrollFrame(collections, DEBUG)
 end
 
 function SetCollector:HideUI()
-	local DEBUG = SetCollector:GetDebug()
-	if DEBUG then SetCollector:Print("Hiding SetCollector UI") end
+	SetCollector:DebugPrint("Hiding SetCollector UI")
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE);
 	HideUIPanel(frame)
 end
 
 function SetCollector:ShowUI()
-	local DEBUG = SetCollector:GetDebug()
-	if DEBUG then SetCollector:Print("Showing SetCollector UI") end
+	SetCollector:DebugPrint("Showing SetCollector UI")
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN);
 	ShowUIPanel(frame)
 end
 
 function SetCollector:ToggleUI()
-	local DEBUG = SetCollector:GetDebug()
 	if (frame:IsVisible()) then
-		SetCollector:HideUI(DEBUG)
+		SetCollector:HideUI()
 	else
-		SetCollector:ShowUI(DEBUG)
+		SetCollector:ShowUI()
 	end
 end
 
@@ -980,7 +866,6 @@ function SetCollector:SetupUI(DEBUG)
 	CreateMinimapButton()
 	-- Other delayed build actions
 end
-
 
 function SetCollector:ReloadUI()
 	ReloadUI();

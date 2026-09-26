@@ -346,12 +346,3 @@ function SetCollector:GetVersion11Appearances(expansion)
         GetTradingPostAppearances()
     end
 end
-
-function SetCollector:GetVersion11Status()
-    return SetCollector:GetExpansionStatus("11")
-end
-
-function SetCollector:SetVersion11Status()
-    SetCollector:SetExpansionStatus("11")
-end
-

@@ -57,10 +57,10 @@ local function GetCraftedAppearances()
     local COLLECTION, VERSION = SetCollector.CRAFTED, 70000
     local sets = {
         CreateSet(COLLECTION,10601,"PLACEHOLDER",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("PLACEHOLDER",TRANSMOG,A(22762,65301),A(),A(22760,65302),A(),A(),A(),A(22763,65300),A())
+            CreateVariant("PLACEHOLDER",A(22762,65301),A(),A(22760,65302),A(),A(),A(),A(22763,65300),A())
         ),
         CreateSet(COLLECTION,60001,"PLACEHOLDER",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("PLACEHOLDER",TRANSMOG,A(23242,62930),A(23240,62931),A(23244,62932),A(23239,62936),A(23243,62937),A(23246,62933),A(23241,62934),A(23245,62935))
+            CreateVariant("PLACEHOLDER",A(23242,62930),A(23240,62931),A(23244,62932),A(23239,62936),A(23243,62937),A(23246,62933),A(23241,62934),A(23245,62935))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -70,16 +70,16 @@ local function GetDungeonAppearances()
     local COLLECTION, VERSION = SetCollector.DUNGEON, 70000
     local sets = {
         --[[CreateSet(COLLECTION,10601,"DG_CLOTH_06",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_CLOTH_06",TRANSMOG,A(22461),A(),A(),A(),A(),A(22455),A(),A()) -- Felflame
+            CreateVariant("DG_CLOTH_06",A(22461),A(),A(),A(),A(),A(22455),A(),A()) -- Felflame
         ),
         CreateSet(COLLECTION,10601,"DG_LEATHER_03",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_LEATHER_03",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A())
+            CreateVariant("DG_LEATHER_03",A(),A(),A(),A(),A(),A(),A(),A())
         ),
         CreateSet(COLLECTION,10601,"DG_MAIL_06",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_MAIL_06",TRANSMOG,A(22435),A(),A(22449),A(22430),A(),A(22431),A(22436),A()) -- Sharpeye
+            CreateVariant("DG_MAIL_06",A(22435),A(),A(22449),A(22430),A(),A(22431),A(22436),A()) -- Sharpeye
         ),
         CreateSet(COLLECTION,10601,"DG_PLATE_06",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_PLATE_06",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A())
+            CreateVariant("DG_PLATE_06",A(),A(),A(),A(),A(),A(),A(),A())
         ),]]
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -90,10 +90,10 @@ local function GetExpansionAppearances()
     local sets = {
         -- Transmog Only Sets
         CreateSet(COLLECTION,60001,"GA_ALLIANCE_SET",ANY_CLASS,ALLIANCE,NO_LOCATION,
-            CreateVariant("GA_ALLIANCE_SET",TRANSMOG,A(24474),A(24476),A(24472),A(24473),A(24470),A(24475),A(24471))
+            CreateVariant("GA_ALLIANCE_SET",A(24474),A(24476),A(24472),A(24473),A(24470),A(24475),A(24471))
         ),
         CreateSet(COLLECTION,60002,"GA_HORDE_SET",ANY_CLASS,HORDE,NO_LOCATION,
-            CreateVariant("GA_HORDE_SET",TRANSMOG,A(24054),A(24051),A(24052),A(24817),A(24053),A(24050),A(24854))
+            CreateVariant("GA_HORDE_SET",A(24054),A(24051),A(24052),A(24817),A(24053),A(24050),A(24854))
         ),
         IncludeSet(COLLECTION,60003,1530), -- Frostwolf Leathers
         IncludeSet(COLLECTION,60004,1531), -- Ceremonial Karabor Finery
@@ -111,7 +111,7 @@ local function GetOtherAppearances()
     local sets = {
         -- Transmog Only Sets
         CreateSet(COLLECTION,60001,"OT_ELR_100",CLOTH,ALLIANCE,NO_LOCATION,
-            CreateVariant("OT_ELR_100",TRANSMOG,A(26087,69593),A(26841,69650),A(26842,73423))
+            CreateVariant("OT_ELR_100",A(26087,69593),A(26841,69650),A(26842,73423))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -219,16 +219,16 @@ local function GetRaidAppearances()
     local sets = {
         -- Raid Finder
         CreateSet(COLLECTION,60000,"RAID_CLOTH_0601",CLOTH,ANY_FACTION,"LOC_RAID_0601",
-            CreateVariant("RAIDFINDER",TRANSMOG,A(22608,66872),A(22613,66873),A(22606,66874),A(22614,66962),A(22598,66919),A(22600,66920),A(22612,66963))
+            CreateVariant("RAIDFINDER",A(22608,66872),A(22613,66873),A(22606,66874),A(22614,66962),A(22598,66919),A(22600,66920),A(22612,66963))
         ),
         CreateSet(COLLECTION,60000,"RAID_LEATHER_0601",LEATHER,ANY_FACTION,"LOC_RAID_0601",
-            CreateVariant("RAIDFINDER",TRANSMOG,A(23053,68023),A(23055,68019),A(23051,68013),A(23048,66901),A(23052,68031),A(23057,66911),A(23054,68011),A(23050,68027))
+            CreateVariant("RAIDFINDER",A(23053,68023),A(23055,68019),A(23051,68013),A(23048,66901),A(23052,68031),A(23057,66911),A(23054,68011),A(23050,68027))
         ),
         CreateSet(COLLECTION,60000,"RAID_MAIL_0601",MAIL,ANY_FACTION,"LOC_RAID_0601",
-            CreateVariant("RAIDFINDER",TRANSMOG,A(22684,68055),A(22686,68047),A(22682,68051),A(22683,68039),A(22680,66917),A(22685,68035),A(22681,68043))
+            CreateVariant("RAIDFINDER",A(22684,68055),A(22686,68047),A(22682,68051),A(22683,68039),A(22680,66917),A(22685,68035),A(22681,68043))
         ),
         CreateSet(COLLECTION,60000,"RAID_PLATE_0601",PLATE,ANY_FACTION,"LOC_RAID_0601",
-            CreateVariant("RAIDFINDER",TRANSMOG,A(22640,68079),A(22642,68075),A(22638,68067),A(22643,66883),A(22639,68063),A(22636,66886),A(22641,68059),A(22637,68071))
+            CreateVariant("RAIDFINDER",A(22640,68079),A(22642,68075),A(22638,68067),A(22643,66883),A(22639,68063),A(22636,66886),A(22641,68059),A(22637,68071))
         ),
         -- Blackrock Foundry
         IncludeSet(COLLECTION,60001,327,329,419), -- Soul Priest's Raiment, Mythic, Heroic
@@ -281,12 +281,4 @@ function SetCollector:GetVersion06Appearances(expansion)
         GetPvPAppearances()
         GetRaidAppearances()
     end
-end
-
-function SetCollector:GetVersion06Status()
-    return SetCollector:GetExpansionStatus("6")
-end
-
-function SetCollector:SetVersion06Status()
-    SetCollector:SetExpansionStatus("6")
 end

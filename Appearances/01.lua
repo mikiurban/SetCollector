@@ -56,33 +56,33 @@ local function GetCraftedAppearances()
     local COLLECTION, VERSION = SetCollector.CRAFTED, 70000
     local sets = {
         CreateSet(COLLECTION,10001,"PLACEHOLDER",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(5657,8336)),
-            CreateVariant("2",TRANSMOG,A(5772,8514)),
-            CreateVariant("3",TRANSMOG,A(5773,8515)),
-            CreateVariant("4",TRANSMOG,A(5656,8335))
+            CreateVariant("1",A(5657,8336)),
+            CreateVariant("2",A(5772,8514)),
+            CreateVariant("3",A(5773,8515)),
+            CreateVariant("4",A(5656,8335))
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(5657,8336)),
-            CreateVariant("2",TRANSMOG,A(5772,8514)),
-            CreateVariant("3",TRANSMOG,A(5773,8515)),
-            CreateVariant("4",TRANSMOG,A(5656,8335))
+            CreateVariant("1",A(5657,8336)),
+            CreateVariant("2",A(5772,8514)),
+            CreateVariant("3",A(5773,8515)),
+            CreateVariant("4",A(5656,8335))
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(),A(),A(1234,1285)),   -- Copper chain
-            CreateVariant("2",TRANSMOG,A(),A(),A(982,981),A(980,979),A(1235,1286),A(981,980),A(1236,1287)),   -- Runed Copper
-            CreateVariant("1",TRANSMOG,A(),A(1239,1290),A(984,983),A(),A(),A(),A(983,982),A(1450,2357)),   -- Rough Bronze
-            CreateVariant("2",TRANSMOG,A(),A(1240,1291),A(986,986),A(),A(1242,1293),A(),A(1457,3967),A(1241,1292)),   -- Silvered Bronze
-            CreateVariant("3",TRANSMOG,A(1363,1445),A(1365,1447),A(1369,1451),A(1362,1444),A(1244,1295),A(),A(1367,1449),A(1243,1294)),   -- Green Iron
-            CreateVariant("4",TRANSMOG,A(1364,1446),A(1366,1448),A(1370,1452),A(1955,2230),A(),A(),A(1368,1450),A(1372,1454)),   -- Golden Scale
-            CreateVariant("5",TRANSMOG,A(1504,2976)),   -- Mitril
-            CreateVariant("6",TRANSMOG,A(),A(2544,2977),A(),A(569,2969),A(),A(),A(205,2966))   -- Mitril Scale
+            CreateVariant("1",A(),A(),A(1234,1285)),   -- Copper chain
+            CreateVariant("2",A(),A(),A(982,981),A(980,979),A(1235,1286),A(981,980),A(1236,1287)),   -- Runed Copper
+            CreateVariant("1",A(),A(1239,1290),A(984,983),A(),A(),A(),A(983,982),A(1450,2357)),   -- Rough Bronze
+            CreateVariant("2",A(),A(1240,1291),A(986,986),A(),A(1242,1293),A(),A(1457,3967),A(1241,1292)),   -- Silvered Bronze
+            CreateVariant("3",A(1363,1445),A(1365,1447),A(1369,1451),A(1362,1444),A(1244,1295),A(),A(1367,1449),A(1243,1294)),   -- Green Iron
+            CreateVariant("4",A(1364,1446),A(1366,1448),A(1370,1452),A(1955,2230),A(),A(),A(1368,1450),A(1372,1454)),   -- Golden Scale
+            CreateVariant("5",A(1504,2976)),   -- Mitril
+            CreateVariant("6",A(),A(2544,2977),A(),A(569,2969),A(),A(),A(205,2966))   -- Mitril Scale
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(2484,2968)),   -- Steel Plate
-            CreateVariant("2",TRANSMOG,A(2546,2979),A(2537,2964),A(1920,2975),A(),A(2538,2965),A(),A(2539,2967),A(2545,2978)),   -- Heavy Mitril
-            CreateVariant("3",TRANSMOG,A(3539,4408),A(),A(3537,4404),A(3538,4406),A(),A(3259,4405),A(3540,4409),A(2756,4407)),   -- Thorium
-            CreateVariant("4",TRANSMOG,A(3550,4421),A(3551,4422),A(3546,4417),A(3548,4419),A(),A(3547,4418),A(3552,4423),A(3549,4420)),   -- Imperial
-            CreateVariant("5",TRANSMOG,A(3844,7623),A(3423,4196),A(3422,4195),A(4630,7061),A(5392,7631),A(),A(5104,7060),A(5281,7905))    -- Dark Iron
+            CreateVariant("1",A(2484,2968)),   -- Steel Plate
+            CreateVariant("2",A(2546,2979),A(2537,2964),A(1920,2975),A(),A(2538,2965),A(),A(2539,2967),A(2545,2978)),   -- Heavy Mitril
+            CreateVariant("3",A(3539,4408),A(),A(3537,4404),A(3538,4406),A(),A(3259,4405),A(3540,4409),A(2756,4407)),   -- Thorium
+            CreateVariant("4",A(3550,4421),A(3551,4422),A(3546,4417),A(3548,4419),A(),A(3547,4418),A(3552,4423),A(3549,4420)),   -- Imperial
+            CreateVariant("5",A(3844,7623),A(3423,4196),A(3422,4195),A(4630,7061),A(5392,7631),A(),A(5104,7060),A(5281,7905))    -- Dark Iron
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -115,45 +115,45 @@ local function GetDungeonAppearances()
 
         -- Dungeon 3
         CreateSet(COLLECTION,10104,"DR_DG_03",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DR_DG_03",TRANSMOG,I(28348),I(27737),I(28202),I(27468),I(27873)) -- Moonglade Raiment
+            CreateVariant("DR_DG_03",I(28348),I(27737),I(28202),I(27468),I(27873)) -- Moonglade Raiment
         ),
         CreateSet(COLLECTION,10105,"HU_DG_03",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("HU_DG_03",TRANSMOG,I(28275),I(27801),I(28228),I(27474),I(27874)) -- Beast Lord Armor
+            CreateVariant("HU_DG_03",I(28275),I(27801),I(28228),I(27474),I(27874)) -- Beast Lord Armor
         ),
         CreateSet(COLLECTION,10106,"MA_DG_03",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("MA_DG_03",TRANSMOG,I(28278),I(27738),I(28229),I(27508),I(27838)) -- Incanter's Regalia
+            CreateVariant("MA_DG_03",I(28278),I(27738),I(28229),I(27508),I(27838)) -- Incanter's Regalia
         ),
         CreateSet(COLLECTION,10107,"PA_DG_03",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("PA_DG_03",TRANSMOG,I(28285),I(27739),I(28203),I(27535),I(27839)) -- Righteous Armor
+            CreateVariant("PA_DG_03",I(28285),I(27739),I(28203),I(27535),I(27839)) -- Righteous Armor
         ),
         CreateSet(COLLECTION,10108,"PR_DG_03",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("PR_DG_03",TRANSMOG,I(28413),I(27775),I(28230),I(27536),I(27875)) -- Hallowed raiment
+            CreateVariant("PR_DG_03",I(28413),I(27775),I(28230),I(27536),I(27875)) -- Hallowed raiment
         ),
         CreateSet(COLLECTION,10109,"RO_DG_03",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("RO_DG_03",TRANSMOG,I(28414),I(27776),I(28204),I(27509),I(27908)) -- Assassination Armor
+            CreateVariant("RO_DG_03",I(28414),I(27776),I(28204),I(27509),I(27908)) -- Assassination Armor
         ),
         CreateSet(COLLECTION,10110,"SH_DG_03",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("SH_DG_03",TRANSMOG,I(28349),I(27802),I(28231),I(27510),I(27909)) -- Tidefury Raiment
+            CreateVariant("SH_DG_03",I(28349),I(27802),I(28231),I(27510),I(27909)) -- Tidefury Raiment
         ),
         CreateSet(COLLECTION,10111,"WK_DG_03",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("WK_DG_03",TRANSMOG,I(28415),I(27778),I(28232),I(27537),I(27948)) -- Oblivion Raiment
+            CreateVariant("WK_DG_03",I(28415),I(27778),I(28232),I(27537),I(27948)) -- Oblivion Raiment
         ),
         CreateSet(COLLECTION,10112,"WR_DG_03",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("WR_DG_03",TRANSMOG,I(28350),I(27803),I(28205),I(27475),I(27977)) -- Bold Armor
+            CreateVariant("WR_DG_03",I(28350),I(27803),I(28205),I(27475),I(27977)) -- Bold Armor
         ),
 
         -- Dungeon 4
         CreateSet(COLLECTION,10113,"DG_CLOTH_03",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_CLOTH_03",TRANSMOG,I(28193),I(27796),I(28191),I(27465),I(27907)) -- Mana-Etched Regalia
+            CreateVariant("DG_CLOTH_03",I(28193),I(27796),I(28191),I(27465),I(27907)) -- Mana-Etched Regalia
         ),
         CreateSet(COLLECTION,10114,"DG_LEATHER_03",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_LEATHER_03",TRANSMOG,I(28224),I(27797),I(28264),I(27531),I(27837)) -- Wastewalker Armor
+            CreateVariant("DG_LEATHER_03",I(28224),I(27797),I(28264),I(27531),I(27837)) -- Wastewalker Armor
         ),
         CreateSet(COLLECTION,10115,"DG_MAIL_03",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_MAIL_03",TRANSMOG,I(28192),I(27713),I(28401),I(27528),I(27936)) -- Desolation Battlegear
+            CreateVariant("DG_MAIL_03",I(28192),I(27713),I(28401),I(27528),I(27936)) -- Desolation Battlegear
         ),
         CreateSet(COLLECTION,10116,"DG_PLATE_03",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("DG_PLATE_03",TRANSMOG,I(28225),I(27771),I(28403),I(27497),I(27870)) -- Doomplate Battlegear
+            CreateVariant("DG_PLATE_03",I(28225),I(27771),I(28403),I(27497),I(27870)) -- Doomplate Battlegear
         )
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -164,10 +164,10 @@ local function GetLegendaries()
 
     local sets = {
         CreateSet(COLLECTION,10101,"LG_60_SULF",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_60_SULF",TRANSMOG,I(17182))
+            CreateVariant("LG_60_SULF",I(17182))
         ),
         CreateSet(COLLECTION,10102,"LG_60_THUN",ANY_CLASS,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_60_THUN",TRANSMOG,I(19019))
+            CreateVariant("LG_60_THUN",I(19019))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -199,7 +199,7 @@ local function GetRaidAppearances()
         IncludeSet(COLLECTION,VERSION,875), -- The Ten Storms
         IncludeSet(COLLECTION,VERSION,893), -- Bloodfang Armor
         IncludeSet(COLLECTION,VERSION,901, -- Judgment Armor
-            CreateVariant("RECOLOR",TRANSMOG,I(27790),I(27539),I(27897),I(27548),I(27748),I(28221),I(27489),I(27457))
+            CreateVariant("RECOLOR",I(27790),I(27539),I(27897),I(27548),I(27748),I(28221),I(27489),I(27457))
         ),
         IncludeSet(COLLECTION,VERSION,909), -- Netherwind Regalia
         IncludeSet(COLLECTION,VERSION,916), -- Dragonstalker Armor
@@ -249,12 +249,4 @@ function SetCollector:GetVersion01Appearances(expansion)
         GetDungeonAppearances()
         GetRaidAppearances()
     end
-end
-
-function SetCollector:GetVersion01Status()
-    return SetCollector:GetExpansionStatus("1")
-end
-
-function SetCollector:SetVersion01Status()
-    SetCollector:SetExpansionStatus("1")
 end

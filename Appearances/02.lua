@@ -57,31 +57,31 @@ local function GetCraftedAppearances()
     local COLLECTION, VERSION = SetCollector.CRAFTED, 70000
     local sets = {
         CreateSet(COLLECTION,10001,"PLACEHOLDER",CLOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(5657,8336)),
-            CreateVariant("2",TRANSMOG,A(5772,8514)),
-            CreateVariant("3",TRANSMOG,A(5773,8515)),
-            CreateVariant("4",TRANSMOG,A(5656,8335))
+            CreateVariant("1",A(5657,8336)),
+            CreateVariant("2",A(5772,8514)),
+            CreateVariant("3",A(5773,8515)),
+            CreateVariant("4",A(5656,8335))
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",LEATHER,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(5657,8336)),
-            CreateVariant("2",TRANSMOG,A(5772,8514)),
-            CreateVariant("3",TRANSMOG,A(5773,8515)),
-            CreateVariant("4",TRANSMOG,A(5656,8335))
+            CreateVariant("1",A(5657,8336)),
+            CreateVariant("2",A(5772,8514)),
+            CreateVariant("3",A(5773,8515)),
+            CreateVariant("4",A(5656,8335))
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",MAIL,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(6209,9308),A(),A(6207,9306),A(6210,9309),A(6208,9307)),   -- Fel Iron
-            CreateVariant("2",TRANSMOG,A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Adamantite
-            CreateVariant("3",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   -- Swift Steel
-            CreateVariant("4",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   --
-            CreateVariant("5",TRANSMOG,A()),   --
-            CreateVariant("6",TRANSMOG,A(),A(),A(),A(),A(),A(),A())   --
+            CreateVariant("1",A(6209,9308),A(),A(6207,9306),A(6210,9309),A(6208,9307)),   -- Fel Iron
+            CreateVariant("2",A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Adamantite
+            CreateVariant("3",A(),A(),A(),A(),A(),A(),A(),A()),   -- Swift Steel
+            CreateVariant("4",A(),A(),A(),A(),A(),A(),A(),A()),   --
+            CreateVariant("5",A()),   --
+            CreateVariant("6",A(),A(),A(),A(),A(),A(),A())   --
         ),
         CreateSet(COLLECTION,10001,"PLACEHOLDER",PLATE,ANY_FACTION,NO_LOCATION,
-            CreateVariant("1",TRANSMOG,A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Fel Iron
-            CreateVariant("2",TRANSMOG,A(),A(),A(4240,9318),A(4247,9317),A(4241,9319),A(),A(),A()),   -- Adamantite
-            CreateVariant("3",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   -- Red Havoc
-            CreateVariant("4",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A()),   -- Felsteel
-            CreateVariant("5",TRANSMOG,A(),A(),A(),A(),A(),A(),A(),A())    -- of the protector
+            CreateVariant("1",A(),A(),A(6206,9305),A(),A(6203,9301),A(5539,9302),A(6205,9304),A(6204,9303)),   -- Fel Iron
+            CreateVariant("2",A(),A(),A(4240,9318),A(4247,9317),A(4241,9319),A(),A(),A()),   -- Adamantite
+            CreateVariant("3",A(),A(),A(),A(),A(),A(),A(),A()),   -- Red Havoc
+            CreateVariant("4",A(),A(),A(),A(),A(),A(),A(),A()),   -- Felsteel
+            CreateVariant("5",A(),A(),A(),A(),A(),A(),A(),A())    -- of the protector
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -92,7 +92,7 @@ local function GetLegendaries()
 
     local sets = {
         CreateSet(COLLECTION,10201,"LG_MELEE_70",SetCollector.AZZINOTH,ANY_FACTION,NO_LOCATION,
-            CreateVariant("LG_MELEE_70",TRANSMOG,A(8460,15136,21,32837),A(8461,15137,22,32838))
+            CreateVariant("LG_MELEE_70",A(8460,15136,21,32837),A(8461,15137,22,32838))
         ),
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
@@ -240,14 +240,4 @@ function SetCollector:GetVersion02Appearances(expansion)
         GetRaidAppearances()
         GetDungeonAppearances()
     end
-end
-
-
-function SetCollector:GetVersion02Status()
-    return SetCollector:GetExpansionStatus("2")
-end
-
-
-function SetCollector:SetVersion02Status()
-    SetCollector:SetExpansionStatus("2")
 end

@@ -459,11 +459,3 @@ function SetCollector:GetVersion10Appearances(expansion)
     end
 end
 
-function SetCollector:GetVersion10Status()
-    return SetCollector:GetExpansionStatus("10")
-end
-
-function SetCollector:SetVersion10Status()
-    SetCollector:SetExpansionStatus("10")
-end
-
