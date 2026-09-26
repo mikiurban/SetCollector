@@ -745,6 +745,16 @@ function SetCollector:GetOptions()
 						set = function(info,val) SetCollector:SetExpansionStatus("11") end,
 						width = "full"
 					},
+					v12 = {
+						type = "toggle",
+						hidden = HideExpansionToggle("120000"),
+						order = 21,
+						name = L["INT_OPT_EXPANSION_12_NAME"],
+						desc = L["INT_OPT_EXPANSION_12_DESC"],
+						get = function(info) return SetCollector:GetExpansionStatus("12") end,
+						set = function(info,val) SetCollector:SetExpansionStatus("12") end,
+						width = "full"
+					},
 				},
             },
             tooltips = {

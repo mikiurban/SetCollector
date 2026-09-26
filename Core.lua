@@ -165,14 +165,13 @@ end
 
 function SetCollector:UpdateCollections()
 	local collections = SetCollector:GetCollectionsList()
-	SetCollector:UpdateScrollFrame(collections, DEBUG)
+	SetCollector:UpdateScrollFrame(collections)
 end
 
 function SetCollector:PLAYER_LOGIN()
-    local DEBUG = SetCollector:GetDebug()
     SetCollector:DebugPrint("Running PLAYER_LOGIN processes")
-    SetCollector:InitializeFilter(DEBUG)
-    SetCollector:InitializeModel(DEBUG)
+    SetCollector:InitializeFilter()
+    SetCollector:InitializeModel()
 end
 
 --

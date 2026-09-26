@@ -564,23 +564,24 @@ function SetCollector:UpdateSelectedVariantTab(self)
 	end
 end
 
-
 function SetCollector:SetVariantTab(self, tab)
     PanelTemplates_SetTab(self, tab);
     SetCollector:UpdateSelectedVariantTab(self);
 end
 
-
-
 --
 --  Filter
 --
-
 
 local filterButton = CreateFrame("Frame","$parentSetFilter",frame,"UIDropDownMenuTemplate")
 filterButton:SetPoint("TOPRIGHT",frame,"TOPRIGHT",-125,-28)
 filterButton:SetAttribute("enableMouse","true")
 filterButton:SetAttribute("parentKey","setFilter")
+
+local expansionFilterButton = CreateFrame("Frame","$parentSetExpansionFilter",frame,"UIDropDownMenuTemplate")
+expansionFilterButton:SetPoint("TOPRIGHT","$parentSetFilter","TOPLEFT",-100,0)
+expansionFilterButton:SetAttribute("enableMouse","true")
+expansionFilterButton:SetAttribute("parentKey","setFilter")
 
 local function SetFilter(self, classIndex)
 	if ( classIndex == "favorites" ) then
@@ -631,27 +632,20 @@ local function InitFilter()
 end
 
 local function InitExpansionFilter()
-	-- local info = UIDropDownMenu_CreateInfo();
-
-	-- info.func = SetFilter;
-
-	-- info.leftPadding = nil;
-	-- info.text = FAVORITES_FILTER;
-	-- info.checked = SHOW_ONLY_FAVORITES;
-	-- info.arg1 = "favorites";
-	-- UIDropDownMenu_AddButton(info);
-
-	-- info.leftPadding = nil;
-	-- info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"];
-	-- info.checked = SHOW_ONLY_OBTAINABLE;
-	-- info.arg1 = "obtainable";
-	-- UIDropDownMenu_AddButton(info);
-
-	-- info.leftPadding = nil;
-	-- info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"];
-	-- info.checked = SHOW_HIDDEN;
-	-- info.arg1 = "hidden";
-	-- UIDropDownMenu_AddButton(info);
+	local info = UIDropDownMenu_CreateInfo();
+  info.func = SetFilter;
+	local min = Enum.ExpansionLevelMeta.MinValue
+	local max = GetMaximumExpansionLevel()
+	if min < max then
+		for expansion = min, max do
+			local exp = tostring(expansion)
+			info.leftPadding = nil;
+			info.text = L['INT_OPT_EXPANSION_'..string.format("%02d", expansion)..'_NAME']
+			info.checked = SetCollector:GetExpansionStatus(exp)
+			info.arg1 = exp
+			UIDropDownMenu_AddButton(info)
+		end
+	end
 end
 
 function SetCollector:DropDownMenu_Initialize(frame, func)
@@ -660,13 +654,15 @@ function SetCollector:DropDownMenu_Initialize(frame, func)
 	frame.initialize = func
 end
 
-function SetCollector:InitializeFilter(DEBUG)
+function SetCollector:InitializeFilter()
 	SetCollector:DebugPrint("Initializing Filters")
 	SetCollector:UpdateCollections()
 	local init = function() InitFilter() end
 	SetCollector:DropDownMenu_Initialize(filterButton, init)
+	local init2 = function() InitExpansionFilter() end
+	SetCollector:DropDownMenu_Initialize(expansionFilterButton, init2)
 	UIDropDownMenu_SetText(filterButton, "Filter")
-	--UpdateFilterString()
+	UIDropDownMenu_SetText(expansionFilterButton, "Expansions")
 	SetCollector:DebugPrint("Filters Initialized")
 end
 
@@ -683,8 +679,6 @@ function SetCollector:UpdatePortrait()
 		portrait:SetTexCoord(unpack(CLASS_ICON_TCOORDS[class]));
 	end
 end
-
-
 
 --
 --  Minimap Button
@@ -722,7 +716,7 @@ end
 --  Finalize UI Setup
 --
 
-function SetCollector:UpdateScrollFrame(collections, DEBUG)
+function SetCollector:UpdateScrollFrame(collections)
 	SetCollector:DebugPrint("Updating ScrollFrame")
 	if collections then
 		SetCollector:DebugPrint("Received list of collections.")
