@@ -192,33 +192,12 @@ end
 
 
 function SetCollector:ToggleExpansion(parameters)
-	local expansions = SetCollector.db.global.expansions
-	if parameters == "0" then
-		expansions.v00 = not expansions.v00
-	elseif parameters == "1" then
-		expansions.v01 = not expansions.v01
-	elseif parameters == "2" then
-		expansions.v02 = not expansions.v02
-	elseif parameters == "3" then
-		expansions.v03 = not expansions.v03
-	elseif parameters == "4" then
-		expansions.v04 = not expansions.v04
-	elseif parameters == "5" then
-		expansions.v05 = not expansions.v05
-	elseif parameters == "6" then
-		expansions.v06 = not expansions.v06
-	elseif parameters == "7" then
-		expansions.v07 = not expansions.v07
-	elseif parameters == "8" then
-		expansions.v08 = not expansions.v08
-	elseif parameters == "9" then
-		expansions.v09 = not expansions.v09
-	elseif parameters == "10" then
-		expansions.v10 = not expansions.v10
-	elseif parameters == "11" then
-		expansions.v11 = not expansions.v11
-	end
-	SetCollector:Print(L["RELOAD"])
+    local v = "v"..string.format("%02d",tonumber(parameters))
+    if SetCollector.db.global.expansions[v] == nil then
+        SetCollector.db.global.expansions[v] = true
+    else
+        SetCollector.db.global.expansions[v] = not SetCollector.db.global.expansions[v]
+    end
 end
 
 function SetCollector:PrintItem(itemID)

@@ -141,33 +141,52 @@ local function IsShownInList(button)
 	return false
 end
 
-local function GetCollectionButton(index)
-	local buttons = SetCollectorFrame.CollectionsFrame.Contents.Collections;
-	if ( not buttons[index] ) then
-		local button = CreateFrame("BUTTON", nil, SetCollectorFrame.CollectionsFrame.Contents, "SetCollectorCollectionTemplate");
-		buttons[index] = button;
+local function ClearCollectionList()
+	local contents = SetCollectorFrame.CollectionsFrame.Contents
+
+	for _, button in pairs(contents.Collections) do
+		button:Hide()
+		button:ClearAllPoints()
 	end
-	return buttons[index];
+
+	for _, button in pairs(contents.Sets) do
+		button:Hide()
+		button:ClearAllPoints()
+		button.Check:Hide()
+		button.Check:SetDesaturated(false)
+		button.Favorite:Hide()
+		button.SubText:SetText("")
+		button.Texture:Hide()
+	end
+end
+
+local function GetCollectionButton(index)
+	local buttons = SetCollectorFrame.CollectionsFrame.Contents.Collections
+	if ( not buttons[index] ) then
+		local button = CreateFrame("BUTTON", nil, SetCollectorFrame.CollectionsFrame.Contents, "SetCollectorCollectionTemplate")
+		buttons[index] = button
+	end
+	return buttons[index]
 end
 
 function SetCollectorCollectionButton_OnClick(self)
-	PlaySound(SOUNDKIT.UI_TRANSMOG_PAGE_TURN);
+	PlaySound(SOUNDKIT.UI_TRANSMOG_PAGE_TURN)
 	COLLECTION_COLLAPSED[self.Collection] = not COLLECTION_COLLAPSED[self.Collection]
 	SetCollector:UpdateCollections()
 end
 
 local function GetSetButton(index)
-	local buttons = SetCollectorFrame.CollectionsFrame.Contents.Sets;
+	local buttons = SetCollectorFrame.CollectionsFrame.Contents.Sets
 	if ( not buttons[index] ) then
-		local button = CreateFrame("BUTTON", nil, SetCollectorFrame.CollectionsFrame.Contents, "SetCollectorSetTemplate");
-		buttons[index] = button;
+		local button = CreateFrame("BUTTON", nil, SetCollectorFrame.CollectionsFrame.Contents, "SetCollectorSetTemplate")
+		buttons[index] = button
 	end
-	return buttons[index];
+	return buttons[index]
 end
 
 local function UnsetHighlight(button, ...)
 	if ( button ) then
-		button.Text:SetTextColor(1.0, 0.82, 0);
+		button.Text:SetTextColor(1.0, 0.82, 0)
 		button.Texture:Hide()
 	end
 	SELECTED_BUTTON = nil
@@ -184,7 +203,7 @@ end
 
 function SetCollectorSetButton_OnClick(self, button, ...)
 	if ( IsShownInList(self) ) then
-        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
         if ( button == "LeftButton" ) then
             if ( self ~= SELECTED_BUTTON ) then
                 SetCollector:SetVariantTabs(self.Collection, self.Set, nil, self.Outfit)
@@ -406,9 +425,9 @@ end
 --
 
 local function VariantTab_OnClick(self, button, ...)
-    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	if ( button == "LeftButton" ) then
-		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], self:GetID());
+		SetCollector:SetVariantTab(_G["SetCollectorSetDisplay"], self:GetID())
 	elseif ( button == "RightButton" ) then
 		SetCollector:SetFavoriteVariant(self.Set, self:GetID())
 		SetCollector:UpdateCollections()
@@ -499,8 +518,8 @@ end
 function SetCollector:UpdateSelectedVariantTab(self)
 	if frame:IsShown() then
 			local selected = PanelTemplates_GetSelectedTab(self)
-			if selected and SetCollector:GetDebug() then
-					SetCollector:Print("Updating Selected Variant Tab: " .. selected)
+			if selected then
+					SetCollector:DebugPrint("Updating Selected Variant Tab: " .. selected)
 			end
 
 			local collection = _G["SetCollectorSetDisplayTab" .. selected].Collection
@@ -565,8 +584,8 @@ function SetCollector:UpdateSelectedVariantTab(self)
 end
 
 function SetCollector:SetVariantTab(self, tab)
-    PanelTemplates_SetTab(self, tab);
-    SetCollector:UpdateSelectedVariantTab(self);
+    PanelTemplates_SetTab(self, tab)
+    SetCollector:UpdateSelectedVariantTab(self)
 end
 
 --
@@ -592,57 +611,63 @@ local function SetFilter(self, classIndex)
 		SetCollector.db.char.filters.hidden = not SetCollector.db.char.filters.hidden
 	elseif ( tonumber(classIndex) ~= nil ) then
 		SetCollector:ToggleExpansion(classIndex)
+		SetCollector:AddAppearances()
 	else
 		-- Nothing to do
 		return
 	end
 	if frame:IsShown() then
-		SetCollector:UpdateCollections();
+		scrollFrame:SetVerticalScroll(0)
+		SetCollector:UpdateCollections()
 
 		-- Clear Selection
 		UnsetHighlight(SELECTED_BUTTON)
-		SELECTED_BUTTON = nil
 		SetCollector:SetVariantTabs()
 		ClearItemButtons()
 	end
 end
 
 local function InitFilter()
-	local info = UIDropDownMenu_CreateInfo();
+	local info = UIDropDownMenu_CreateInfo()
 
-	info.func = SetFilter;
+	info.func = SetFilter
 
-	info.leftPadding = nil;
-	info.text = FAVORITES_FILTER;
-	info.checked = SetCollector.db.char.filters.favorites;
-	info.arg1 = "favorites";
-	UIDropDownMenu_AddButton(info);
+	info.leftPadding = nil
+	info.text = FAVORITES_FILTER
+	info.checked = SetCollector.db.char.filters.favorites
+	info.arg1 = "favorites"
+	UIDropDownMenu_AddButton(info)
 
-	info.leftPadding = nil;
-	info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"];
-	info.checked = SetCollector.db.char.filters.obtainable;
-	info.arg1 = "obtainable";
-	UIDropDownMenu_AddButton(info);
+	info.leftPadding = nil
+	info.text = L["OBTAIN_FILTER"] or L["MISSING_LOCALIZATION"]
+	info.checked = SetCollector.db.char.filters.obtainable
+	info.arg1 = "obtainable"
+	UIDropDownMenu_AddButton(info)
 
-	info.leftPadding = nil;
-	info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"];
-	info.checked = SetCollector.db.char.filters.hidden;
-	info.arg1 = "hidden";
-	UIDropDownMenu_AddButton(info);
+	info.leftPadding = nil
+	info.text = L["HIDDEN_FILTER"] or L["MISSING_LOCALIZATION"]
+	info.checked = SetCollector.db.char.filters.hidden
+	info.arg1 = "hidden"
+	UIDropDownMenu_AddButton(info)
 end
 
+-- SetCollector uses 1 for Vanilla, WoW uses 0.  SetCollector uses 0 for "holiday\starters" so we
+-- need to track zero-based for wow things and ones-based for SC things
 local function InitExpansionFilter()
-	local info = UIDropDownMenu_CreateInfo();
-  info.func = SetFilter;
+	local info = UIDropDownMenu_CreateInfo()
+  info.func = SetFilter
 	local min = Enum.ExpansionLevelMeta.MinValue
-	local max = GetMaximumExpansionLevel()
+	local max = GetMaximumExpansionLevel() + 1
 	if min < max then
 		for expansion = min, max do
-			local exp = tostring(expansion)
-			info.leftPadding = nil;
-			info.text = L['INT_OPT_EXPANSION_'..string.format("%02d", expansion)..'_NAME']
-			info.checked = SetCollector:GetExpansionStatus(exp)
-			info.arg1 = exp
+			local txt = L['INT_OPT_EXPANSION_00_NAME']
+			if expansion > 0 then
+				txt = _G['EXPANSION_NAME'..(expansion -1)]
+			end
+			info.leftPadding = nil
+			info.text = txt
+			info.checked = SetCollector:GetExpansionStatus(tostring(expansion))
+			info.arg1 = tostring(expansion)
 			UIDropDownMenu_AddButton(info)
 		end
 	end
@@ -672,11 +697,11 @@ end
 
 function SetCollector:UpdatePortrait()
 	local portrait = SetCollectorFramePortrait				-- Switch to frame
-	local masteryIndex = GetSpecialization();
+	local masteryIndex = GetSpecialization()
 	if (masteryIndex == nil) then
-		local _, class = UnitClass("player");
-		portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles");
-		portrait:SetTexCoord(unpack(CLASS_ICON_TCOORDS[class]));
+		local _, class = UnitClass("player")
+		portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
+		portrait:SetTexCoord(unpack(CLASS_ICON_TCOORDS[class]))
 	end
 end
 
@@ -720,6 +745,8 @@ function SetCollector:UpdateScrollFrame(collections)
 	SetCollector:DebugPrint("Updating ScrollFrame")
 	if collections then
 		SetCollector:DebugPrint("Received list of collections.")
+		ClearCollectionList()
+
 		local prevButton = nil
 		local rowIndex = 1
 
@@ -813,18 +840,20 @@ function SetCollector:UpdateScrollFrame(collections)
 				prevButton = archivePrevButton
 			end
 		end
+
+		scrollFrame:UpdateScrollChildRect()
 	end
 end
 
 function SetCollector:HideUI()
 	SetCollector:DebugPrint("Hiding SetCollector UI")
-	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE);
+	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE)
 	HideUIPanel(frame)
 end
 
 function SetCollector:ShowUI()
 	SetCollector:DebugPrint("Showing SetCollector UI")
-	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN);
+	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
 	ShowUIPanel(frame)
 end
 
@@ -862,5 +891,5 @@ function SetCollector:SetupUI(DEBUG)
 end
 
 function SetCollector:ReloadUI()
-	ReloadUI();
+	ReloadUI()
 end

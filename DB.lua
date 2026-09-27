@@ -465,37 +465,11 @@ function SetCollector:SetUIPosition(value)
 end
 
 function SetCollector:GetExpansionStatus(version)
-	local expansions = SetCollector.db.global.expansions
-	if version == "0" then return expansions.v00
-	elseif version == "1" then return expansions.v01
-	elseif version == "2" then return expansions.v02
-	elseif version == "3" then return expansions.v03
-	elseif version == "4" then return expansions.v04
-	elseif version == "5" then return expansions.v05
-	elseif version == "6" then return expansions.v06
-	elseif version == "7" then return expansions.v07
-	elseif version == "8" then return expansions.v08
-	elseif version == "9" then return expansions.v09
-	elseif version == "10" then return expansions.v10
-	elseif version == "11" then return expansions.v11
+	local v = "v"..string.format("%02d",tonumber(version))
+	if SetCollector.db.global.expansions[v] == nil then
+		SetCollector.db.global.expansions[v] = true
 	end
-end
-
-function SetCollector:SetExpansionStatus(version)
-	local expansions = SetCollector.db.global.expansions
-	if version == "0" then expansions.v00 = not expansions.v00
-	elseif version == "1" then expansions.v01 = not expansions.v01
-	elseif version == "2" then expansions.v02 = not expansions.v02
-	elseif version == "3" then expansions.v03 = not expansions.v03
-	elseif version == "4" then expansions.v04 = not expansions.v04
-	elseif version == "5" then expansions.v05 = not expansions.v05
-	elseif version == "6" then expansions.v06 = not expansions.v06
-	elseif version == "7" then expansions.v07 = not expansions.v07
-	elseif version == "8" then expansions.v08 = not expansions.v08
-	elseif version == "9" then expansions.v09 = not expansions.v09
-	elseif version == "10" then expansions.v10 = not expansions.v10
-	elseif version == "11" then expansions.v11 = not expansions.v11
-	end
+	return SetCollector.db.global.expansions[v]
 end
 
 function SetCollector:SetupDB(debug)
@@ -632,7 +606,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_00_NAME"],
 						desc = L["INT_OPT_EXPANSION_00_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("0") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("0") end,
+						set = function(info,val) SetCollector:ToggleExpansion("0") end,
 						width = "full"
 					},
 					v01 = {
@@ -642,7 +616,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_01_NAME"],
 						desc = L["INT_OPT_EXPANSION_01_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("1") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("1") end,
+						set = function(info,val) SetCollector:ToggleExpansion("1") end,
 						width = "full"
 					},
 					v02 = {
@@ -652,7 +626,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_02_NAME"],
 						desc = L["INT_OPT_EXPANSION_02_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("2") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("2") end,
+						set = function(info,val) SetCollector:ToggleExpansion("2") end,
 						width = "full"
 					},
 					v03 = {
@@ -662,7 +636,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_03_NAME"],
 						desc = L["INT_OPT_EXPANSION_03_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("3") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("3") end,
+						set = function(info,val) SetCollector:ToggleExpansion("3") end,
 						width = "full"
 					},
 					v04 = {
@@ -672,7 +646,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_04_NAME"],
 						desc = L["INT_OPT_EXPANSION_04_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("4") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("4") end,
+						set = function(info,val) SetCollector:ToggleExpansion("4") end,
 						width = "full"
 					},
 					v05 = {
@@ -682,7 +656,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_05_NAME"],
 						desc = L["INT_OPT_EXPANSION_05_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("5") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("5") end,
+						set = function(info,val) SetCollector:ToggleExpansion("5") end,
 						width = "full"
 					},
 					v06 = {
@@ -692,7 +666,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_06_NAME"],
 						desc = L["INT_OPT_EXPANSION_06_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("6") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("6") end,
+						set = function(info,val) SetCollector:ToggleExpansion("6") end,
 						width = "full"
 					},
 					v07 = {
@@ -702,7 +676,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_07_NAME"],
 						desc = L["INT_OPT_EXPANSION_07_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("7") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("7") end,
+						set = function(info,val) SetCollector:ToggleExpansion("7") end,
 						width = "full"
 					},
 					v08 = {
@@ -712,7 +686,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_08_NAME"],
 						desc = L["INT_OPT_EXPANSION_08_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("8") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("8") end,
+						set = function(info,val) SetCollector:ToggleExpansion("8") end,
 						width = "full"
 					},
 					v09 = {
@@ -722,7 +696,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_09_NAME"],
 						desc = L["INT_OPT_EXPANSION_09_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("9") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("9") end,
+						set = function(info,val) SetCollector:ToggleExpansion("9") end,
 						width = "full"
 					},
 					v10 = {
@@ -732,7 +706,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_10_NAME"],
 						desc = L["INT_OPT_EXPANSION_10_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("10") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("10") end,
+						set = function(info,val) SetCollector:ToggleExpansion("10") end,
 						width = "full"
 					},
 					v11 = {
@@ -742,7 +716,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_11_NAME"],
 						desc = L["INT_OPT_EXPANSION_11_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("11") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("11") end,
+						set = function(info,val) SetCollector:ToggleExpansion("11") end,
 						width = "full"
 					},
 					v12 = {
@@ -752,7 +726,7 @@ function SetCollector:GetOptions()
 						name = L["INT_OPT_EXPANSION_12_NAME"],
 						desc = L["INT_OPT_EXPANSION_12_DESC"],
 						get = function(info) return SetCollector:GetExpansionStatus("12") end,
-						set = function(info,val) SetCollector:SetExpansionStatus("12") end,
+						set = function(info,val) SetCollector:ToggleExpansion("12") end,
 						width = "full"
 					},
 				},
