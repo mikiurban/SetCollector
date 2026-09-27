@@ -112,10 +112,10 @@ local function GetExpansionAppearances()
         -- Spreading the Light
         IncludeSet(COLLECTION,VERSION,3518,3877,3876), -- Darkened Arathi Attire, Purple, Dark
         -- Hallowfall Gear
-        IncludeSet(COLLECTION,VERSION,3879), -- Aegis of Hidden Stars, Aspirant, Delves
-        IncludeSet(COLLECTION,VERSION,3880), -- Myconic Shell, Delves, Aspirant
-        IncludeSet(COLLECTION,VERSION,3878), -- Chains of the Stygian Sea, Aspirant, Delves
-        IncludeSet(COLLECTION,VERSION,3881), -- Unkindled Waxweave Panoply, Aspirant, Delves
+        IncludeSet(COLLECTION,110000,3655,3879,4385,4389), -- Arathi Crusader's Armor, Nightfall, Flame's Radiance
+        IncludeSet(COLLECTION,110000,3657,3880,4387,4391), -- Arathi Zealot's Armor, Nightfall, Flame's Radiance
+        IncludeSet(COLLECTION,110000,3656,3878,4390,4386), -- Arathi Cleric's Armor, Flame's Radiance, Nightfall
+        IncludeSet(COLLECTION,110000,3658,3881,4388,4392), -- Arathi Abbot's Armor, Nightfall, Flame's Radiance
         -- Hallowfall Arathi Renown
         IncludeSet(COLLECTION,VERSION,3518), -- Expeditionary Arathi Attire
         }
@@ -176,6 +176,51 @@ local function GetExpansionAppearances()
         IncludeSet(COLLECTION,110100,4206,4207), -- Radiant Vestments of the Heavens, Purple
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.EXPANSION, 110200
+    sets = {
+        -- Phase Diving Vendors
+        IncludeSet(COLLECTION,110200,5176,5170,5181), -- Untethered Captain's Full-Plate, Aspirant, Phase Diving
+        IncludeSet(COLLECTION,110200,5177,5173,5178), -- Untethered Seer's Vestiture, Aspirant, Phase Diving
+        IncludeSet(COLLECTION,110200,5175,5179,5172), -- Untethered Blade's Garb, Phase Diving, Aspirant
+        IncludeSet(COLLECTION,110200,5174,5171,5180), -- Untethered Striker's Gear, Aspirant, Phase Diving
+
+        -- K'aresh Monster Hunting
+        IncludeSet(COLLECTION,110200,5176,5170,5185,5181), -- Reshii Brute's Bastion, Aspirant, Rare Monsters, Phase Diving
+        IncludeSet(COLLECTION,110200,5177,5173,5178,5182), -- Reshii Magi's Resplendence, Aspirant, Phase Diving, Rare Monsters
+        IncludeSet(COLLECTION,110200,5175,5179,5183,5172), -- Reshii Scout's Cunning, Phase Diving, Rare Monsters, Aspirant
+        IncludeSet(COLLECTION,110200,5174,5180,5171,5184), -- Reshii Skirmisher's Ferocity, Phase Diving, Aspirant, Rare Monsters
+
+        -- K'aresh Outdoors
+        IncludeSet(COLLECTION,110200,5176,5196,5170,5181,5185,5187), -- Brute of the Wastes, Treasures and World Quests, Aspirant, Phase Diving, Rare Monsters, Delves
+        IncludeSet(COLLECTION,110200,5177,5182,5193,5178,5173,5189), -- Magi of the Wastes, Rare Monsters, Treasures and World Quests, Phase Diving, Aspirant, Delves
+        IncludeSet(COLLECTION,110200,5175,5172,5183,5186,5194,5179), -- Scout of the Wastes, Aspirant, Rare Monsters, Delves, Treasures and World Quests, Phase Diving
+        IncludeSet(COLLECTION,110200,5174,5184,5195,5171,5180,5188), -- Skirmisher of the Wastes, Rare Monsters, Treasures and World Quests, Aspirant, Phase Diving, Delves
+
+        -- K'areshi Gear
+        IncludeSet(COLLECTION,110200,5176,5170,5181,5185,5187), -- Void-Scarred Captain's Plate, Aspirant, Phase Diving, Rare Monsters, Delves
+        IncludeSet(COLLECTION,110200,5174,5184,5171,5180,5188), -- Void-Scarred Striker's Battlegear, Rare Monsters, Aspirant, Phase Diving, Delves
+        IncludeSet(COLLECTION,110200,5175,5172,5183,5186,5179), -- Void-Scarred Blade's Attire, Aspirant, Rare Monsters, Delves, Phase Diving
+        IncludeSet(COLLECTION,110200,5177,5182,5178,5173,5189), -- Void-Scarred Seer's Wrappings, Rare Monsters, Phase Diving, Aspirant, Delves
+
+        -- K'aresh Trust Renown
+        IncludeSet(COLLECTION,110200,5095), -- Regalia of the Trust
+
+        -- Legacy of the Ravel
+        IncludeSet(COLLECTION,110200,4561), -- Reshii Regalia
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.EXPANSION, 110207
+    sets = {
+
+        -- Regalia of the Crusader
+        IncludeSet(COLLECTION,110207,5362,5363,5364,5365), -- Pious Regalia of the Crusader, Purple, Red, White
+
+        -- South Guard's Raiment
+        IncludeSet(COLLECTION,110207,5377,5378,5379,5380), -- South Guard's Iron Raiment, Gold, Copper, Black
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetOtherAppearances()
@@ -202,6 +247,21 @@ local function GetOtherAppearances()
         IncludeSet(COLLECTION,VERSION,3862), -- Earth-Warder's Eternal Armor
         IncludeSet(COLLECTION,VERSION,3870), -- Eternal Stormrage Armor
         IncludeSet(COLLECTION,VERSION,3863), -- Netherwalker's Eternal Armor
+
+        -- A Greedy Emissary event
+        IncludeSet(COLLECTION,110005,4562), -- Life-Binder's Armor
+        IncludeSet(COLLECTION,110005,4563), -- Timestalker's Armor
+        IncludeSet(COLLECTION,110005,4564), -- Executioner's Bladed Battlegear
+        IncludeSet(COLLECTION,110005,4565), -- Death-Touched Battlegear
+        IncludeSet(COLLECTION,110005,4566), -- Armor of Torment
+        IncludeSet(COLLECTION,110005,4567), -- Grimforged Armor
+        IncludeSet(COLLECTION,110005,4568), -- Shadowslayer Armor
+        IncludeSet(COLLECTION,110005,4569), -- Flamelash Armor
+        IncludeSet(COLLECTION,110005,4570), -- Emberwind Regalia
+        IncludeSet(COLLECTION,110005,4571), -- Staghelm Armor
+        IncludeSet(COLLECTION,110005,4572), -- Vestments of Searing Radiance
+        IncludeSet(COLLECTION,110005,4573), -- Hellfire Raiment
+        IncludeSet(COLLECTION,110005,4574), -- Blood Vindicator's Armor
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
@@ -214,6 +274,41 @@ local function GetOtherAppearances()
         IncludeSet(COLLECTION,VERSION,4238), -- Twilight Acolyte's Regalia
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+
+    COLLECTION, VERSION = SetCollector.OTHER, 110007
+    sets = {
+        -- Grandmaster's Set
+        IncludeSet(COLLECTION,110107,4544,4549,4545,4548), -- Grandmaster's Smoke Attire, White, Blue, Gold
+
+        -- Banshee's Collection
+        IncludeSet(COLLECTION,110107,4554,4555,4556,4557), -- Banshee's Sickly Collection, Green, Purple, Yellow
+
+        -- Rainy Day Collection
+        IncludeSet(COLLECTION,110107,4519,4520,4521,4522), -- Waterproof Attire, Green, Red, Yellow
+
+        -- (blank)
+        IncludeSet(COLLECTION,110107,4558), -- Stillwater Fisher Attire
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.OTHER, 110200
+    sets = {
+        -- China exclusive
+        IncludeSet(COLLECTION,110200,5149), -- Void's Binding Swimwear
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+
+
+    COLLECTION, VERSION = SetCollector.OTHER, 110207
+    sets = {
+        -- Chinese New year, china only?
+        IncludeSet(COLLECTION,110207,5335), -- Scorching Conqueror
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+    
+    
 end
 
 local function GetPvPAppearances()
@@ -262,6 +357,30 @@ local function GetPvPAppearances()
         IncludeSet(COLLECTION,110100,4340,4270), -- Prized Aspirant's Plate Armor, Delves
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.PVP, 110200
+    sets = {
+        -- The War Within Season 3
+        IncludeSet(COLLECTION,110200,4110,4124), -- Astral Gladiator's Plate Armor, Elite
+        IncludeSet(COLLECTION,110200,5176,5170), -- Astral Aspirant's Plate Armor, Aspirant
+        IncludeSet(COLLECTION,110200,4099,4112), -- Astral Gladiator's Plate Armor, Elite
+        IncludeSet(COLLECTION,110200,4103,4116), -- Astral Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110200,4107,4120), -- Astral Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110200,4111,4123), -- Astral Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110200,5177,5173), -- Astral Aspirant's Silk Armor, Aspirant
+        IncludeSet(COLLECTION,110200,4100,4113), -- Astral Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110200,4104,4117), -- Astral Gladiator's Silk Armor, Elite
+        IncludeSet(COLLECTION,110200,4108,4121), -- Astral Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110200,5174,5171), -- Astral Aspirant's Chain Armor, Aspirant
+        IncludeSet(COLLECTION,110200,4101,4114), -- Astral Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110200,4105,4118), -- Astral Gladiator's Leather Armor, Elite
+        IncludeSet(COLLECTION,110200,4109,4122), -- Astral Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110200,5175,5172), -- Astral Aspirant's Leather Armor, Aspirant
+        IncludeSet(COLLECTION,110200,4102,4115), -- Astral Gladiator's Chain Armor, Elite
+        IncludeSet(COLLECTION,110200,4106,4119), -- Astral Gladiator's Plate Armor, Elite
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
 end
 
 local function GetRaidAppearances()
@@ -302,6 +421,25 @@ local function GetRaidAppearances()
         IncludeSet(COLLECTION,110100,4325,4324,4323,4326), -- Enforcer's Backalley Brawlplate, Mythic, Heroic, Raid Finder
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 110200
+    sets = {
+        -- Manaforge Omega
+        IncludeSet(COLLECTION,110200,5131,5129,5130,5132), -- Eulogy to a Dying Star, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5147,5146,5145,5148), -- Chains of the Living Weapon, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110200,5103,5101,5102,5104), -- Charhound's Vicious Hunt, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5119,5117,5118,5120), -- Augur's Ephemeral Plumage, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5135,5134,5133,5136), -- Shroud of the Sudden Eclipse, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110200,5107,5105,5106,5108), -- Ornaments of the Mother Eagle, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5123,5122,5121,5124), -- Crash of Fallen Storms, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110200,5139,5137,5138,5140), -- Howls of Channeled Fury, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5111,5110,5109,5112), -- Spellweaver's Immaculate Design, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110200,5127,5125,5126,5128), -- Vows of the Lucent Battalion, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5143,5141,5142,5144), -- Inquisitor's Feast of Madness, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,110200,5099,5098,5097,5100), -- Hollow Sentinel's Vigil, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,110200,5115,5113,5114,5116), -- Midnight Herald's Pledge, Heroic, Mythic, Raid Finder        
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetTradingPostAppearances()
@@ -329,6 +467,13 @@ local function GetTradingPostAppearances()
         IncludeSet(COLLECTION,110100,4271,4273,4272,4274), -- Forest Dweller's Rooted Attire, Purple, Pink, Blue
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.TRADING, 110200
+    sets = {
+        -- Felreaver Collection (other appearances from non-trader tender)
+        IncludeSet(COLLECTION,110200,5151,5152,5153,5154), -- Felreaver's Arcane Attire, Green, Orange, Purple
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)    
 end
 
 --

@@ -69,6 +69,20 @@ local function GetDungeonAppearances()
     local COLLECTION, VERSION = SetCollector.DUNGEON, 70000
     local LOCATION_01, LOCATION_02, LOCATION_03, LOCATION_04 = "LOC_DG_0701", "LOC_DG_0702", "LOC_DG_0703", "LOC_DG_0704"
     local sets = {
+        -- Legion: Dungeon
+        IncludeSet(COLLECTION,70000,4427,4414,4415), -- Sanguine Oath Vestments, Purple, Red
+        IncludeSet(COLLECTION,70000,4488,4425,4401), -- Nightforged Felplate, Purple, Gold
+        IncludeSet(COLLECTION,70000,4399,4419), -- Guise of the Nightstalker, Purple
+        IncludeSet(COLLECTION,70000,4400,4422), -- Scalemail of Devouring Night, Purple
+        IncludeSet(COLLECTION,70000,4416), -- Raiment of Night Eternal
+        IncludeSet(COLLECTION,70000,4402,4403), -- Seawitch's Terrorcloth, Teal
+        IncludeSet(COLLECTION,70000,4420,4421), -- Ravensteel Mail, Purple
+        IncludeSet(COLLECTION,70000,4436,4417,4418), -- Thirsting Hides, Dark, Red
+        IncludeSet(COLLECTION,70000,4453,4423,4424), -- Bloodforged Battleplate, Dark, Red
+        IncludeSet(COLLECTION,70000,4409,4408), -- Chains of Nightmare's Embrace, Green
+        IncludeSet(COLLECTION,70000,4406,4405), -- Nighthide Coat, Purple
+        IncludeSet(COLLECTION,70000,4412,4411), -- Suramar Silver Plating, Silver
+
         CreateSet(COLLECTION,70001,"DG_CLOTH_0701",CLOTH,ANY_FACTION,NO_LOCATION,
             CreateVariant("LOC_DG_0701",A(27191),A(27194),A(27195),A(27193),A(27190),A(27187),A(27192),A(27215))
         ),
@@ -117,6 +131,17 @@ local function GetDungeonAppearances()
         CreateSet(COLLECTION,70004,"DG_PLATE_0701",PLATE,ANY_FACTION,LOCATION_04,
             CreateVariant("LOC_DG_0704",A(34050),A(34052),A(34048),A(34053),A(34049),A(34046),A(34051),A(34047))
         ),
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 70100
+    sets = {
+        IncludeSet(COLLECTION,70100,4247), -- Drake Hunter's Kit
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 70300
+    sets = {
         -- Seat of the Triumvirate
         IncludeSet(SetCollector.DUNGEON,70300,1468), -- Venerated Triumvirate Battleplate
         IncludeSet(SetCollector.DUNGEON,70300,1469), -- Sterling Triumvirate Chainmail
@@ -124,18 +149,63 @@ local function GetDungeonAppearances()
         IncludeSet(SetCollector.DUNGEON,70300,1471), -- Light-Woven Triumvirate Regalia
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
-
-    VERSION = 70001
-    sets = {
-        IncludeSet(COLLECTION,70100,4247), -- Drake Hunter's Kit
-    }
-    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetExpansionAppearances()
     local COLLECTION, VERSION = SetCollector.EXPANSION, 70000
     local sets = {
-        -- Legion Invasions
+        -- Legion: World
+        IncludeSet(COLLECTION,70000,4327), -- Scavenged Chains of Karazhan
+        IncludeSet(COLLECTION,70000,4459,4483), -- Oronaar Disciple's Mail Armor, White Gold
+        IncludeSet(COLLECTION,70000,4409,4408,4410), -- Darkwatcher Bindings, Green, Purple
+        IncludeSet(COLLECTION,70000,4402,4403,4404), -- Moonfall Robes, Teal, Orange
+        IncludeSet(COLLECTION,70000,4406,4405,4407), -- Ambervale Bonehide, Purple, Sky
+        IncludeSet(COLLECTION,70000,4484,4460,4490), -- Garothi Battleplate, Gold, Holy
+        IncludeSet(COLLECTION,70000,4457,4458,4482), -- Arinor Keeper's Leather Armor, Purple, Gold
+        IncludeSet(COLLECTION,70000,4399,4419,4486), -- Lunarblight Leathers, Purple, Original
+        IncludeSet(COLLECTION,70000,4465,4466,4467,4468), -- Leyline Scholar's Regalia, Green, Red, White
+        IncludeSet(COLLECTION,70000,4469,4471,4470,4472), -- Llothien Prowler's Kit, Green, Dark, Light
+        IncludeSet(COLLECTION,70000,4473,4474,4475,4476), -- Highmountain Riverscales, Gold, Silver, Teal
+        IncludeSet(COLLECTION,70000,4477,4478,4479,4480), -- Vrykul Funereal Regalia, Gold, Grey, Orange
+        IncludeSet(COLLECTION,70000,4481), -- Doomsinger's Cloth Armor
+        IncludeSet(COLLECTION,70000,4400,4422,4487), -- Shrinebreaker's Battlegear, Purple, Yellow
+        IncludeSet(COLLECTION,70000,4412,4411,4413), -- Leyline Defender's Sunplate Armor, Silver, Gold
+        IncludeSet(COLLECTION,70000,4416,4485), -- Riven Priesthood Regalia, Yellow
+        IncludeSet(COLLECTION,70000,4488,4425,4401), -- Moonshatter Warplate, Purple, Gold
+
+        -- Legion: Assaults
+        IncludeSet(COLLECTION,70000,4399), -- Netherfiend Battlegear
+        IncludeSet(COLLECTION,70000,4400), -- Ered'ruin Scalemail
+        IncludeSet(COLLECTION,70000,4488,4401), -- Xorothian Plate Armor, Gold
+
+        -- Legion: Remix
+        IncludeSet(COLLECTION,70000,4420,4421,4444), -- Ruby Drake Hunter's Kit, Purple, Red
+        IncludeSet(COLLECTION,70000,4428,4429), -- Dreamseeker Vestments, Purple
+        IncludeSet(COLLECTION,70000,4436,4417,4437,4418), -- Gladeraider's Battlegarb, Dark, Green, Red
+        IncludeSet(COLLECTION,70000,4440,4442), -- Seaborne Brigandine, Teal
+        IncludeSet(COLLECTION,70000,4452), -- Jarl's Battlehorns
+        IncludeSet(COLLECTION,70000,4456), -- Winged Plate of the Valhalas Champion
+        IncludeSet(COLLECTION,70000,4433,4434), -- Slayer's Silver Scarguards, Silver
+        IncludeSet(COLLECTION,70000,1523,4464), -- Heritage of the Shal'dorei, Vineyard Red
+        IncludeSet(COLLECTION,70000,1525,4462,4463), -- Heritage of the Lightforged, Hologemmed, Crimson Vengeance
+        IncludeSet(COLLECTION,70000,4453,4423,4424,4454), -- Val'kyr's Warharness, Dark, Red, Green
+        IncludeSet(COLLECTION,70000,4457), -- Argussian Demonsbane Armor
+        IncludeSet(COLLECTION,70000,4430,4432,4431), -- Skyrune Robes, Light, Brown
+        IncludeSet(COLLECTION,70000,4248,5270), -- Tidesoaked Champion's Battlegear, Purple
+        IncludeSet(COLLECTION,70000,4446), -- Sunborne Runemail
+        IncludeSet(COLLECTION,70000,4481,4489), -- Stygian Silks, Purple
+        IncludeSet(COLLECTION,70000,4427,4414,4491,4415), -- Verdant Dreamscribed Robes, Purple, Green, Red
+        IncludeSet(COLLECTION,70000,4459), -- Vestments of Eredathian Sacrifice
+        IncludeSet(COLLECTION,70000,4435), -- Fel-Bloodied Battlegear
+        IncludeSet(COLLECTION,70000,4439), -- Barkbinds of the Archdruid's Nightmare
+        IncludeSet(COLLECTION,70000,4443), -- Jarl's Battlescales
+        IncludeSet(COLLECTION,70000,4447,4448,4449,4450), -- Firewurm Dragonscale, Green, Purple, Red
+        IncludeSet(COLLECTION,70000,4484,4460), -- Antoran Guard's Golden Battleplate, Gold
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.EXPANSION, 70001
+    sets = {    -- Legion Invasions
         IncludeSet(SetCollector.EXPANSION,70001,157), -- Felforged Armor
         IncludeSet(SetCollector.EXPANSION,70001,158), -- Fel-Chain Armor
         IncludeSet(SetCollector.EXPANSION,70001,159), -- Felshroud Armor
@@ -156,11 +226,40 @@ local function GetExpansionAppearances()
         IncludeSet(SetCollector.EXPANSION,70001,550), -- Deathlord's Battleplate
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 70300
+    sets = {
+        -- Legion Remix
+        IncludeSet(COLLECTION,70300,5278,5279,5280,5281), -- Sargerei Commander's Voidscarred Regalia, Raid, Mythic+, Heroic World Tier
+        IncludeSet(COLLECTION,70300,5286), -- Kaldorei Queen's Royal Vestments
+        IncludeSet(COLLECTION,70300,4575), -- Maw of the Damned
+        -- Antaen Battlegear
+        IncludeSet(COLLECTION,70300,5300), -- World-Defiler's Battle Armor
+        IncludeSet(COLLECTION,70300,5301), -- Zealous Felslingers Battle Armor
+        -- Argussian Defender's Regalia
+        IncludeSet(COLLECTION,70300,5302), -- Eredath Lightseeker's Regalia
+        IncludeSet(COLLECTION,70300,5303), -- Forgotten Conservatory Clothes
+        IncludeSet(COLLECTION,70300,5304), -- Triumvirate High Guard's Battlegear
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetOtherAppearances()
-    local COLLECTION, VERSION = SetCollector.OTHER, 70000
+    local COLLECTION, VERSION = SetCollector.OTHER, 70001
     local sets = {
+        -- Timewalking: Vrykul Battlegear
+        IncludeSet(COLLECTION,70001,4248), -- Drekirjar Warrior's Battlegear
+        IncludeSet(COLLECTION,70001,4246), -- Invasion Stalkers Guise
+        IncludeSet(COLLECTION,70001,4245), -- Broken Shore Battlemender's Gear
+        -- Legion: Remix
+        IncludeSet(COLLECTION,70001,4420,4492), -- Emerald Drake Hunter's Kit, Green
+        -- Legion: Assaults
+        IncludeSet(COLLECTION,70001,4416,4330), -- Vileweave Vestments, Normal
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.OTHER, 70205
+    sets = {
         -- Time's Keeper
         IncludeSet(SetCollector.OTHER,70205,1456), -- Timewarden's Plate
         IncludeSet(SetCollector.OTHER,70205,1457), -- Chronoscryer's Finery
@@ -168,19 +267,10 @@ local function GetOtherAppearances()
         IncludeSet(SetCollector.OTHER,70205,1459), -- Riftscarred Vestments
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
-
-    COLLECTION, VERSION = SetCollector.OTHER, 70001
-    sets = {
-        -- Timewalking: Vrykul Battlegear
-        IncludeSet(COLLECTION,70001,4248), -- Drekirjar Warrior's Battlegear
-        IncludeSet(COLLECTION,70001,4246), -- Invasion Stalkers Guise
-        IncludeSet(COLLECTION,70001,4245), -- Broken Shore Battlemender's Gear
-    }
-    AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
 
 local function GetPvPAppearances()
-    local COLLECTION, VERSION = SetCollector.PVP, 70000
+    local COLLECTION, VERSION = SetCollector.PVP, 70001
 
     local sets = {
         -- Legion Season 1 and 2
@@ -272,19 +362,8 @@ end
 
 local function GetRaidAppearances()
 
-    local COLLECTION, VERSION = SetCollector.RAID, 70000
-
-    -- Trial of Valor
+    local COLLECTION, VERSION = SetCollector.RAID, 70001
     local sets = {
-        IncludeSet(COLLECTION,70100,171,173,172,174), -- Regalia of the Chosen Dead, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,70100,175,177,176,178), -- Garb of the Chosen Dead, Mythic, Heroic, Raid Finder
-        IncludeSet(COLLECTION,70100,179,180,181,182), -- Chains of the Chosen Dead, Heroic, Mythic, Raid Finder
-        IncludeSet(COLLECTION,70100,183,185,184,186), -- Funerary Plate of the Chosen Dead, Mythic, Heroic, Raid Finder
-    }
-    AddSetsToDatabase(VERSION, COLLECTION, sets)
-
-    VERSION = 70001
-    sets = {
         -- The Nighthold
         IncludeSet(SetCollector.RAID,70001,308,309,322,311), -- Vestments of the Purifier, Heroic, Raid Finder, Mythic
         IncludeSet(SetCollector.RAID,70001,315,941,316,321), -- Legacy of Azj'aqir, Raid Finder, Heroic, Mythic
@@ -298,6 +377,16 @@ local function GetRaidAppearances()
         IncludeSet(SetCollector.RAID,70001,994,995,996,997), -- Garb of the Astral Warden, Heroic, Mythic, Raid Finder
         IncludeSet(SetCollector.RAID,70001,998,1000,999,1001), -- Vestment of Second Sight, Mythic, Heroic, Raid Finder    
         IncludeSet(SetCollector.RAID,70001,1002,1004,1003,1005), -- Dreadwyrm Battleplate, Mythic, Heroic, Raid Finder
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 70100
+    sets = {
+        -- Trial of Valor
+        IncludeSet(COLLECTION,70100,171,173,172,174), -- Regalia of the Chosen Dead, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,70100,175,177,176,178), -- Garb of the Chosen Dead, Mythic, Heroic, Raid Finder
+        IncludeSet(COLLECTION,70100,179,180,181,182), -- Chains of the Chosen Dead, Heroic, Mythic, Raid Finder
+        IncludeSet(COLLECTION,70100,183,185,184,186), -- Funerary Plate of the Chosen Dead, Mythic, Heroic, Raid Finder
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 

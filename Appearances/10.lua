@@ -198,8 +198,15 @@ local function GetExpansionAppearances()
 end
 
 local function GetOtherAppearances()
-    local COLLECTION, VERSION = SetCollector.OTHER, 100002
+    local COLLECTION, VERSION = SetCollector.OTHER, 100000
     local sets = {
+        -- Timewalking
+        IncludeSet(COLLECTION,100000,5409), -- Pristine Draconic Scholar's Finery
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.OTHER, 100002
+    sets = {
         -- Wrappings of the Phoenix
         IncludeSet(COLLECTION,VERSION,2482), -- Fireplume Regalia
     }
@@ -216,6 +223,9 @@ local function GetOtherAppearances()
     sets = {
         -- Unrelenting Justice
         IncludeSet(COLLECTION,VERSION,3305,3367,3366), -- Moonlit Burden of Unrelenting Justice, Moon, Sun
+
+        -- Druid of the Flame (Timewalking "Shadowflame-Seared Druidic Garb")
+        IncludeSet(COLLECTION,100200,5404), -- Druid of the Shadowflame
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
@@ -225,7 +235,6 @@ local function GetOtherAppearances()
         IncludeSet(COLLECTION,VERSION,3354,3355), -- Dreadlord's Venombane Armor, In-Game Shop Variant
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
-
 end
 
 local function GetPvPAppearances()

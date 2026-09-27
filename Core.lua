@@ -297,8 +297,9 @@ end
 function SetCollector:ExportSetData()
     local tree = {}
     local exportTree = {}
+    local export2 = {}
     local dumpList = {}
-    local dumpColumns = {"setID", "baseSetID", "name", "desc", "label", "patchID", "classMask", "uiOrder", "faction"}
+    local dumpColumns = {"setID", "baseSetID", "name", "desc", "label", "patchID", "classMask", "uiOrder", "faction", "collection"}
     table.insert(dumpList, table.concat(dumpColumns, "|"))
     local sets = C_TransmogSets.GetAllSets()
     if (sets) then
@@ -356,15 +357,18 @@ function SetCollector:ExportSetData()
 
                 local baseSetId = table.concat(lua2,",") .. table.concat(lua2comment,", ")
                 exportTree[setInfo.patchID][setInfo.patchID][heading][baseSetID] = baseSetId
+
                 local faction = setInfo.requiredFaction or ""
                 local mask = SetCollector:ParseClassMask(setInfo.classMask)
-                dumpColumns = {setID, baseSetID, setInfo.name, strDesc, strLabel, setInfo.patchID, mask, setInfo.uiOrder, faction}
+                table.insert(export2, { SetId = setID, BaseSetId = baseSetID, Collection = collection, Patch = setInfo.patchID, Description = strDesc, Label = strLabel,  Name = setInfo.name, Faction = faction, ClassMask = mask })
+                dumpColumns = {setID, baseSetID, setInfo.name, strDesc, strLabel, setInfo.patchID, mask, setInfo.uiOrder, faction, collection}
                 table.insert(dumpList, table.concat(dumpColumns, "|"))
             end
         end
     end
 
     SetCollector.db.global.export = exportTree
+    -- SetCollector.db.global.export2 = export2
     SetCollector.db.global.dumpList = dumpList
     SetCollector:Print("Done exporting")
 end

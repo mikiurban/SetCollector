@@ -262,14 +262,14 @@ local function GetPvpAppearances()
         IncludeSet(COLLECTION,80001,1672,1674,1673,1732), -- Dread Gladiator's Chain, Warfront, Aspirant, Elite
         IncludeSet(COLLECTION,80001,1675,1677,1676,1731), -- Dread Gladiator's Plate, Warfront, Aspirant, Elite
         -- Battle Season 2 and Darkshore Warfront
-        IncludeSet(COLLECTION,80100,1745,1746,1750,1751), -- Sinister Gladiator's Plate, Aspirant, Elite, Gladiator
-        IncludeSet(COLLECTION,80100,1752,1753,1757,1758), -- Sinister Gladiator's Chain, Aspirant, Elite, Gladiator
-        IncludeSet(COLLECTION,80100,1759,1764,1760,1765), -- Sinister Gladiator's Leathers, Elite, Aspirant, Gladiator
-        IncludeSet(COLLECTION,80100,1766,1767,1771,1772), -- Sinister Gladiator's Vestment, Aspirant, Elite, Gladiator
-        IncludeSet(COLLECTION,80100,1775,1776,1780,1781), -- Sinister Gladiator's Plate, Aspirant, Elite, Gladiator
-        IncludeSet(COLLECTION,80100,1782,1783,1787,1788), -- Sinister Gladiator's Chain, Aspirant, Elite, Gladiator
-        IncludeSet(COLLECTION,80100,1789,1794,1790,1795), -- Sinister Gladiator's Leathers, Elite, Aspirant, Gladiator
-        IncludeSet(COLLECTION,80100,1796,1797,1801,1802), -- Sinister Gladiator's Vestment, Aspirant, Elite, Gladiator
+        IncludeSet(COLLECTION,80100,1745,1746,1750,1751,5290), -- Sinister Gladiator's Plate, Aspirant, Elite, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1752,1753,1757,1758,5289), -- Sinister Gladiator's Chain, Aspirant, Elite, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1759,1764,1760,1765,5288), -- Sinister Gladiator's Leathers, Elite, Aspirant, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1766,1767,1771,1772,5287), -- Sinister Gladiator's Vestment, Aspirant, Elite, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1775,1776,1780,1781,5285), -- Sinister Gladiator's Plate, Aspirant, Elite, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1782,1783,1787,1788,5284), -- Sinister Gladiator's Chain, Aspirant, Elite, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1789,1794,1790,1795,5283), -- Sinister Gladiator's Leathers, Elite, Aspirant, Gladiator, Heroic
+        IncludeSet(COLLECTION,80100,1796,1797,1801,1802,5282), -- Sinister Gladiator's Vestment, Aspirant, Elite, Gladiator, Heroic
         -- Battle Season 3
         IncludeSet(COLLECTION,80200,1846,1851,1847), -- Notorious Aspirant's Vestment, Aspirant, Elite
         IncludeSet(COLLECTION,80200,1852,1857,1853), -- Notorious Aspirant's Leathers, Aspirant, Elite

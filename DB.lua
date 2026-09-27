@@ -444,6 +444,7 @@ function SetCollector:AddAppearances(debug)
 	SetCollector:GetVersion09Appearances(expansions)	-- Shadowlands
 	SetCollector:GetVersion10Appearances(expansions)	-- Dragonflight
 	SetCollector:GetVersion11Appearances(expansions)	-- The War Within
+	SetCollector:GetVersion12Appearances(expansions)	-- Midnight
 
 	SetCollector:DebugPrint("Finished adding appearances to database.")
 end

@@ -55,7 +55,7 @@ local function GetHeritageAppearances()
         IncludeSet(COLLECTION,VERSION,1522), -- Highmountain's Heritage
         IncludeSet(COLLECTION,VERSION,1523), -- Heritage of the Shal'dorei
         IncludeSet(COLLECTION,VERSION,1524), -- Heritage of the Ren'dorei
-        IncludeSet(COLLECTION,VERSION,1525), -- Heritage of the Lightforged
+        IncludeSet(COLLECTION,VERSION,1525,4331), -- Heritage of the Lightforged, Holy Gold
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
@@ -127,17 +127,31 @@ local function GetHeritageAppearances()
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
     VERSION = 100207
-    AddSetsToDatabase(VERSION, COLLECTION, sets)
     sets = {
         IncludeSet(COLLECTION,VERSION,3346,3347), -- Endurance of Temple Telhamat, Orange
         IncludeSet(COLLECTION,VERSION,3350,3515), -- Loyalty of the Darkspear, Red
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 
+    VERSION = 110207
+    sets = {
+        -- Heritage of the Wandering Isle
+        IncludeSet(COLLECTION,110207,5368,5366,5367), -- Wandering Isle, Blue, Red
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    VERSION = 120000
+    sets = {
+        -- Heritage of the Haranir
+        IncludeSet(COLLECTION,120000,5381,5382), -- Heritage of Harandar, Shul'ka
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+    
+
 end
 
 local function GetHolidayAppearances()
-    local COLLECTION, VERSION = SetCollector.HOLIDAY, 70000
+    local COLLECTION, VERSION = SetCollector.HOLIDAY, 10001
     local sets = {
         CreateSet(COLLECTION,10001,"HO_FESTIVE_DRESS",ANY_CLASS,ANY_FACTION,NO_LOCATION,
             CreateVariant("GREEN",I(21157)),
@@ -196,6 +210,15 @@ local function GetHolidayAppearances()
             CreateVariant("GREEN",I(21525),I(151792),I(151791)),
             CreateVariant("RED",I(21524),I(151790),I(151791))
         ),
+    }
+    AddSetsToDatabase(VERSION, COLLECTION, sets)
+
+    COLLECTION, VERSION = SetCollector.HOLIDAY, 110200
+    sets = {
+        -- The Dwarven Ceremonial Collection
+        IncludeSet(COLLECTION,110200,5166,5167,5168,5169), -- Dark Iron's Ceremonial Collection, White, Blue, Red
+        -- The Horseman's Collection
+        IncludeSet(COLLECTION,110200,5156,5161,5160,5162), -- The Horseman's Hallowed Collection, Red, Green, White
     }
     AddSetsToDatabase(VERSION, COLLECTION, sets)
 end
